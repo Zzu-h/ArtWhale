@@ -1,4 +1,4 @@
-# ð ArtWhale
+# 🐳 ArtWhale
 
 ### 🙂 Crews (Members)
 
@@ -6,9 +6,10 @@
 |:------:|:------:|:------:|
 |Android|Backend|AI|
 |<img src="https://avatars.githubusercontent.com/u/72387349?s=400&u=e30a4278a9a8590f0c13b6edffb305c464447c1d&v=4" />|<img src="https://avatars.githubusercontent.com/u/27036798?v=4" />|<img src="https://avatars.githubusercontent.com/u/69791751?v=4" />|
-#사람 #배우이름 #소설 #첫소절 와 같이, 여러 텍스트(태그)를 읽고 그에 맞는 이미지를 그려줌
 
 ### 소개합니다!
+
+`#사람 #배우이름 #소설 #첫소절 와 같이, 여러 텍스트(태그)를 읽고 그에 맞는 이미지를 그려줌`
 
 #### app
 - Use millions of Albums and Music,for free. No credit card required

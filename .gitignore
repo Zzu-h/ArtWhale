@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/macos,android,androidstudio,kotlin,git
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,android,androidstudio,kotlin,git
+# Created by https://www.toptal.com/developers/gitignore/api/macos,android,androidstudio,kotlin,gradle
+# Edit at https://www.toptal.com/developers/gitignore?templates=macos,android,androidstudio,kotlin,gradle
 
 ### Android ###
 # Gradle files
@@ -41,21 +41,6 @@ gen-external-apklibs
 
 # Replacement of .externalNativeBuild directories introduced
 # with Android Studio 3.5.
-
-### Git ###
-# Created by git for backups. To disable backups in Git:
-# $ git config --global mergetool.keepBackup false
-*.orig
-
-# Created by git when using merge tools for conflicts
-*.BACKUP.*
-*.BASE.*
-*.LOCAL.*
-*.REMOTE.*
-*_BACKUP_*.txt
-*_BASE_*.txt
-*_LOCAL_*.txt
-*_REMOTE_*.txt
 
 ### Kotlin ###
 # Compiled class file
@@ -115,6 +100,32 @@ Temporary Items
 # iCloud generated files
 *.icloud
 
+### Gradle ###
+.gradle
+**/build/
+!src/**/build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Avoid ignore Gradle wrappper properties
+!gradle-wrapper.properties
+
+# Cache of project
+.gradletasknamecache
+
+# Eclipse Gradle plugin generated files
+# Eclipse Core
+.project
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+### Gradle Patch ###
+# Java heap dump
+
 ### AndroidStudio ###
 # Covers files to be ignored for android development using Android Studio.
 
@@ -133,7 +144,6 @@ gen/
 out/
 
 # Gradle files
-.gradle
 
 # Signing files
 .signing/
@@ -200,8 +210,6 @@ obj/
 .idea/navEditor.xml
 
 # Legacy Eclipse project files
-.classpath
-.project
 .cproject
 .settings/
 
@@ -232,4 +240,4 @@ fabric.properties
 
 !/gradle/wrapper/gradle-wrapper.jar
 
-# End of https://www.toptal.com/developers/gitignore/api/macos,android,androidstudio,kotlin,git
+# End of https://www.toptal.com/developers/gitignore/api/macos,android,androidstudio,kotlin,gradle

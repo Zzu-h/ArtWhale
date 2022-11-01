@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -31,18 +33,51 @@ android {
     }
     buildFeatures {
         viewBinding true
+        dataBinding true
+    }
+
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    def base_url = properties.getProperty("BASE_URL")
+
+    defaultConfig {
+        buildConfigField "String", 'BASE_URL', base_url
     }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.8.0-alpha01'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation "androidx.core:core-ktx:$androidx_core"
+    implementation "androidx.appcompat:appcompat:$androidx_appcompat"
+    implementation "com.google.android.material:material:$android_material"
+    implementation "androidx.constraintlayout:constraintlayout:$androidx_constraint"
+    implementation "androidx.navigation:navigation-fragment-ktx:$androidx_navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$androidx_navigation"
+    testImplementation "junit:junit:$junit"
+    androidTestImplementation "androidx.test.ext:junit:$androidx_junit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_espresso"
+
+    //Hilt Dependency
+    implementation "com.google.dagger:hilt-android:$hilt"
+    implementation "androidx.hilt:hilt-navigation-fragment:$hilt_navigation_fragment"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt"
+
+    //kotlin serialization Dependency
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlin_serialization"
+
+    //Retrofit2 Dependency
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+
+    //Glide Dependency
+    implementation "com.github.bumptech.glide:glide:$glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide"
+
+    //viewModels Dependency
+    implementation "androidx.activity:activity-ktx:$androidx_activity_ktx"
+    implementation "androidx.fragment:fragment-ktx:$androidx_fragment_ktx"
+
+    //okhttp3
+    implementation "com.squareup.okhttp3:okhttp:$okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp"
 }

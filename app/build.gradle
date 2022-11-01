@@ -31,6 +31,19 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    def base_url = properties.getProperty("BASE_URL")
+
+    defaultConfig {
+        buildConfigField "String", 'BASE_URL', base_url
+    }
 }
 
 dependencies {

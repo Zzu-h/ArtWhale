@@ -58,4 +58,8 @@ dependencies {
 
     //Retrofit2 Dependency
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
+
+    //Glide Dependency
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 }

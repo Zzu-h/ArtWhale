@@ -48,36 +48,36 @@ android {
 
 dependencies {
 
-    implementation "androidx.core:core-ktx:$androidx_core"
-    implementation "androidx.appcompat:appcompat:$androidx_appcompat"
-    implementation "com.google.android.material:material:$android_material"
-    implementation "androidx.constraintlayout:constraintlayout:$androidx_constraint"
-    implementation "androidx.navigation:navigation-fragment-ktx:$androidx_navigation"
-    implementation "androidx.navigation:navigation-ui-ktx:$androidx_navigation"
-    testImplementation "junit:junit:$junit"
-    androidTestImplementation "androidx.test.ext:junit:$androidx_junit"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_espresso"
+    implementation "androidx.core:core-ktx:$androidx_core_version"
+    implementation "androidx.appcompat:appcompat:$androidx_appcompat_version"
+    implementation "com.google.android.material:material:$android_material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$androidx_constraint_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$androidx_navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$androidx_navigation_version"
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$androidx_junit_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_espresso_version"
 
     //Hilt Dependency
-    implementation "com.google.dagger:hilt-android:$hilt"
-    implementation "androidx.hilt:hilt-navigation-fragment:$hilt_navigation_fragment"
-    kapt "com.google.dagger:hilt-android-compiler:$hilt"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    implementation "androidx.hilt:hilt-navigation-fragment:$hilt_navigation_fragment_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     //kotlin serialization Dependency
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlin_serialization"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlin_serialization_version"
 
     //Retrofit2 Dependency
-    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
 
     //Glide Dependency
-    implementation "com.github.bumptech.glide:glide:$glide"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glide"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
 
     //viewModels Dependency
-    implementation "androidx.activity:activity-ktx:$androidx_activity_ktx"
-    implementation "androidx.fragment:fragment-ktx:$androidx_fragment_ktx"
+    implementation "androidx.activity:activity-ktx:$androidx_activity_ktx_version"
+    implementation "androidx.fragment:fragment-ktx:$androidx_fragment_ktx_version"
 
     //okhttp3
-    implementation "com.squareup.okhttp3:okhttp:$okhttp"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 }

@@ -65,6 +65,7 @@ dependencies {
 
     //kotlin serialization Dependency
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlin_serialization_version"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$kotlin_serialization_converter_version"
 
     //Retrofit2 Dependency
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -77,7 +78,10 @@ dependencies {
     implementation "androidx.activity:activity-ktx:$androidx_activity_ktx_version"
     implementation "androidx.fragment:fragment-ktx:$androidx_fragment_ktx_version"
 
-    //okhttp3
+    //okhttp3 Dependency
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    //google Dependency
+    implementation "com.google.android.gms:play-services-auth:$google_version"
 }

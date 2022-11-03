@@ -54,7 +54,7 @@
             android:layout_height="60dp"
             android:backgroundTint="@color/primary"
             android:text="@string/social_login"
-            app:icon="@android:drawable/ic_menu_search"
+            app:icon="@drawable/googleg_standard_color_18"
             app:iconGravity="start"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

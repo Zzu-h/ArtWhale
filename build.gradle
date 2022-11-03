@@ -15,6 +15,7 @@ buildscript {
         hilt_navigation_fragment_version = '1.0.0'
 
         kotlin_serialization_version = '1.4.1'
+        kotlin_serialization_converter_version = '0.8.0'
         retrofit_version = '2.9.0'
         okhttp_version = '4.10.0'
 

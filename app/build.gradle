@@ -65,6 +65,7 @@ dependencies {
 
     //kotlin serialization Dependency
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlin_serialization_version"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$kotlin_serialization_converter_version"
 
     //Retrofit2 Dependency
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"

@@ -43,4 +43,7 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="app_description_title">Enjoy Sharing Your Art</string>
+    <string name="app_description">Use millions of Albums and \nMusic,for free. No credit card \nrequired</string>
+    <string name="social_login">Log In with Google</string>
 </resources>

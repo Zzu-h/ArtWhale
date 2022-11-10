@@ -3,15 +3,16 @@
 
     <declare-styleable name="CustomToolBar">
         <attr name="toolbarTitle" format="string" />
-        <attr name="onClickBackIcon" format="string" />
-        <attr name="onClickCartIcon" format="string" />
-        <attr name="onClickUserIcon" format="string" />
-        <attr name="onClickRefreshIcon" format="string" />
+
+        <attr name="onClickDefaultIcon" format="string" />
+        <attr name="onClickAdditionalIcon" format="string" />
+
+        <attr name="setDefaultIcon" format="reference" />
+        <attr name="setAdditionalIcon" format="reference" />
 
         <attr name="toolBarType">
             <flag name="main" value="0x00" />
             <flag name="sub" value="0x01" />
-            <flag name="sub_refresh" value="0x03" />
         </attr>
     </declare-styleable>
 </resources>

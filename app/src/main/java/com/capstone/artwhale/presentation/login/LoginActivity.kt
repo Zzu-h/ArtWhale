@@ -13,8 +13,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
+import androidx.lifecycle.lifecycleScope
 import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.ActivityLoginBinding
+import com.capstone.artwhale.presentation.common.Error
+import com.capstone.artwhale.presentation.common.InitialState
+import com.capstone.artwhale.presentation.common.Loading
+import com.capstone.artwhale.presentation.common.Success
 import com.capstone.artwhale.presentation.home.HomeActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -22,6 +27,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
@@ -42,6 +49,20 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initGoogleLogin()
+        initObserver()
+    }
+
+    private fun initObserver() {
+        loginViewModel.loginState.onEach {
+            when (it) {
+                InitialState -> {}
+                Loading -> {}
+                Success -> startMainActivity()
+                is Error -> {
+                    Log.d("Tester", "initObserver: ${it.msg}")
+                }
+            }
+        }.launchIn(this.lifecycleScope)
     }
 
     private fun initSplashScreen() {
@@ -112,7 +133,8 @@ class LoginActivity : AppCompatActivity() {
             val account = completedTask.getResult(ApiException::class.java)
             account?.apply {
                 val email = this.email.toString()
-                loginViewModel.login(email)
+                //loginViewModel.login(email)
+                startMainActivity()
             }
         } catch (e: ApiException) {
             Log.e("Google account", "signInResult:failed Code = " + e.statusCode)

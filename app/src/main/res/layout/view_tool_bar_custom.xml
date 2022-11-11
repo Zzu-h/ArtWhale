@@ -40,8 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Music Player"
-                android:visibility="gone"
-                app:text="" />
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/iv_title"

@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.capstone.artwhale.presentation.home.HomeActivity">
+
+    <item
+        android:id="@+id/firstFragment"
+        android:icon="@drawable/ic_magnifier"
+        android:orderInCategory="100"
+        android:title="@string/action_settings" />
+
+    <item
+        android:id="@+id/secondFragment"
+        android:icon="@drawable/ic_plus"
+        android:orderInCategory="100"
+        android:title="@string/action_settings" />
+</menu>

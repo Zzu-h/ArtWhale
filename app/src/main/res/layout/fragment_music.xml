@@ -41,18 +41,18 @@
             app:layout_constraintTop_toBottomOf="@id/abl_main" />
 
         <TextView
-            android:id="@+id/tv_popular_list"
+            android:id="@+id/tv_new_list"
             style="@style/title.small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="40dp"
-            android:text="@string/popular"
+            android:text="@string/new_music"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rv_notice" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_popular_list"
+            android:id="@+id/rv_new_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
@@ -60,7 +60,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_popular_list"
+            app:layout_constraintTop_toBottomOf="@id/tv_new_list"
             tools:itemCount="5" />
 
         <TextView
@@ -72,7 +72,7 @@
             android:layout_marginTop="22dp"
             android:text="@string/chart"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_popular_list" />
+            app:layout_constraintTop_toBottomOf="@id/rv_new_list" />
 
         <TextView
             android:id="@+id/tv_more"

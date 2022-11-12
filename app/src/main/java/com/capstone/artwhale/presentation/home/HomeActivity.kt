@@ -21,6 +21,10 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initNavigation()
+    }
+
+    private fun initNavigation() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fcv_content)
 
         val navController = (navHostFragment as NavHostFragment).navController

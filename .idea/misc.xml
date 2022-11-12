@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable-v24/bg_login_imgae.xml" value="0.225" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.203" />
         <entry key="app/src/main/res/drawable-v24/ic_logo_combine.xml" value="0.225" />
+        <entry key="app/src/main/res/drawable/bg_bottom_navigation_item.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/bg_login_imgae.xml" value="0.1275" />
         <entry key="app/src/main/res/drawable/ic_left_arrow.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/ic_logo.xml" value="0.203" />
@@ -14,7 +15,7 @@
         <entry key="app/src/main/res/drawable/ic_manifier.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/ic_mores.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/ic_plus.xml" value="0.2625" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.20592803955078126" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.10058915140843189" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.5873618080977994" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.504601226993865" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1" />

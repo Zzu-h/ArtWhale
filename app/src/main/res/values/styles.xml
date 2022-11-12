@@ -119,4 +119,8 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
+
+    <!--Bottom Navigation View / Icon Background = null-->
+    <style name="Widget.Material3.BottomNavigationView.ActiveIndicator" parent=""/>
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator"/>
 </resources>

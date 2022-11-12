@@ -67,6 +67,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initSplashScreen() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            window.navigationBarColor = getColor(R.color.black)
             actionBar?.hide()
             splashScreen.setOnExitAnimationListener { splashScreenView ->
                 // Create your custom animation.

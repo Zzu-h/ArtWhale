@@ -3,26 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/firstFragment">
+    app:startDestination="@id/musicFragment">
 
     <fragment
-        android:id="@+id/firstFragment"
-        android:name="com.capstone.artwhale.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/musicFragment"
+        android:name="com.capstone.artwhale.presentation.home.music.MusicFragment"
+        android:label="@string/fragment_music"
+        tools:layout="@layout/fragment_music">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/secondFragment" />
+            app:destination="@id/albumFragment" />
     </fragment>
     <fragment
-        android:id="@+id/secondFragment"
-        android:name="com.capstone.artwhale.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/albumFragment"
+        android:name="com.capstone.artwhale.presentation.home.album.AlbumFragment"
+        android:label="@string/fragment_album"
+        tools:layout="@layout/fragment_album">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/firstFragment" />
+            app:destination="@id/musicFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/likeFragment"
+        android:name="com.capstone.artwhale.presentation.home.like.LikeFragment"
+        android:label="@string/fragment_like"
+        tools:layout="@layout/fragment_like">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/musicFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.capstone.artwhale.presentation.home.profile.ProfileFragment"
+        android:label="@string/fragment_profile"
+        tools:layout="@layout/fragment_profile">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/musicFragment" />
     </fragment>
 </navigation>

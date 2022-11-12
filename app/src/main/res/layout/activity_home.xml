@@ -7,21 +7,6 @@
     android:background="@color/bg_ivory"
     android:fitsSystemWindows="true"
     tools:context=".presentation.home.HomeActivity">
-    <!--
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:fitsSystemWindows="true">
-
-            <com.capstone.artwhale.presentation.common.CustomToolBar
-                android:id="@+id/ctb_main"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:setAdditionalIcon="@drawable/ic_magnifier"
-                app:setDefaultIcon="@drawable/ic_plus" />
-
-        </com.google.android.material.appbar.AppBarLayout>-->
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fcv_content"
@@ -40,8 +25,10 @@
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:background="@color/white"
+        android:paddingHorizontal="20dp"
         app:itemActiveIndicatorStyle="@style/App.Custom.Indicator"
         app:itemBackground="@color/white"
+        app:itemIconSize="22dp"
         app:itemIconTint="@drawable/bg_bottom_navigation_item"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"

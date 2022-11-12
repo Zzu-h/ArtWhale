@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.capstone.artwhale.presentation.home.HomeActivity">
+
+    <item
+        android:id="@+id/musicFragment"
+        android:icon="@drawable/ic_home"
+        android:orderInCategory="100"
+        android:title="" />
+
+    <item
+        android:id="@+id/albumFragment"
+        android:icon="@drawable/ic_album"
+        android:orderInCategory="100"
+        android:title="" />
+
+    <item
+        android:id="@+id/likeFragment"
+        android:icon="@drawable/ic_like"
+        android:orderInCategory="100"
+        android:title="" />
+
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_profile"
+        android:orderInCategory="100"
+        android:title="" />
+</menu>

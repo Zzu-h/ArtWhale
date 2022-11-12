@@ -52,4 +52,7 @@
     <string name="fragment_album">fragment_album</string>
     <string name="fragment_music">fragment_music</string>
     <string name="fragment_like">fragment_like</string>
+    <string name="popular">Popular</string>
+    <string name="chart">Chart</string>
+    <string name="mores">더보기</string>
 </resources>

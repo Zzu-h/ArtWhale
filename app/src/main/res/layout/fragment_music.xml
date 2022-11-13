@@ -33,12 +33,14 @@
             android:id="@+id/rv_notice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/abl_main" />
+            app:layout_constraintTop_toBottomOf="@id/abl_main"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_notice" />
 
         <TextView
             android:id="@+id/tv_new_list"
@@ -57,11 +59,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
             android:orientation="horizontal"
+            android:padding="5dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_new_list"
-            tools:itemCount="5" />
+            tools:itemCount="5"
+            tools:listitem="@layout/item_new_music" />
 
         <TextView
             android:id="@+id/tv_chart"
@@ -96,6 +100,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_chart"
-            tools:itemCount="10" />
+            tools:itemCount="10"
+            tools:listitem="@layout/item_chart_music" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

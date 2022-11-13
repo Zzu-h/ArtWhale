@@ -84,4 +84,7 @@ dependencies {
 
     //google Dependency
     implementation "com.google.android.gms:play-services-auth:$google_version"
+
+    //circle Indicator
+    implementation "me.relex:circleindicator:$indicator_version"
 }

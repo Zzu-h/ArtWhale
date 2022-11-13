@@ -42,6 +42,22 @@
             tools:itemCount="1"
             tools:listitem="@layout/item_notice" />
 
+        <me.relex.circleindicator.CircleIndicator2
+            android:id="@+id/ci2_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            app:ci_animator="@animator/alpha"
+            app:ci_drawable="@drawable/dot_selected"
+            app:ci_drawable_unselected="@drawable/dot_unselected"
+            app:ci_height="8dp"
+            app:ci_margin="4dp"
+            app:ci_orientation="horizontal"
+            app:ci_width="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_notice" />
+
         <TextView
             android:id="@+id/tv_new_list"
             style="@style/title.small"

@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.capstone.artwhale.R
+import androidx.fragment.app.viewModels
 import com.capstone.artwhale.databinding.FragmentMusicBinding
 
 class MusicFragment : Fragment() {
 
     private var _binding: FragmentMusicBinding? = null
+    private val viewModel by viewModels<MusicViewModel>()
 
     // This property is only valid between onCreateView and
     // onDestroyView.

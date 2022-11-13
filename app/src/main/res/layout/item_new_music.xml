@@ -18,6 +18,7 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_album_thumbnail"
+            image="@{item.albumImgUrl}"
             android:layout_width="113dp"
             android:layout_height="184dp"
             android:background="@color/black"
@@ -30,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:text="@{item.title}"
             tool:text="ocean eyes" />
 
         <TextView
@@ -38,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
+            android:text="@{item.singer}"
             tool:text="Billie Eilish" />
 
     </LinearLayout>

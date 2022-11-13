@@ -17,6 +17,7 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_album_thumbnail"
+            image="@{item.albumImgUrl}"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:background="@color/black"
@@ -33,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
+            android:text="@{item.title}"
             app:layout_constraintStart_toEndOf="@id/iv_album_thumbnail"
             app:layout_constraintTop_toTopOf="@id/iv_album_thumbnail"
             tool:text="ocean eyes" />
@@ -43,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
+            android:text="@{item.singer}"
             app:layout_constraintStart_toStartOf="@id/tv_title"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             tool:text="Billie Eilish" />
@@ -50,6 +53,7 @@
         <TextView
             android:id="@+id/tv_time"
             style="@style/text.verySmall"
+            songTime="@{item.time}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
@@ -61,6 +65,7 @@
 
         <ImageView
             android:id="@+id/iv_like"
+            state="@{item.isLike}"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:clickable="true"

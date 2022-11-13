@@ -1,47 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tool="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="150dp"
-    android:layout_marginHorizontal="22dp"
-    android:layout_marginVertical="13dp"
-    android:clipChildren="true"
-    app:cardBackgroundColor="@color/primary"
-    app:cardCornerRadius="20dp">
+    xmlns:tool="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="item"
+            type="com.capstone.artwhale.domain.model.Notice" />
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="150dp"
+        android:layout_marginHorizontal="22dp"
+        android:layout_marginVertical="13dp"
+        android:clipChildren="true"
+        app:cardBackgroundColor="@color/primary"
+        app:cardCornerRadius="20dp">
 
-        <ImageView
-            android:id="@+id/iv_background"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitCenter" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_type"
-            style="@style/text.small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="42dp"
-            android:layout_marginTop="25dp"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tool:text="Advertisement" />
+            <ImageView
+                android:id="@+id/iv_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter" />
 
-        <TextView
-            android:id="@+id/tv_content"
-            style="@style/text.medium.bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/tv_type"
-            app:layout_constraintTop_toBottomOf="@id/tv_type"
-            tool:text="Test Text" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/tv_type"
+                style="@style/text.small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="42dp"
+                android:layout_marginTop="25dp"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tool:text="Advertisement" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                style="@style/text.medium.bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/tv_type"
+                app:layout_constraintTop_toBottomOf="@id/tv_type"
+                tool:text="Test Text" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

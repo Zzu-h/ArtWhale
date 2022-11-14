@@ -9,5 +9,5 @@ class GetMyInfoUseCaseImpl @Inject constructor(
     private val authRepository: AuthRepository
 ) : GetMyInfoUseCase {
 
-    override suspend fun invoke(email: String): Result<Auth> = authRepository.login(email)
+    override suspend fun invoke(): Result<Auth> = authRepository.getMyInfo()
 }

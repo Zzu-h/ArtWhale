@@ -4,5 +4,5 @@ import com.capstone.artwhale.domain.model.Auth
 
 interface GetMyInfoUseCase {
 
-    suspend operator fun invoke(email: String): Result<Auth>
+    suspend operator fun invoke(): Result<Auth>
 }

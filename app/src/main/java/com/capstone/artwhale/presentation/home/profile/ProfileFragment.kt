@@ -7,11 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.blurry.Blurry
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
@@ -34,6 +38,21 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initNavigation()
         initBlurView()
+        initObserver()
+    }
+
+    private fun initObserver() {
+        this.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                with(viewModel) {
+                    launch { myInfo.collect { } }
+                    launch { myAlbum.collect { } }
+                    launch { likeAlbum.collect { } }
+                    launch { myMusic.collect { } }
+                    launch { likeMusic.collect { } }
+                }
+            }
+        }
     }
 
     private fun initBlurView() {

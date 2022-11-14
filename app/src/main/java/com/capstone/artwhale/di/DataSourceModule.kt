@@ -1,5 +1,7 @@
 package com.capstone.artwhale.di
 
+import com.capstone.artwhale.data.datasource.album.AlbumDataSource
+import com.capstone.artwhale.data.datasource.album.AlbumDataSourceImpl
 import com.capstone.artwhale.data.datasource.auth.AuthDataSource
 import com.capstone.artwhale.data.datasource.auth.AuthDataSourceImpl
 import com.capstone.artwhale.data.datasource.music.MusicDataSource
@@ -33,4 +35,10 @@ abstract class DataSourceModule {
     abstract fun provideMusicDataSource(
         musicDataSource: MusicDataSourceImpl
     ): MusicDataSource
+
+    @Singleton
+    @Binds
+    abstract fun provideAlbumDataSource(
+        albumDataSource: AlbumDataSourceImpl
+    ): AlbumDataSource
 }

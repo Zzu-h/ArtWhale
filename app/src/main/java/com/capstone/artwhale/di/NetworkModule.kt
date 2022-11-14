@@ -2,6 +2,7 @@ package com.capstone.artwhale.di
 
 import com.capstone.artwhale.BuildConfig
 import com.capstone.artwhale.BuildConfig.BASE_URL
+import com.capstone.artwhale.data.service.AlbumService
 import com.capstone.artwhale.data.service.AuthService
 import com.capstone.artwhale.data.service.MusicService
 import com.capstone.artwhale.data.service.NoticeService
@@ -73,5 +74,11 @@ object NetworkModule {
     @Provides
     fun provideNoticeService(retrofit: Retrofit): NoticeService {
         return retrofit.create(NoticeService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAlbumService(retrofit: Retrofit): AlbumService {
+        return retrofit.create(AlbumService::class.java)
     }
 }

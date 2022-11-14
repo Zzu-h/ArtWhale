@@ -7,9 +7,11 @@
         <entry key="app/src/main/res/drawable-v24/bg_login_imgae.xml" value="0.225" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.203" />
         <entry key="app/src/main/res/drawable-v24/ic_logo_combine.xml" value="0.225" />
+        <entry key="app/src/main/res/drawable/bg_bottom_left_round.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/bg_bottom_navigation_item.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/bg_login_imgae.xml" value="0.1275" />
         <entry key="app/src/main/res/drawable/dot_selected.xml" value="0.1535" />
+        <entry key="app/src/main/res/drawable/dot_selected_white.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/dot_unselected.xml" value="0.1535" />
         <entry key="app/src/main/res/drawable/ic_album.xml" value="0.1875" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1875" />
@@ -27,16 +29,18 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.5873618080977994" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.504601226993865" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_album.xml" value="0.17916666666666667" />
+        <entry key="app/src/main/res/layout/fragment_album.xml" value="0.2524271844660194" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.2671875" />
         <entry key="app/src/main/res/layout/fragment_like.xml" value="0.17916666666666667" />
-        <entry key="app/src/main/res/layout/fragment_music.xml" value="0.1039939713639789" />
+        <entry key="app/src/main/res/layout/fragment_music.xml" value="0.2022932022932023" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.17916666666666667" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.2671875" />
+        <entry key="app/src/main/res/layout/item_album.xml" value="0.25729166666666664" />
         <entry key="app/src/main/res/layout/item_chart_music.xml" value="0.4830454508463542" />
         <entry key="app/src/main/res/layout/item_new_music.xml" value="0.3609375" />
         <entry key="app/src/main/res/layout/item_notice.xml" value="0.4812998453776042" />
         <entry key="app/src/main/res/layout/item_popular_music.xml" value="0.25729166666666664" />
+        <entry key="app/src/main/res/layout/item_rv_image.xml" value="0.25729166666666664" />
         <entry key="app/src/main/res/layout/view_custom_tool_bar.xml" value="0.25729166666666664" />
         <entry key="app/src/main/res/layout/view_tool_bar_custom.xml" value="0.32928642576652495" />
         <entry key="app/src/main/res/menu/menu_home.xml" value="0.1" />

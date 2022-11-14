@@ -1,13 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.home.album.AlbumFragment">
 
-    <TextView
+    <FrameLayout
+        android:id="@+id/layout_clip_bottom_left"
+        style="@style/CardViewLeftBottomRadius"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="280dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bg_bottom_left_round"
+        android:clipChildren="true"
+        android:clipToOutline="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_album_thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_bottom_left_round"
+            android:clipChildren="true"
+            android:clipToOutline="true"
+            android:clipToPadding="true"
+            tools:itemCount="1" />
+    </FrameLayout>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_default"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_plus"
+        android:visibility="visible"
+        app:contentPadding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize100Percent" />
+
+    <me.relex.circleindicator.CircleIndicator2
+        android:id="@+id/ci2_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        app:ci_animator="@animator/alpha"
+        app:ci_drawable="@drawable/dot_selected_white"
+        app:ci_drawable_unselected="@drawable/dot_unselected"
+        app:ci_height="8dp"
+        app:ci_margin="4dp"
+        app:ci_orientation="horizontal"
+        app:ci_width="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/layout_clip_bottom_left"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_ranking_background"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="18dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_clip_bottom_left"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize100Percent" />
+
+    <TextSwitcher
+        android:id="@+id/ts_ranking_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/fragment_album" />
+        android:text="1"
+        app:layout_constraintBottom_toBottomOf="@id/iv_ranking_background"
+        app:layout_constraintEnd_toEndOf="@id/iv_ranking_background"
+        app:layout_constraintStart_toStartOf="@id/iv_ranking_background"
+        app:layout_constraintTop_toTopOf="@id/iv_ranking_background" />
+
+    <TextSwitcher
+        android:id="@+id/ts_ranking_title"
+        style="@style/text.large.bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="@string/fragment_album"
+        app:layout_constraintStart_toEndOf="@id/iv_ranking_background"
+        app:layout_constraintTop_toBottomOf="@id/layout_clip_bottom_left" />
+
+    <TextSwitcher
+        android:id="@+id/ts_ranking_mood"
+        style="@style/text.medium.bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/fragment_album"
+        app:layout_constraintStart_toStartOf="@id/ts_ranking_title"
+        app:layout_constraintTop_toBottomOf="@id/ts_ranking_title" />
+
+    <TextView
+        android:id="@+id/tv_album_art"
+        style="@style/title.small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/album_art"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_ranking_background" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_album_art"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_album_art">
+
+        <LinearLayout
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_magnifier"
+                app:tint="@color/white" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_album_art"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="20dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/tv_album_art"
+        app:spanCount="3"
+        tools:listitem="@layout/item_album" />
 </androidx.constraintlayout.widget.ConstraintLayout>

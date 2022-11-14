@@ -1,5 +1,9 @@
 package com.capstone.artwhale.di
 
+import com.capstone.artwhale.domain.usecase.album.GetAlbumRankingUseCase
+import com.capstone.artwhale.domain.usecase.album.GetAllAlbumUseCase
+import com.capstone.artwhale.domain.usecase.album.impl.GetAlbumRankingUseCaseImpl
+import com.capstone.artwhale.domain.usecase.album.impl.GetAllAlbumUseCaseImpl
 import com.capstone.artwhale.domain.usecase.auth.LoginUseCase
 import com.capstone.artwhale.domain.usecase.auth.impl.LoginUseCaseImpl
 import com.capstone.artwhale.domain.usecase.music.GetMusicChartUseCase
@@ -41,4 +45,16 @@ abstract class UseCaseModule {
     abstract fun provideGetNoticeUseCase(
         getNoticeUseCase: GetNoticeUseCaseImpl
     ): GetNoticeUseCase
+
+    @Singleton
+    @Binds
+    abstract fun provideGetAlbumRankingUseCase(
+        getAlbumRankingUseCase: GetAlbumRankingUseCaseImpl
+    ): GetAlbumRankingUseCase
+
+    @Singleton
+    @Binds
+    abstract fun provideGetAllAlbumUseCase(
+        getAllAlbumUseCase: GetAllAlbumUseCaseImpl
+    ): GetAllAlbumUseCase
 }

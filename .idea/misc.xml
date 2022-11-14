@@ -25,6 +25,8 @@
         <entry key="app/src/main/res/drawable/ic_logo_combination.xml" value="0.203" />
         <entry key="app/src/main/res/drawable/ic_manifier.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/ic_mores.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/ic_pencil_in_circle.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/ic_pencil_in_circle_filled.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/ic_plus.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.258514404296875" />
@@ -37,7 +39,7 @@
         <entry key="app/src/main/res/layout/fragment_music.xml" value="0.2022932022932023" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.17916666666666667" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.2671875" />
-        <entry key="app/src/main/res/layout/fragment_user_info.xml" value="0.25729166666666664" />
+        <entry key="app/src/main/res/layout/fragment_user_info.xml" value="0.30121951219512194" />
         <entry key="app/src/main/res/layout/fragment_user_info_editor.xml" value="0.25729166666666664" />
         <entry key="app/src/main/res/layout/item_album.xml" value="0.25729166666666664" />
         <entry key="app/src/main/res/layout/item_chart_music.xml" value="0.4830454508463542" />
@@ -49,6 +51,7 @@
         <entry key="app/src/main/res/layout/view_tool_bar_custom.xml" value="0.32928642576652495" />
         <entry key="app/src/main/res/menu/menu_home.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.17916666666666667" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2625" />
       </map>
     </option>
   </component>

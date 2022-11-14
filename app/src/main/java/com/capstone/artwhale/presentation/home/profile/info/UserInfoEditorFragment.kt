@@ -27,7 +27,7 @@ class UserInfoEditorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonFirst.setOnClickListener {
+        binding.btnSave.setOnClickListener {
             findNavController().navigate(R.id.action_profile_save)
         }
     }

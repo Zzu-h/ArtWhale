@@ -1,38 +1,35 @@
-package com.capstone.artwhale.presentation.home.profile
+package com.capstone.artwhale.presentation.home.profile.info
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.capstone.artwhale.R
-import com.capstone.artwhale.databinding.FragmentProfileBinding
+import com.capstone.artwhale.databinding.FragmentUserInfoEditorBinding
 
-class ProfileFragment : Fragment() {
+class UserInfoEditorFragment : Fragment() {
 
-    private var _binding: FragmentProfileBinding? = null
+    private var _binding: FragmentUserInfoEditorBinding? = null
+
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentUserInfoEditorBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initNavigation()
-    }
 
-    private fun initNavigation() {
-        val navHostFragment = childFragmentManager.findFragmentById(R.id.fcv_profile)
-
-        val navController = (navHostFragment as NavHostFragment).navController
+        binding.buttonFirst.setOnClickListener {
+            findNavController().navigate(R.id.action_profile_save)
+        }
     }
 
     override fun onDestroyView() {

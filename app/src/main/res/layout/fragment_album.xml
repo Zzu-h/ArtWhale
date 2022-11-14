@@ -1,192 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.home.album.AlbumFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.capstone.artwhale.presentation.home.album.AlbumViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".presentation.home.album.AlbumFragment">
 
-        <FrameLayout
-            android:id="@+id/layout_clip_bottom_left"
-            style="@style/CardViewLeftBottomRadius"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/bg_bottom_left_round"
-            android:clipChildren="true"
-            android:clipToOutline="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_album_thumbnail"
+            <FrameLayout
+                android:id="@+id/layout_clip_bottom_left"
+                style="@style/CardViewLeftBottomRadius"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="280dp"
+                android:layout_centerInParent="true"
                 android:background="@drawable/bg_bottom_left_round"
                 android:clipChildren="true"
                 android:clipToOutline="true"
-                android:clipToPadding="true"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="1" />
-        </FrameLayout>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_default"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_gravity="start"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/white"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/ic_plus"
-            android:visibility="visible"
-            app:contentPadding="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize100Percent" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_album_thumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_bottom_left_round"
+                    android:clipChildren="true"
+                    android:clipToOutline="true"
+                    android:clipToPadding="true"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="1" />
+            </FrameLayout>
 
-        <me.relex.circleindicator.CircleIndicator2
-            android:id="@+id/ci2_notice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            app:ci_animator="@animator/alpha"
-            app:ci_drawable="@drawable/dot_selected_white"
-            app:ci_drawable_unselected="@drawable/dot_unselected"
-            app:ci_height="8dp"
-            app:ci_margin="4dp"
-            app:ci_orientation="horizontal"
-            app:ci_width="8dp"
-            app:layout_constraintBottom_toBottomOf="@id/layout_clip_bottom_left"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_default"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="start"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/white"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_plus"
+                android:visibility="visible"
+                app:contentPadding="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize100Percent" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_ranking_background"
-            android:layout_width="54dp"
-            android:layout_height="54dp"
-            android:layout_gravity="start"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="18dp"
-            android:background="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_clip_bottom_left"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize100Percent" />
-
-        <TextSwitcher
-            android:id="@+id/ts_ranking_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="1"
-            app:layout_constraintBottom_toBottomOf="@id/iv_ranking_background"
-            app:layout_constraintEnd_toEndOf="@id/iv_ranking_background"
-            app:layout_constraintStart_toStartOf="@id/iv_ranking_background"
-            app:layout_constraintTop_toTopOf="@id/iv_ranking_background">
-
-            <TextView
-                style="@style/title.large"
+            <me.relex.circleindicator.CircleIndicator2
+                android:id="@+id/ci2_notice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/primary"
-                android:textStyle="bold"
-                tools:text="1" />
-        </TextSwitcher>
+                android:layout_margin="15dp"
+                app:ci_animator="@animator/alpha"
+                app:ci_drawable="@drawable/dot_selected_white"
+                app:ci_drawable_unselected="@drawable/dot_unselected"
+                app:ci_height="8dp"
+                app:ci_margin="4dp"
+                app:ci_orientation="horizontal"
+                app:ci_width="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/layout_clip_bottom_left"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextSwitcher
-            android:id="@+id/ts_ranking_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:text="@string/fragment_album"
-            app:layout_constraintStart_toEndOf="@id/iv_ranking_background"
-            app:layout_constraintTop_toBottomOf="@id/layout_clip_bottom_left">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_ranking_background"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_gravity="start"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="18dp"
+                android:background="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_clip_bottom_left"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize100Percent" />
 
-            <TextView
-                style="@style/text.large.bold"
+            <TextSwitcher
+                android:id="@+id/ts_ranking_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="testTitle" />
-        </TextSwitcher>
-
-        <TextSwitcher
-            android:id="@+id/ts_ranking_mood"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:text="@string/fragment_album"
-            app:layout_constraintStart_toStartOf="@id/ts_ranking_title"
-            app:layout_constraintTop_toBottomOf="@id/ts_ranking_title">
-
-            <TextView
-                style="@style/text.medium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="testMood" />
-        </TextSwitcher>
-
-        <TextView
-            android:id="@+id/tv_album_art"
-            style="@style/title.small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="50dp"
-            android:text="@string/album_art"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_ranking_background" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="0dp"
-            app:layout_constraintBottom_toBottomOf="@id/tv_album_art"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_album_art">
-
-            <LinearLayout
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:background="@color/gray"
-                android:orientation="horizontal"
-                android:padding="4dp">
+                android:gravity="center"
+                android:text="1"
+                app:layout_constraintBottom_toBottomOf="@id/iv_ranking_background"
+                app:layout_constraintEnd_toEndOf="@id/iv_ranking_background"
+                app:layout_constraintStart_toStartOf="@id/iv_ranking_background"
+                app:layout_constraintTop_toTopOf="@id/iv_ranking_background">
 
                 <TextView
-                    android:layout_width="0dp"
+                    style="@style/title.large"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1" />
+                    android:textColor="@color/primary"
+                    android:textStyle="bold"
+                    tools:text="1" />
+            </TextSwitcher>
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="end"
-                    android:src="@drawable/ic_magnifier"
-                    app:tint="@color/white" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            <TextSwitcher
+                android:id="@+id/ts_ranking_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="@string/fragment_album"
+                app:layout_constraintStart_toEndOf="@id/iv_ranking_background"
+                app:layout_constraintTop_toBottomOf="@id/layout_clip_bottom_left">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_album_art"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:padding="20dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/tv_album_art"
-            app:spanCount="3"
-            tools:listitem="@layout/item_album" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+                <TextView
+                    style="@style/text.large.bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="testTitle" />
+            </TextSwitcher>
+
+            <TextSwitcher
+                android:id="@+id/ts_ranking_mood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="@string/fragment_album"
+                app:layout_constraintStart_toStartOf="@id/ts_ranking_title"
+                app:layout_constraintTop_toBottomOf="@id/ts_ranking_title">
+
+                <TextView
+                    style="@style/text.medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="testMood" />
+            </TextSwitcher>
+
+            <TextView
+                android:id="@+id/tv_album_art"
+                style="@style/title.small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="50dp"
+                android:text="@string/album_art"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_ranking_background" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_album_art"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_album_art">
+
+                <LinearLayout
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/gray"
+                    android:orientation="horizontal"
+                    android:padding="4dp">
+
+                    <EditText
+                        android:id="@+id/et_search"
+                        style="@style/text.verySmall"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:autofillHints="@null"
+                        android:background="@android:color/transparent"
+                        android:inputType="textMultiLine|textNoSuggestions"
+                        android:maxLines="1"
+                        android:padding="3dp"
+                        android:text="@={viewModel.searchKeyword}"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/gray" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_magnifier"
+                        app:tint="@color/white" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_album_art"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="20dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/tv_album_art"
+                app:spanCount="3"
+                tools:listitem="@layout/item_album" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

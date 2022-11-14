@@ -46,6 +46,7 @@ class AlbumFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = viewModel
         initRecyclerView()
         initObserver()
     }
@@ -59,7 +60,7 @@ class AlbumFragment : Fragment() {
                 albumRankingThumbnailRVAdapter.submitList(it)
             }
                 .launchIn(this@AlbumFragment.lifecycleScope)
-            allAlbum.onEach { albumRVAdapter.submitList(it) }
+            showAlbum.onEach { albumRVAdapter.submitList(it) }
                 .launchIn(this@AlbumFragment.lifecycleScope)
         }
     }

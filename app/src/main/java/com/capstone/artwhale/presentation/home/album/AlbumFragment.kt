@@ -55,12 +55,7 @@ class AlbumFragment : Fragment() {
             state.onEach { }.launchIn(this@AlbumFragment.lifecycleScope)
             albumRanking.onEach {
                 albumRankingList = it
-                if (it.isNotEmpty())
-                    with(binding) {
-                        tsRankingNumber.setCurrentText("${1}")
-                        tsRankingTitle.setCurrentText(albumRankingList[0].title)
-                        tsRankingMood.setCurrentText(albumRankingList[0].mood)
-                    }
+                if (it.isNotEmpty()) setRankingText(0)
                 albumRankingThumbnailRVAdapter.submitList(it)
             }
                 .launchIn(this@AlbumFragment.lifecycleScope)
@@ -89,19 +84,25 @@ class AlbumFragment : Fragment() {
                     val size = rvAlbumThumbnail.adapter!!.itemCount
 
                     val currentIdx = pagerSnapHelper.findTargetSnapPosition(
-                        rvAlbumThumbnail.layoutManager!!,
-                        0,
-                        0
+                        rvAlbumThumbnail.layoutManager!!, 0, 0
                     )
                     val nextIdx = (currentIdx + 1) % size
 
-                    tsRankingNumber.setCurrentText("${nextIdx + 1}")
-                    tsRankingTitle.setCurrentText(albumRankingList[nextIdx].title)
-                    tsRankingMood.setCurrentText(albumRankingList[nextIdx].mood)
-
+                    setRankingText(nextIdx)
                     rvAlbumThumbnail.smoothScrollToPosition(nextIdx)
                 }
             }
+        }
+    }
+
+    private fun setRankingText(idx: Int) {
+        with(binding) {
+            val size = albumRankingList.size
+            val nextIdx = (idx + 1) % size
+
+            tsRankingNumber.setCurrentText("${idx + 1}")
+            tsRankingTitle.setCurrentText(albumRankingList[idx].title)
+            tsRankingMood.setCurrentText(albumRankingList[idx].mood)
         }
     }
 

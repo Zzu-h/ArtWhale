@@ -5,14 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentUserInfoBinding
+import com.capstone.artwhale.presentation.home.profile.ProfileViewModel
 
 class UserInfoFragment : Fragment() {
 
     private var _binding: FragmentUserInfoBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel by viewModels<ProfileViewModel>({ requireParentFragment() })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

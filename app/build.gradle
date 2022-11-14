@@ -13,6 +13,8 @@ android {
         minSdk 21
         targetSdk 32
         versionCode 1
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -87,4 +89,7 @@ dependencies {
 
     //circle Indicator
     implementation "me.relex:circleindicator:$indicator_version"
+
+    //blur view
+    implementation "jp.wasabeef:blurry:$blur_version"
 }

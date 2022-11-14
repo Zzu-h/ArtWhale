@@ -4,6 +4,8 @@ import com.capstone.artwhale.domain.model.Album
 
 interface AlbumRepository {
 
-    fun getAlbumRanking(): List<Album>
-    fun getAllAlbum(): List<Album>
+    suspend fun getAlbumRanking(): List<Album>
+    suspend fun getAllAlbum(): List<Album>
+    suspend fun getMyAlbumList(): List<Album>
+    suspend fun getLikeAlbumList(): List<Album>
 }

@@ -12,4 +12,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun login(email: String): Result<Auth> =
         runCatching { authDataSource.login(email.toUserDto()).toAuth() }
+
+    override suspend fun getMyInfo(): Result<Auth> =
+        runCatching { authDataSource.login("email".toUserDto()).toAuth() }
 }

@@ -4,5 +4,5 @@ import com.capstone.artwhale.domain.model.Notice
 
 interface NoticeRepository {
 
-    fun getNotice(): List<Notice>
+    suspend fun getNotice(): List<Notice>
 }

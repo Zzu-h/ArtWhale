@@ -9,7 +9,7 @@ class NoticeRepositoryImpl @Inject constructor(
     private val noticeDataSource: NoticeDataSource
 ) : NoticeRepository {
 
-    override fun getNotice(): List<Notice> {
+    override suspend fun getNotice(): List<Notice> {
         return listOf(
             Notice(contentText = "Test1", topText = "Notice", null),
             Notice(

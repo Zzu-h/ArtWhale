@@ -3,6 +3,7 @@ package com.capstone.artwhale.data.repository
 import com.capstone.artwhale.data.datasource.auth.AuthDataSource
 import com.capstone.artwhale.data.dto.toUserDto
 import com.capstone.artwhale.domain.model.Auth
+import com.capstone.artwhale.domain.model.UserInfo
 import com.capstone.artwhale.domain.repository.AuthRepository
 import javax.inject.Inject
 
@@ -13,6 +14,12 @@ class AuthRepositoryImpl @Inject constructor(
     override suspend fun login(email: String): Result<Auth> =
         runCatching { authDataSource.login(email.toUserDto()).toAuth() }
 
-    override suspend fun getMyInfo(): Result<Auth> =
-        runCatching { authDataSource.login("email".toUserDto()).toAuth() }
+    override suspend fun getMyInfo(): Result<UserInfo> =
+        runCatching {
+            UserInfo(
+                "billie@gmail.com",
+                "Billie Eilish",
+                "https://avatars.githubusercontent.com/u/27036798?v=4"
+            )
+        }
 }

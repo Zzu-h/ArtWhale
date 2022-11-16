@@ -3,8 +3,8 @@ package com.capstone.artwhale.presentation.home.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.artwhale.domain.model.Album
-import com.capstone.artwhale.domain.model.Auth
 import com.capstone.artwhale.domain.model.Music
+import com.capstone.artwhale.domain.model.UserInfo
 import com.capstone.artwhale.domain.usecase.album.GetLikeAlbumListUseCase
 import com.capstone.artwhale.domain.usecase.album.GetMyAlbumListUseCase
 import com.capstone.artwhale.domain.usecase.auth.GetMyInfoUseCase
@@ -32,13 +32,13 @@ class ProfileViewModel @Inject constructor(
     private val _state = MutableStateFlow<NetworkState>(InitialState)
     val state: StateFlow<NetworkState> = _state
 
-    private val _myInfo = MutableStateFlow<Auth>(Auth(""))
+    private val _myInfo = MutableStateFlow(UserInfo("null", "null"))
     private val _myAlbum = MutableStateFlow<List<Album>>(emptyList())
     private val _likeAlbum = MutableStateFlow<List<Album>>(emptyList())
     private val _myMusic = MutableStateFlow<List<Music>>(emptyList())
     private val _likeMusic = MutableStateFlow<List<Music>>(emptyList())
 
-    val myInfo: StateFlow<Auth> = _myInfo
+    val myInfo: StateFlow<UserInfo> = _myInfo
     val myAlbum: StateFlow<List<Album>> = _myAlbum
     val likeAlbum: StateFlow<List<Album>> = _likeAlbum
     val myMusic: StateFlow<List<Music>> = _myMusic

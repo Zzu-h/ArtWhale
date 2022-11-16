@@ -1,6 +1,7 @@
 package com.capstone.artwhale.presentation.home.profile
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -106,6 +107,19 @@ class ProfileFragment : Fragment() {
         val navHostFragment = childFragmentManager.findFragmentById(R.id.fcv_profile)
 
         val navController = (navHostFragment as NavHostFragment).navController
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            requireActivity().window.statusBarColor = resources.getColor(R.color.white, null)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            requireActivity().window.statusBarColor =
+                resources.getColor(android.R.color.transparent, null)
     }
 
     override fun onDestroyView() {

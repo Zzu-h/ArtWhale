@@ -1,5 +1,6 @@
 package com.capstone.artwhale.presentation.home.album
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentAlbumBinding
 import com.capstone.artwhale.domain.model.Album
 import com.capstone.artwhale.presentation.home.album.adapter.AlbumRVAdapter
@@ -105,6 +107,19 @@ class AlbumFragment : Fragment() {
             tsRankingTitle.setCurrentText(albumRankingList[idx].title)
             tsRankingMood.setCurrentText(albumRankingList[idx].mood)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            requireActivity().window.statusBarColor = resources.getColor(R.color.white, null)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            requireActivity().window.statusBarColor =
+                resources.getColor(android.R.color.transparent, null)
     }
 
     override fun onDestroyView() {

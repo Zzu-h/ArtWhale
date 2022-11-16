@@ -56,4 +56,7 @@
     <string name="mores">더보기</string>
     <string name="new_music">New Music</string>
     <string name="album_art">ALBUM ART</string>
+    <string name="like_album">좋아요 표시한 앨범</string>
+    <string name="like_music">좋아요 표시한 음악</string>
+    <string name="all_list">전체보기</string>
 </resources>

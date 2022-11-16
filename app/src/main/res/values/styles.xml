@@ -98,8 +98,12 @@
         <item name="android:textColor">@color/gray</item>
     </style>
 
-    <style name="description.large" parent="description">
+    <style name="description.veryLarge" parent="description">
         <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="description.large" parent="description">
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="description.large.bold" parent="description.large">

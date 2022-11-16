@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentUserInfoBinding
 import com.capstone.artwhale.presentation.home.profile.ProfileViewModel
@@ -47,8 +48,8 @@ class UserInfoFragment : Fragment() {
 
     private fun initObserver() {
         viewModel.myInfo.onEach {
-            binding.viewModel = viewModel
-        }.launchIn(this.lifecycleScope)
+            if (_binding != null) binding.viewModel = viewModel
+        }.launchIn(this@UserInfoFragment.lifecycleScope)
     }
 
     override fun onDestroyView() {

@@ -1,5 +1,6 @@
 package com.capstone.artwhale.presentation.home.profile
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.artwhale.domain.model.Album
@@ -66,6 +67,13 @@ class ProfileViewModel @Inject constructor(
                 getMyInfoUseCase().onSuccess { _myInfo.emit(it) }
                     .onFailure { _state.emit(Error(it.message)) }
             }
+        }
+    }
+
+    fun setProfileImage(uri: Uri) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val data = myInfo.value
+            _myInfo.emit(UserInfo(data.email, data.name, profileImgUrl = uri.toString()))
         }
     }
 }

@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/drawable/dot_selected_white.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/dot_unselected.xml" value="0.1535" />
         <entry key="app/src/main/res/drawable/ic_album.xml" value="0.1875" />
+        <entry key="app/src/main/res/drawable/ic_camera.xml" value="0.254" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1875" />
         <entry key="app/src/main/res/drawable/ic_left_arrow.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/ic_like.xml" value="0.1875" />
@@ -40,7 +41,7 @@
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.17916666666666667" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.2671875" />
         <entry key="app/src/main/res/layout/fragment_user_info.xml" value="0.30121951219512194" />
-        <entry key="app/src/main/res/layout/fragment_user_info_editor.xml" value="0.25729166666666664" />
+        <entry key="app/src/main/res/layout/fragment_user_info_editor.xml" value="0.4994415283203125" />
         <entry key="app/src/main/res/layout/item_album.xml" value="0.25729166666666664" />
         <entry key="app/src/main/res/layout/item_chart_music.xml" value="0.4830454508463542" />
         <entry key="app/src/main/res/layout/item_new_music.xml" value="0.3609375" />

@@ -13,6 +13,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentProfileBinding
+import com.capstone.artwhale.domain.model.Album
+import com.capstone.artwhale.domain.model.Music
+import com.capstone.artwhale.presentation.home.album.adapter.AlbumRVAdapter
+import com.capstone.artwhale.presentation.home.music.adapter.MusicChartRVAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.blurry.Blurry
 import kotlinx.coroutines.launch
@@ -22,6 +26,9 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var albumRVAdapter: AlbumRVAdapter
+    private lateinit var chartRVAdapter: MusicChartRVAdapter
 
     private val viewModel by viewModels<ProfileViewModel>()
 
@@ -38,18 +45,47 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initNavigation()
         initBlurView()
+        initRecyclerView()
         initObserver()
+    }
+
+    private fun initRecyclerView() {
+        chartRVAdapter = MusicChartRVAdapter()
+        albumRVAdapter = AlbumRVAdapter()
+        binding.rvChart.adapter = chartRVAdapter
+        binding.rvNewList.adapter = albumRVAdapter
     }
 
     private fun initObserver() {
         this.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 with(viewModel) {
-                    launch { myInfo.collect { } }
-                    launch { myAlbum.collect { } }
-                    launch { likeAlbum.collect { } }
-                    launch { myMusic.collect { } }
-                    launch { likeMusic.collect { } }
+                    launch {
+                        likeAlbum.collect {
+                            var count = 0
+                            val list = mutableListOf<Album>()
+                            it.forEach {
+                                if (count < 3) {
+                                    list.add(it)
+                                    count++
+                                }
+                            }
+                            albumRVAdapter.submitList(list)
+                        }
+                    }
+                    launch {
+                        likeMusic.collect {
+                            var count = 0
+                            val list = mutableListOf<Music>()
+                            it.forEach {
+                                if (count < 5 && it.isLike) {
+                                    list.add(it)
+                                    count++
+                                }
+                            }
+                            chartRVAdapter.submitList(list)
+                        }
+                    }
                 }
             }
         }

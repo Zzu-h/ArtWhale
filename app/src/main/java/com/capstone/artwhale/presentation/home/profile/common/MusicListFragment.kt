@@ -1,4 +1,4 @@
-package com.capstone.artwhale.presentation.home.profile.like
+package com.capstone.artwhale.presentation.home.profile.common
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class MusicLikeFragment : Fragment() {
+class MusicListFragment : Fragment() {
 
     private var _binding: FragmentLikeMusicBinding? = null
     private val binding get() = _binding!!

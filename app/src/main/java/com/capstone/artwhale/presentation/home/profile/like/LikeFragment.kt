@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.capstone.artwhale.databinding.FragmentLikeBinding
-import com.capstone.artwhale.presentation.home.profile.like.adapter.LikeVPAdapter
+import com.capstone.artwhale.presentation.home.profile.common.adapter.ListVPAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class LikeFragment : Fragment() {
@@ -40,7 +40,7 @@ class LikeFragment : Fragment() {
 
     private fun initViewPager() {
         with(binding) {
-            vpCategory.adapter = LikeVPAdapter(this@LikeFragment)
+            vpCategory.adapter = ListVPAdapter(this@LikeFragment)
             TabLayoutMediator(tlCategory, vpCategory) { tab, pos -> tab.text = category[pos] }
                 .attach()
         }

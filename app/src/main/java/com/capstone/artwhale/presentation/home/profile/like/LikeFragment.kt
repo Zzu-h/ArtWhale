@@ -6,16 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentLikeBinding
+import com.capstone.artwhale.presentation.home.profile.like.adapter.LikeVPAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 
 class LikeFragment : Fragment() {
 
     private var _binding: FragmentLikeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+
+    private val category = listOf("Music", "Album")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +29,21 @@ class LikeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        initViewPager()
+        initButton()
+    }
+
+    private fun initButton() {
+        binding.ivBack.setOnClickListener { findNavController().popBackStack() }
+    }
+
+    private fun initViewPager() {
+        with(binding) {
+            vpCategory.adapter = LikeVPAdapter(this@LikeFragment)
+            TabLayoutMediator(tlCategory, vpCategory) { tab, pos -> tab.text = category[pos] }
+                .attach()
+        }
     }
 
     override fun onDestroyView() {

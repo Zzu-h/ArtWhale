@@ -4,18 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.home.profile.like.LikeFragment">
+    tools:context=".presentation.home.profile.like.MusicLikeFragment">
 
-    <TextView
-        android:id="@+id/tv_title"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_like_music"
         style="@style/title.medium"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="35dp"
         android:gravity="center"
-        android:text="Music"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_chart_music" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

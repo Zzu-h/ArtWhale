@@ -27,10 +27,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/likeFragment"
-        android:name="com.capstone.artwhale.presentation.home.like.LikeFragment"
+        android:id="@+id/searchFragment"
+        android:name="com.capstone.artwhale.presentation.home.search.SearchFragment"
         android:label="@string/fragment_like"
-        tools:layout="@layout/fragment_like">
+        tools:layout="@layout/fragment_search">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
@@ -44,7 +44,23 @@
         tools:layout="@layout/fragment_profile">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/musicFragment" />
+            android:id="@+id/action_to_musicFragment"
+            app:destination="@id/musicFragment"
+            app:popUpTo="@id/musicFragment" />
+        <action
+            android:id="@+id/action_to_likeFragment"
+            app:destination="@id/likeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/likeFragment"
+        android:name="com.capstone.artwhale.presentation.home.profile.like.LikeFragment"
+        android:label="@string/fragment_like"
+        tools:layout="@layout/fragment_like">
+
+        <action
+            android:id="@+id/action_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
 </navigation>

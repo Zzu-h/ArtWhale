@@ -1,6 +1,7 @@
 package com.capstone.artwhale.presentation.home.profile
 
 import android.net.Uri
+import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.artwhale.domain.model.Album
@@ -32,6 +33,9 @@ class ProfileViewModel @Inject constructor(
 
     private val _state = MutableStateFlow<NetworkState>(InitialState)
     val state: StateFlow<NetworkState> = _state
+
+    private val _clickListener = MutableStateFlow<View?>(null)
+    val clickListener: StateFlow<View?> = _clickListener
 
     private val _myInfo = MutableStateFlow(UserInfo("null", "null"))
     private val _myAlbum = MutableStateFlow<List<Album>>(emptyList())
@@ -75,5 +79,9 @@ class ProfileViewModel @Inject constructor(
             val data = myInfo.value
             _myInfo.emit(UserInfo(data.email, data.name, profileImgUrl = uri.toString()))
         }
+    }
+
+    fun onClickButton(view: View?) {
+        viewModelScope.launch { _clickListener.emit(view) }
     }
 }

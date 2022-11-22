@@ -15,8 +15,8 @@
         android:title="" />
 
     <item
-        android:id="@+id/likeFragment"
-        android:icon="@drawable/ic_like"
+        android:id="@+id/searchFragment"
+        android:icon="@drawable/ic_magnifier"
         android:orderInCategory="100"
         android:title="" />
 

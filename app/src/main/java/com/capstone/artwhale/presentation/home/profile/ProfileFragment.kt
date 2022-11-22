@@ -12,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentProfileBinding
 import com.capstone.artwhale.domain.model.Album
@@ -44,6 +45,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.viewModel = viewModel
         initNavigation()
         initBlurView()
         initRecyclerView()
@@ -87,6 +89,15 @@ class ProfileFragment : Fragment() {
                             chartRVAdapter.submitList(list)
                         }
                     }
+                    launch {
+                        clickListener.collect {
+                            if (it == null) return@collect
+                            when (it.id) {
+                                R.id.tv_all_music -> findNavController().navigate(R.id.action_to_likeFragment)
+                                R.id.tv_all_album -> findNavController().navigate(R.id.action_to_likeFragment)
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -120,6 +131,7 @@ class ProfileFragment : Fragment() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             requireActivity().window.statusBarColor =
                 resources.getColor(android.R.color.transparent, null)
+        viewModel.onClickButton(null)
     }
 
     override fun onDestroyView() {

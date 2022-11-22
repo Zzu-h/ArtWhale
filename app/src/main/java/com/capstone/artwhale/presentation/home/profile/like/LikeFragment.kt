@@ -1,4 +1,4 @@
-package com.capstone.artwhale.presentation.home.like
+package com.capstone.artwhale.presentation.home.profile.like
 
 import android.os.Bundle
 import android.view.LayoutInflater

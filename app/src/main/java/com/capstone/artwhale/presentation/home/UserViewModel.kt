@@ -1,4 +1,4 @@
-package com.capstone.artwhale.presentation.home.profile
+package com.capstone.artwhale.presentation.home
 
 import android.net.Uri
 import android.view.View
@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor(
+class UserViewModel @Inject constructor(
     private val getMyMusicListUseCase: GetMyMusicListUseCase,
     private val getMyAlbumListUseCase: GetMyAlbumListUseCase,
     private val getLikeMusicListUseCase: GetLikeMusicListUseCase,
@@ -34,8 +34,8 @@ class ProfileViewModel @Inject constructor(
     private val _state = MutableStateFlow<NetworkState>(InitialState)
     val state: StateFlow<NetworkState> = _state
 
-    private val _clickListener = MutableStateFlow<View?>(null)
-    val clickListener: StateFlow<View?> = _clickListener
+    private val _clickListener = MutableStateFlow<Int?>(null)
+    val clickListener: StateFlow<Int?> = _clickListener
 
     private val _myInfo = MutableStateFlow(UserInfo("null", "null"))
     private val _myAlbum = MutableStateFlow<List<Album>>(emptyList())
@@ -82,6 +82,6 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun onClickButton(view: View?) {
-        viewModelScope.launch { _clickListener.emit(view) }
+        viewModelScope.launch { _clickListener.emit(view?.id) }
     }
 }

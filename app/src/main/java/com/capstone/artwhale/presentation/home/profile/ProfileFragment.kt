@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -17,6 +17,7 @@ import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentProfileBinding
 import com.capstone.artwhale.domain.model.Album
 import com.capstone.artwhale.domain.model.Music
+import com.capstone.artwhale.presentation.home.UserViewModel
 import com.capstone.artwhale.presentation.home.album.adapter.AlbumRVAdapter
 import com.capstone.artwhale.presentation.home.music.adapter.MusicChartRVAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +33,7 @@ class ProfileFragment : Fragment() {
     private lateinit var albumRVAdapter: AlbumRVAdapter
     private lateinit var chartRVAdapter: MusicChartRVAdapter
 
-    private val viewModel by viewModels<ProfileViewModel>()
+    private val viewModel by activityViewModels<UserViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -92,9 +93,11 @@ class ProfileFragment : Fragment() {
                     launch {
                         clickListener.collect {
                             if (it == null) return@collect
-                            when (it.id) {
+                            when (it) {
                                 R.id.tv_all_music -> findNavController().navigate(R.id.action_to_likeFragment)
                                 R.id.tv_all_album -> findNavController().navigate(R.id.action_to_likeFragment)
+                                R.id.ll_songs -> findNavController().navigate(R.id.action_to_myArtFragment)
+                                R.id.ll_albums -> findNavController().navigate(R.id.action_to_myArtFragment)
                             }
                         }
                     }

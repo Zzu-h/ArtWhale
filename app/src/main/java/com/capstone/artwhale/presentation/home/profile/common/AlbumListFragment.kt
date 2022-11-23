@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentLikeAlbumBinding
 import com.capstone.artwhale.presentation.home.album.adapter.AlbumRVAdapter
-import com.capstone.artwhale.presentation.home.profile.ProfileViewModel
+import com.capstone.artwhale.presentation.home.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -22,7 +22,7 @@ class AlbumListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var rvAdapter: AlbumRVAdapter
-    private val viewModel by hiltNavGraphViewModels<ProfileViewModel>(R.id.nav_graph)
+    private val viewModel by hiltNavGraphViewModels<UserViewModel>(R.id.nav_graph)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

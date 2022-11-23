@@ -7,7 +7,8 @@ import com.capstone.artwhale.domain.model.Music
 class MusicChartViewHolder(private val binding: ItemChartMusicBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(music: Music) {
+    fun bind(music: Music, callback: (music: Music) -> Unit) {
         binding.item = music
+        binding.action = callback
     }
 }

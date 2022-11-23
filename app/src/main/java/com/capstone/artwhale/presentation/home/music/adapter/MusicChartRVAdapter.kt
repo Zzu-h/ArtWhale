@@ -11,8 +11,14 @@ import com.capstone.artwhale.presentation.home.music.viewholder.MusicChartViewHo
 class MusicChartRVAdapter :
     ListAdapter<Music, MusicChartViewHolder>(diffUtil) {
 
+    private var callback: (music: Music) -> Unit = {}
+
+    fun setCallBack(callback: (music: Music) -> Unit) {
+        this.callback = callback
+    }
+
     override fun onBindViewHolder(holder: MusicChartViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), callback = callback)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicChartViewHolder {

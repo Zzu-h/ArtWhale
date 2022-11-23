@@ -8,11 +8,24 @@
         <variable
             name="item"
             type="com.capstone.artwhale.domain.model.Music" />
+
+        <import type="kotlin.jvm.functions.Function1" />
+
+        <import type="kotlin.Unit" />
+
+        <import type="com.capstone.artwhale.domain.model.Music" />
+
+        <variable
+            name="action"
+            type="Function1&lt;Music, Unit>" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{() -> action.invoke(item)}"
         android:padding="15dp">
 
         <com.google.android.material.imageview.ShapeableImageView

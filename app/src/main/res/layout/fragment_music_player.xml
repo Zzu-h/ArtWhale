@@ -10,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/bg_ivory"
         tools:context=".presentation.home.play.MusicPlayerFragment">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -51,7 +52,7 @@
         <SeekBar
             android:id="@+id/sb_music_progress"
             android:layout_width="match_parent"
-            android:layout_height="12dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="45dp"
             android:layout_marginTop="15dp"
             android:layerType="software"

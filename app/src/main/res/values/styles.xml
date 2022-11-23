@@ -129,6 +129,11 @@
         <item name="cornerSize">20%</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10%</item>
+    </style>
+
     <!--Bottom Navigation View / Icon Background = null-->
     <style name="Widget.Material3.BottomNavigationView.ActiveIndicator" parent="" />
 

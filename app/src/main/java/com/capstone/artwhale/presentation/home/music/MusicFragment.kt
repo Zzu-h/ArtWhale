@@ -8,10 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentMusicBinding
+import com.capstone.artwhale.domain.model.Music
 import com.capstone.artwhale.presentation.home.music.adapter.MusicChartRVAdapter
 import com.capstone.artwhale.presentation.home.music.adapter.NewMusicRVAdapter
 import com.capstone.artwhale.presentation.home.music.adapter.NoticeRVAdapter
+import com.capstone.artwhale.presentation.home.play.MusicPlayerFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.launchIn
@@ -47,10 +50,20 @@ class MusicFragment : Fragment() {
         initObserver()
     }
 
+    fun playMusic(music: Music) {
+        val player = MusicPlayerFragment()
+        val bundle = Bundle()
+        bundle.putSerializable("music", music)
+        player.arguments = bundle
+        player.show(childFragmentManager, getString(R.string.fragment_music_player))
+    }
+
     private fun initRecyclerView() {
         noticeRVAdapter = NoticeRVAdapter()
         musicChartRVAdapter = MusicChartRVAdapter()
+            .apply { setCallBack { playMusic(it) } }
         newMusicRVAdapter = NewMusicRVAdapter()
+            .apply { setCallBack { playMusic(it) } }
 
         with(binding) {
             rvNotice.adapter = noticeRVAdapter

@@ -53,6 +53,7 @@
     <string name="fragment_music">fragment_music</string>
     <string name="fragment_like">LIKE</string>
     <string name="fragment_my_art">MY</string>
+    <string name="fragment_music_player">Music Player</string>
     <string name="chart">Chart</string>
     <string name="mores">더보기</string>
     <string name="new_music">New Music</string>

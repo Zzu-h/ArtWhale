@@ -34,7 +34,7 @@ class UserInfoEditorFragment :
 
     private fun initObserver() {
         viewModel.myInfo.onEach {
-            if (isBindingNull()) binding.viewModel = viewModel
+            if (!isBindingNull()) binding.viewModel = viewModel
         }.launchIn(this.lifecycleScope)
     }
 

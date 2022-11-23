@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.capstone.artwhale.databinding.FragmentMusicPlayerBinding
+import com.capstone.artwhale.domain.model.Music
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -17,6 +18,8 @@ class MusicPlayerFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentMusicPlayerBinding? = null
     private val binding get() = _binding!!
+
+    private val music: Music by lazy { requireArguments().getSerializable("music") as Music }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +33,7 @@ class MusicPlayerFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.music = music
         initButton()
     }
 

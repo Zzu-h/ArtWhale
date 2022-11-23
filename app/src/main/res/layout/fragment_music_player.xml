@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="music"
+            type="com.capstone.artwhale.domain.model.Music" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,6 +39,7 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_album_thumbnail"
+            image="@{music.albumImgUrl}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="40dp"
@@ -47,7 +51,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/abl_sub"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize20Percent" />
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
 
         <SeekBar
             android:id="@+id/sb_music_progress"
@@ -84,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="test"
+            android:text="@{music.title}"
             android:textAppearance="@style/title.small"
             app:layout_constraintStart_toStartOf="@id/iv_album_thumbnail"
             app:layout_constraintTop_toBottomOf="@id/tv_play_time" />
@@ -94,13 +98,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:text="test"
+            android:text="@{music.singer}"
             android:textAppearance="@style/text.large"
             app:layout_constraintStart_toStartOf="@id/tv_title"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
         <ImageView
             android:id="@+id/iv_like"
+            state="@{music.isLike}"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:clickable="true"

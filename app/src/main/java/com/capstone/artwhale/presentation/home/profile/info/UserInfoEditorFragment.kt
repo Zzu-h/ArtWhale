@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentUserInfoEditorBinding
-import com.capstone.artwhale.presentation.home.profile.ProfileViewModel
+import com.capstone.artwhale.presentation.home.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -23,7 +23,7 @@ class UserInfoEditorFragment : Fragment() {
     private var _binding: FragmentUserInfoEditorBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by hiltNavGraphViewModels<ProfileViewModel>(R.id.nav_profile_graph)
+    private val viewModel by activityViewModels<UserViewModel>()
 
     private val getContent =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->

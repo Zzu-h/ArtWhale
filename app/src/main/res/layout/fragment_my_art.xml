@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.home.profile.like.LikeFragment">
+    tools:context=".presentation.home.profile.my.MyArtFragment">
 
     <TextView
         android:id="@+id/tv_title"
@@ -14,7 +14,7 @@
         android:layout_marginStart="17dp"
         android:layout_marginTop="35dp"
         android:gravity="center"
-        android:text="@string/fragment_like"
+        android:text="@string/fragment_my_art"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

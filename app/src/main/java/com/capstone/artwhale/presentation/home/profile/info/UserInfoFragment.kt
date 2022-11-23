@@ -28,7 +28,7 @@ class UserInfoFragment : BaseFragment<FragmentUserInfoBinding>(FragmentUserInfoB
 
     private fun initObserver() {
         viewModel.myInfo.onEach {
-            if (isBindingNull()) binding.viewModel = viewModel
+            if (!isBindingNull()) binding.viewModel = viewModel
         }.launchIn(this@UserInfoFragment.lifecycleScope)
     }
 }

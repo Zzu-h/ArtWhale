@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.lifecycleScope
 import com.capstone.artwhale.R
@@ -22,7 +23,7 @@ class AlbumListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var rvAdapter: AlbumRVAdapter
-    private val viewModel by hiltNavGraphViewModels<UserViewModel>(R.id.nav_graph)
+    private val viewModel by activityViewModels<UserViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

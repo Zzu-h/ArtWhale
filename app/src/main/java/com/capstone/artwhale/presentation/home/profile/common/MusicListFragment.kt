@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentLikeMusicBinding
-import com.capstone.artwhale.presentation.home.music.adapter.MusicChartRVAdapter
 import com.capstone.artwhale.presentation.home.UserViewModel
+import com.capstone.artwhale.presentation.home.music.adapter.MusicChartRVAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -22,7 +21,7 @@ class MusicListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var rvAdapter: MusicChartRVAdapter
-    private val viewModel by hiltNavGraphViewModels<UserViewModel>(R.id.nav_graph)
+    private val viewModel by activityViewModels<UserViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

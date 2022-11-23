@@ -1,11 +1,13 @@
 package com.capstone.artwhale.presentation.home.profile
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -32,6 +34,8 @@ class ProfileFragment : Fragment() {
 
     private lateinit var albumRVAdapter: AlbumRVAdapter
     private lateinit var chartRVAdapter: MusicChartRVAdapter
+
+    private lateinit var callback: OnBackPressedCallback
 
     private val viewModel by activityViewModels<UserViewModel>()
 
@@ -135,6 +139,21 @@ class ProfileFragment : Fragment() {
             requireActivity().window.statusBarColor =
                 resources.getColor(android.R.color.transparent, null)
         viewModel.onClickButton(null)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_to_musicFragment)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        callback.remove()
     }
 
     override fun onDestroyView() {

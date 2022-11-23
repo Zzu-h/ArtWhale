@@ -41,11 +41,12 @@
         <entry key="app/src/main/res/layout/fragment_like_album.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_like_music.xml" value="0.2913518269856771" />
         <entry key="app/src/main/res/layout/fragment_music.xml" value="0.2022932022932023" />
+        <entry key="app/src/main/res/layout/fragment_my_art.xml" value="0.16666666666666666" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.17916666666666667" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.2671875" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/layout/fragment_user_info.xml" value="0.30121951219512194" />
-        <entry key="app/src/main/res/layout/fragment_user_info_editor.xml" value="0.4994415283203125" />
+        <entry key="app/src/main/res/layout/fragment_user_info_editor.xml" value="0.28014842300556586" />
         <entry key="app/src/main/res/layout/item_album.xml" value="0.25729166666666664" />
         <entry key="app/src/main/res/layout/item_chart_music.xml" value="0.4830454508463542" />
         <entry key="app/src/main/res/layout/item_new_music.xml" value="0.3609375" />

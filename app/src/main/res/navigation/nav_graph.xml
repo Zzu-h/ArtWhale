@@ -50,6 +50,9 @@
         <action
             android:id="@+id/action_to_likeFragment"
             app:destination="@id/likeFragment" />
+        <action
+            android:id="@+id/action_to_myArtFragment"
+            app:destination="@id/myArtFragment" />
     </fragment>
     <fragment
         android:id="@+id/likeFragment"
@@ -63,4 +66,17 @@
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
     </fragment>
+    <fragment
+        android:id="@+id/myArtFragment"
+        android:name="com.capstone.artwhale.presentation.home.profile.my.MyArtFragment"
+        android:label="@string/fragment_my_art"
+        tools:layout="@layout/fragment_my_art">
+
+        <action
+            android:id="@+id/action_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <include app:graph="@navigation/nav_profile_graph" />
 </navigation>

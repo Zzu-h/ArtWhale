@@ -30,6 +30,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize20Percent" />
 
+        <ImageView
+            android:id="@+id/iv_like"
+            state="@{item.isLike}"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_like_selector"
+            app:layout_constraintEnd_toEndOf="@id/iv_album_thumbnail"
+            app:layout_constraintTop_toTopOf="@id/iv_album_thumbnail" />
+
         <TextView
             android:id="@+id/tv_title"
             style="@style/text.medium"

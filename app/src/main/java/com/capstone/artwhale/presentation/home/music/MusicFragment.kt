@@ -1,32 +1,22 @@
 package com.capstone.artwhale.presentation.home.music
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.PagerSnapHelper
-import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentMusicBinding
-import com.capstone.artwhale.domain.model.Music
+import com.capstone.artwhale.presentation.home.BaseFragment
 import com.capstone.artwhale.presentation.home.music.adapter.MusicChartRVAdapter
 import com.capstone.artwhale.presentation.home.music.adapter.NewMusicRVAdapter
 import com.capstone.artwhale.presentation.home.music.adapter.NoticeRVAdapter
-import com.capstone.artwhale.presentation.home.play.MusicPlayerFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class MusicFragment : Fragment() {
+class MusicFragment : BaseFragment<FragmentMusicBinding>(FragmentMusicBinding::inflate) {
 
-    private var _binding: FragmentMusicBinding? = null
     private val viewModel by viewModels<MusicViewModel>()
-
-    private val binding get() = _binding!!
 
     private lateinit var noticeRVAdapter: NoticeRVAdapter
     private lateinit var musicChartRVAdapter: MusicChartRVAdapter
@@ -35,27 +25,9 @@ class MusicFragment : Fragment() {
     private val autoScrollDelayTime = 3000L
     private var job: Job? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentMusicBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initAfterBinding() {
         initRecyclerView()
         initObserver()
-    }
-
-    fun playMusic(music: Music) {
-        val player = MusicPlayerFragment()
-        val bundle = Bundle()
-        bundle.putSerializable("music", music)
-        player.arguments = bundle
-        player.show(childFragmentManager, getString(R.string.fragment_music_player))
     }
 
     private fun initRecyclerView() {
@@ -107,6 +79,5 @@ class MusicFragment : Fragment() {
     override fun onDestroyView() {
         job?.cancel()
         super.onDestroyView()
-        _binding = null
     }
 }

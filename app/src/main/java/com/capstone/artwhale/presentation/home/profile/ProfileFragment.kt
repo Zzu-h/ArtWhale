@@ -3,22 +3,17 @@ package com.capstone.artwhale.presentation.home.profile
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentProfileBinding
 import com.capstone.artwhale.domain.model.Album
 import com.capstone.artwhale.domain.model.Music
+import com.capstone.artwhale.presentation.home.BaseFragment
 import com.capstone.artwhale.presentation.home.UserViewModel
 import com.capstone.artwhale.presentation.home.album.adapter.AlbumRVAdapter
 import com.capstone.artwhale.presentation.home.music.adapter.MusicChartRVAdapter
@@ -27,10 +22,7 @@ import jp.wasabeef.blurry.Blurry
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ProfileFragment : Fragment() {
-
-    private var _binding: FragmentProfileBinding? = null
-    private val binding get() = _binding!!
+class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::inflate) {
 
     private lateinit var albumRVAdapter: AlbumRVAdapter
     private lateinit var chartRVAdapter: MusicChartRVAdapter
@@ -39,17 +31,7 @@ class ProfileFragment : Fragment() {
 
     private val viewModel by activityViewModels<UserViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initAfterBinding() {
         binding.viewModel = viewModel
         initNavigation()
         initBlurView()
@@ -98,10 +80,10 @@ class ProfileFragment : Fragment() {
                         clickListener.collect {
                             if (it == null) return@collect
                             when (it) {
-                                R.id.tv_all_music -> findNavController().navigate(R.id.action_to_likeFragment)
-                                R.id.tv_all_album -> findNavController().navigate(R.id.action_to_likeFragment)
-                                R.id.ll_songs -> findNavController().navigate(R.id.action_to_myArtFragment)
-                                R.id.ll_albums -> findNavController().navigate(R.id.action_to_myArtFragment)
+                                R.id.tv_all_music -> graphNavigate(R.id.action_to_likeFragment)
+                                R.id.tv_all_album -> graphNavigate(R.id.action_to_likeFragment)
+                                R.id.ll_songs -> graphNavigate(R.id.action_to_myArtFragment)
+                                R.id.ll_albums -> graphNavigate(R.id.action_to_myArtFragment)
                             }
                         }
                     }
@@ -145,7 +127,7 @@ class ProfileFragment : Fragment() {
         super.onAttach(context)
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                findNavController().navigate(R.id.action_to_musicFragment)
+                graphNavigate(R.id.action_to_musicFragment)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
@@ -154,10 +136,5 @@ class ProfileFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         callback.remove()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

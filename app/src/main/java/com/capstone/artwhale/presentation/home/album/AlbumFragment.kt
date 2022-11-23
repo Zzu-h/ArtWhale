@@ -1,17 +1,13 @@
 package com.capstone.artwhale.presentation.home.album
 
 import android.os.Build
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentAlbumBinding
 import com.capstone.artwhale.domain.model.Album
+import com.capstone.artwhale.presentation.home.BaseFragment
 import com.capstone.artwhale.presentation.home.album.adapter.AlbumRVAdapter
 import com.capstone.artwhale.presentation.home.album.adapter.AlbumRankingThumbnailRVAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,14 +16,9 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class AlbumFragment : Fragment() {
+class AlbumFragment : BaseFragment<FragmentAlbumBinding>(FragmentAlbumBinding::inflate) {
 
-    private var _binding: FragmentAlbumBinding? = null
     private val viewModel by viewModels<AlbumViewModel>()
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
 
     private lateinit var albumRankingThumbnailRVAdapter: AlbumRankingThumbnailRVAdapter
     private lateinit var albumRVAdapter: AlbumRVAdapter
@@ -37,17 +28,7 @@ class AlbumFragment : Fragment() {
     private val autoScrollDelayTime = 3000L
     private var job: Job? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        _binding = FragmentAlbumBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initAfterBinding() {
         binding.viewModel = viewModel
         initRecyclerView()
         initObserver()
@@ -125,6 +106,5 @@ class AlbumFragment : Fragment() {
     override fun onDestroyView() {
         job?.cancel()
         super.onDestroyView()
-        _binding = null
     }
 }

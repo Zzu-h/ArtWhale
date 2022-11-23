@@ -1,10 +1,14 @@
 package com.capstone.artwhale.presentation.common
 
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.capstone.artwhale.R
+
+typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
 @BindingAdapter("image")
 fun ImageView.setImage(url: String?) {

@@ -63,4 +63,6 @@
     <string name="all_list">전체보기</string>
     <string name="activity_music_register">Music Art</string>
     <string name="activity_album_register">Album Art</string>
+    <string name="input_title">제목을 입력하세요</string>
+    <string name="register">Register</string>
 </resources>

@@ -19,9 +19,11 @@ class AlbumRegisterViewModel @Inject constructor(
 
     private val _imageUri = MutableStateFlow<String?>(null)
     private val _moodList = MutableStateFlow<List<Mood>>(emptyList())
+    private val _selectedMood = MutableStateFlow<Mood?>(null)
 
     val imageUri: StateFlow<String?> = _imageUri
     val moodList: StateFlow<List<Mood>> = _moodList
+    val selectedMood: StateFlow<Mood?> = _selectedMood
     val title = MutableStateFlow("")
 
     init {
@@ -32,5 +34,9 @@ class AlbumRegisterViewModel @Inject constructor(
 
     fun setAlbumImage(uri: Uri) {
         viewModelScope.launch(Dispatchers.IO) { _imageUri.emit(uri.toString()) }
+    }
+
+    fun selectMood(moodIdx: Int) {
+        viewModelScope.launch(Dispatchers.IO) { _selectedMood.emit(moodList.value[moodIdx]) }
     }
 }

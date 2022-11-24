@@ -2,12 +2,19 @@ package com.capstone.artwhale.presentation.register.album
 
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.lifecycleScope
 import com.capstone.artwhale.databinding.ActivityAlbumRegisterBinding
+import com.capstone.artwhale.domain.model.Mood
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class AlbumRegisterActivity : AppCompatActivity() {
@@ -34,10 +41,27 @@ class AlbumRegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initButton()
-        initSpinner()
+        initObserver()
     }
 
-    private fun initSpinner() {}
+    private fun initObserver() {
+        viewModel.moodList.onEach {
+            initSpinner(it)
+            if (it.isNotEmpty()) viewModel.selectMood(0)
+        }.launchIn(this.lifecycleScope)
+    }
+
+    private fun initSpinner(list: List<Mood>) {
+        val adapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, list.map { it.name })
+        binding.spinner.adapter = adapter
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) =
+                viewModel.selectMood(pos)
+
+            override fun onNothingSelected(parent: AdapterView<*>) = Unit
+        }
+    }
 
     private fun initButton() {
         with(binding) {

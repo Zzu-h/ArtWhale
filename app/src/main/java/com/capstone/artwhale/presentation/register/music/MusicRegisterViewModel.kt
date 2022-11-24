@@ -44,6 +44,10 @@ class MusicRegisterViewModel @Inject constructor(
         }
     }
 
+    fun clearAiImageList() {
+        viewModelScope.launch(Dispatchers.IO) { _aiAlbumImageList.emit(emptyList()) }
+    }
+
     fun setMusic(uri: Uri) {
         viewModelScope.launch(Dispatchers.IO) { _musicUri.emit(uri) }
     }

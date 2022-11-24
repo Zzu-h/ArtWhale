@@ -8,6 +8,8 @@
         <variable
             name="viewModel"
             type="com.capstone.artwhale.presentation.register.music.MusicRegisterViewModel" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,17 +43,30 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/btn_upload_music"
             android:layout_width="match_parent"
-            android:layout_height="155dp"
+            android:layout_height="145dp"
+            android:layout_marginHorizontal="25dp"
             android:layout_marginTop="20dp"
             android:background="@color/primary"
-            android:paddingHorizontal="25dp"
-            android:paddingVertical="20dp"
             android:src="@drawable/ic_plus"
             android:tint="@color/white"
-            app:contentPadding="40dp"
+            app:contentPadding="45dp"
             app:layout_constraintTop_toBottomOf="@id/abl_sub"
             app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:layout_marginHorizontal="25dp"
+            android:visibility="@{viewModel.musicUri == null ? View.GONE : View.VISIBLE}"
+            app:cardBackgroundColor="@color/accent"
+            app:cardCornerRadius="13dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/btn_upload_music"
+            app:layout_constraintEnd_toEndOf="@id/btn_upload_music"
+            app:layout_constraintStart_toStartOf="@id/btn_upload_music"
+            app:layout_constraintTop_toTopOf="@id/btn_upload_music">
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fcv_content"

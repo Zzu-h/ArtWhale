@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.capstone.artwhale.databinding.ActivityMusicRegisterBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MusicRegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMusicRegisterBinding
@@ -14,6 +16,7 @@ class MusicRegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMusicRegisterBinding.inflate(layoutInflater)
+        binding.lifecycleOwner = this
         setContentView(binding.root)
     }
 }

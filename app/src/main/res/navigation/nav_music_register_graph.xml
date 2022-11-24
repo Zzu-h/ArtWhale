@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_profile_graph"
+    app:startDestination="@id/musicUploadFragment">
+
+    <fragment
+        android:id="@+id/musicUploadFragment"
+        android:name="com.capstone.artwhale.presentation.register.music.upload.MusicUploadFragment"
+        android:label="@string/fragment_music"
+        tools:layout="@layout/fragment_music_upload">
+
+        <action
+            android:id="@+id/action_to_ai_album_select"
+            app:destination="@id/aIAlbumSelectFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/aIAlbumSelectFragment"
+        android:name="com.capstone.artwhale.presentation.register.music.ai.AIAlbumSelectFragment"
+        android:label="@string/fragment_album"
+        tools:layout="@layout/fragment_ai_album_select">
+
+        <action
+            android:id="@+id/action_music_upload"
+            app:destination="@id/musicUploadFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+</navigation>

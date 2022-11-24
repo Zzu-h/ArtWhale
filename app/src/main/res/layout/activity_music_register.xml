@@ -1,32 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_ivory"
-    android:fitsSystemWindows="true"
-    tools:context=".presentation.register.music.MusicRegisterActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/abl_sub"
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_ivory"
         android:fitsSystemWindows="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        tools:context=".presentation.register.music.MusicRegisterActivity">
 
-        <com.capstone.artwhale.presentation.common.CustomToolBar
-            android:id="@+id/ctb_sub"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/abl_sub"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:setAdditionalIcon="@drawable/ic_mores"
-            app:setDefaultIcon="@drawable/ic_down_arrow"
-            app:toolBarType="sub"
-            app:toolbarTitle="@string/activity_music_register" />
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fitsSystemWindows="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <com.capstone.artwhale.presentation.common.CustomToolBar
+                android:id="@+id/ctb_sub"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:setAdditionalIcon="@drawable/ic_mores"
+                app:setDefaultIcon="@drawable/ic_down_arrow"
+                app:toolBarType="sub"
+                app:toolbarTitle="@string/activity_music_register" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/btn_upload_music"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@color/primary"
+            android:paddingHorizontal="25dp"
+            android:paddingVertical="30dp"
+            android:src="@drawable/ic_plus"
+            android:tint="@color/white"
+            app:contentPadding="70dp"
+            app:layout_constraintTop_toBottomOf="@id/abl_sub"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fcv_content"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_upload_music"
+            app:navGraph="@navigation/nav_music_register_graph" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

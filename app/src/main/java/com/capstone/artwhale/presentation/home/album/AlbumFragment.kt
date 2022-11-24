@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentAlbumBinding
 import com.capstone.artwhale.domain.model.Album
-import com.capstone.artwhale.presentation.home.BaseFragment
+import com.capstone.artwhale.presentation.common.BaseFragment
 import com.capstone.artwhale.presentation.home.album.adapter.AlbumRVAdapter
 import com.capstone.artwhale.presentation.home.album.adapter.AlbumRankingThumbnailRVAdapter
 import com.capstone.artwhale.presentation.register.album.AlbumRegisterActivity

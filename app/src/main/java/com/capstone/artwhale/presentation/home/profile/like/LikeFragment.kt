@@ -5,7 +5,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentLikeBinding
-import com.capstone.artwhale.presentation.home.BaseFragment
+import com.capstone.artwhale.presentation.common.BaseFragment
 import com.capstone.artwhale.presentation.home.profile.common.adapter.ListVPAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 

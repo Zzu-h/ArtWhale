@@ -1,4 +1,4 @@
-package com.capstone.artwhale.presentation.home
+package com.capstone.artwhale.presentation.common
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.capstone.artwhale.R
 import com.capstone.artwhale.domain.model.Music
-import com.capstone.artwhale.presentation.common.Inflate
 import com.capstone.artwhale.presentation.home.play.MusicPlayerFragment
 
 abstract class BaseFragment<VB : ViewBinding>(

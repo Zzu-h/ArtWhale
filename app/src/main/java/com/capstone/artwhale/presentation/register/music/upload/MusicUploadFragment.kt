@@ -48,7 +48,7 @@ class MusicUploadFragment :
     private fun initButton() {
         with(binding) {
             btnRegister.setOnClickListener {
-                if (viewModel!!.isAI.value) graphNavigate(R.id.action_to_ai_album_select)
+                if (viewModel!!.isAI.value) viewModel!!.getAiAlbumImageList()
                 else requireActivity().finish()
             }
         }
@@ -67,6 +67,11 @@ class MusicUploadFragment :
                 launch {
                     viewModel.musicUri.collect {
                         binding.btnRegister.isEnabled = it != null
+                    }
+                }
+                launch {
+                    viewModel.aiAlbumImageList.collect {
+                        if (it.isNotEmpty()) graphNavigate(R.id.action_to_ai_album_select)
                     }
                 }
             }

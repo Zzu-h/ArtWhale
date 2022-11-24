@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.artwhale.domain.model.Album
 import com.capstone.artwhale.domain.model.Mood
+import com.capstone.artwhale.domain.usecase.album.GetAiAlbumImageListUseCase
 import com.capstone.artwhale.domain.usecase.mood.GetMoodListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MusicRegisterViewModel @Inject constructor(
-    private val getMoodListUseCase: GetMoodListUseCase
+    private val getMoodListUseCase: GetMoodListUseCase,
+    private val getAiAlbumImageListUseCase: GetAiAlbumImageListUseCase
 ) : ViewModel() {
 
     /*초기 설정 변수*/
@@ -27,12 +29,14 @@ class MusicRegisterViewModel @Inject constructor(
     private val _musicUri = MutableStateFlow<Uri?>(null)
     private val _moodList = MutableStateFlow<List<Mood>>(emptyList())
     private val _selectedMood = MutableStateFlow<Mood?>(null)
+    private val _aiAlbumImageList = MutableStateFlow<List<String>>(emptyList())
 
     val musicUri: StateFlow<Uri?> = _musicUri
     val moodList: StateFlow<List<Mood>> = _moodList
     val selectedMood: StateFlow<Mood?> = _selectedMood
     val title = MutableStateFlow("")
     val content = MutableStateFlow("")
+    val aiAlbumImageList: StateFlow<List<String>> = _aiAlbumImageList
 
     init {
         viewModelScope.launch {
@@ -52,6 +56,15 @@ class MusicRegisterViewModel @Inject constructor(
         viewModelScope.launch {
             _isAI.emit(false)
             _album.emit(album)
+        }
+    }
+
+    fun getAiAlbumImageList() {
+        viewModelScope.launch {
+            getAiAlbumImageListUseCase(
+                title.value,
+                content.value
+            ).onSuccess { _aiAlbumImageList.emit(it) }
         }
     }
 }

@@ -9,6 +9,7 @@
         android:id="@+id/musicUploadFragment"
         android:name="com.capstone.artwhale.presentation.register.music.upload.MusicUploadFragment"
         android:label="@string/fragment_music"
+        android:tag="@string/activity_music_register"
         tools:layout="@layout/fragment_music_upload">
 
         <action

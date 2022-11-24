@@ -5,6 +5,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.NavHostFragment
 import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.ActivityMusicRegisterBinding
 import com.capstone.artwhale.domain.model.Album
@@ -30,6 +31,14 @@ class MusicRegisterActivity : AppCompatActivity() {
         data?.let { viewModel.setAlbum(it) }
 
         initObserver()
+        initButton()
+    }
+
+    private fun initButton() {
+        with(binding) {
+            ctbSub.setOnClickDefaultIcon { onBackPressed() }
+            ctbSub.setOnClickAdditionalIcon { finish() }
+        }
     }
 
     private fun initObserver() {
@@ -37,5 +46,15 @@ class MusicRegisterActivity : AppCompatActivity() {
             val text = (if (it) "AI " else "") + getString(R.string.activity_music_register)
             binding.ctbSub.setAppBarTitle(text)
         }.launchIn(this.lifecycleScope)
+    }
+
+    override fun onBackPressed() {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fcv_content)
+        val navController = (navHostFragment as NavHostFragment).navController
+        when (navController.currentDestination?.id) {
+            R.id.musicUploadFragment -> finish()
+            R.id.aIAlbumSelectFragment -> navController.navigate(R.id.action_music_upload)
+            else -> finish()
+        }
     }
 }

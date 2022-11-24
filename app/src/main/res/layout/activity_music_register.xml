@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:setAdditionalIcon="@drawable/ic_mores"
-                app:setDefaultIcon="@drawable/ic_down_arrow"
+                app:setDefaultIcon="@drawable/ic_left_arrow"
                 app:toolBarType="sub"
                 app:toolbarTitle="@string/activity_music_register" />
 

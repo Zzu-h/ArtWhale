@@ -14,6 +14,8 @@
         <entry key="app/src/main/res/drawable/bg_bottom_left_round.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/bg_bottom_navigation_item.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/bg_bottom_right_round.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/bg_btn_selector.xml" value="0.293" />
+        <entry key="app/src/main/res/drawable/bg_login_image.xml" value="0.293" />
         <entry key="app/src/main/res/drawable/bg_login_imgae.xml" value="0.1275" />
         <entry key="app/src/main/res/drawable/dot_selected.xml" value="0.1535" />
         <entry key="app/src/main/res/drawable/dot_selected_white.xml" value="0.2625" />

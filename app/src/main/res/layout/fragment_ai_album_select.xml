@@ -49,28 +49,20 @@
             tools:itemCount="9"
             tools:listitem="@layout/item_ai_image" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_register"
+        <TextView
+            android:id="@+id/btn_register"
             android:layout_width="230dp"
             android:layout_height="60dp"
             android:layout_marginBottom="50dp"
+            android:background="@drawable/bg_button_selector"
             android:clickable="true"
             android:focusable="true"
-            app:cardBackgroundColor="@color/primary"
-            app:cardCornerRadius="100dp"
+            android:gravity="center"
+            android:text="@string/register"
+            android:textAppearance="@style/button.bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/tv_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/register"
-                android:textAppearance="@style/button.bold" />
-
-        </androidx.cardview.widget.CardView>
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

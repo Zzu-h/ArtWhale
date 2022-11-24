@@ -24,11 +24,11 @@ class MusicRegisterViewModel @Inject constructor(
     val isAI: StateFlow<Boolean> get() = _isAI
     val album: StateFlow<Album?> get() = _album
 
-    private val _imageUri = MutableStateFlow<String?>(null)
+    private val _musicUri = MutableStateFlow<Uri?>(null)
     private val _moodList = MutableStateFlow<List<Mood>>(emptyList())
     private val _selectedMood = MutableStateFlow<Mood?>(null)
 
-    val imageUri: StateFlow<String?> = _imageUri
+    val musicUri: StateFlow<Uri?> = _musicUri
     val moodList: StateFlow<List<Mood>> = _moodList
     val selectedMood: StateFlow<Mood?> = _selectedMood
     val title = MutableStateFlow("")
@@ -40,8 +40,8 @@ class MusicRegisterViewModel @Inject constructor(
         }
     }
 
-    fun setAlbumImage(uri: Uri) {
-        viewModelScope.launch(Dispatchers.IO) { _imageUri.emit(uri.toString()) }
+    fun setMusic(uri: Uri) {
+        viewModelScope.launch(Dispatchers.IO) { _musicUri.emit(uri) }
     }
 
     fun selectMood(moodIdx: Int) {

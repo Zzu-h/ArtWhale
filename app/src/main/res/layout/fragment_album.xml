@@ -55,6 +55,7 @@
                 android:background="@color/white"
                 android:clickable="true"
                 android:focusable="true"
+                android:onClick="@{(view) -> viewModel.onClickButton(view)}"
                 android:src="@drawable/ic_plus"
                 android:visibility="visible"
                 app:contentPadding="8dp"

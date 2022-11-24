@@ -1,5 +1,6 @@
 package com.capstone.artwhale.presentation.home.album
 
+import android.content.Intent
 import android.os.Build
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -10,6 +11,7 @@ import com.capstone.artwhale.domain.model.Album
 import com.capstone.artwhale.presentation.home.BaseFragment
 import com.capstone.artwhale.presentation.home.album.adapter.AlbumRVAdapter
 import com.capstone.artwhale.presentation.home.album.adapter.AlbumRankingThumbnailRVAdapter
+import com.capstone.artwhale.presentation.register.album.AlbumRegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.launchIn
@@ -45,6 +47,13 @@ class AlbumFragment : BaseFragment<FragmentAlbumBinding>(FragmentAlbumBinding::i
                 .launchIn(this@AlbumFragment.lifecycleScope)
             showAlbum.onEach { albumRVAdapter.submitList(it) }
                 .launchIn(this@AlbumFragment.lifecycleScope)
+            clickListener.onEach {
+                if (it == null) return@onEach
+                val intent = Intent(requireContext(), AlbumRegisterActivity::class.java)
+                when (it) {
+                    R.id.iv_default -> startActivity(intent)
+                }
+            }.launchIn(this@AlbumFragment.lifecycleScope)
         }
     }
 
@@ -101,6 +110,7 @@ class AlbumFragment : BaseFragment<FragmentAlbumBinding>(FragmentAlbumBinding::i
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             requireActivity().window.statusBarColor =
                 resources.getColor(android.R.color.transparent, null)
+        viewModel.onClickButton(null)
     }
 
     override fun onDestroyView() {

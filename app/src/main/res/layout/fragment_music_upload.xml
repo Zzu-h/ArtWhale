@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.capstone.artwhale.presentation.register.music.MusicRegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -97,6 +100,7 @@
                 android:gravity="top"
                 android:hint="@string/input_lyrics"
                 android:inputType="text"
+                android:text="@={viewModel.content}"
                 android:textAppearance="@style/description.small" />
         </androidx.cardview.widget.CardView>
 

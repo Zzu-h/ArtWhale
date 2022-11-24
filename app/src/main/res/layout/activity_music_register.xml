@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.capstone.artwhale.presentation.register.music.MusicRegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

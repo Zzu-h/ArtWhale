@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_ivory"
+    android:fitsSystemWindows="true"
+    tools:context=".presentation.register.album.AlbumRegisterActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/abl_sub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:fitsSystemWindows="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.capstone.artwhale.presentation.common.CustomToolBar
+            android:id="@+id/ctb_sub"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:setAdditionalIcon="@drawable/ic_mores"
+            app:setDefaultIcon="@drawable/ic_down_arrow"
+            app:toolBarType="sub"
+            app:toolbarTitle="@string/activity_album_register" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

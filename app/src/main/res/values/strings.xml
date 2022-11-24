@@ -61,4 +61,6 @@
     <string name="like_album">좋아요 표시한 앨범</string>
     <string name="like_music">좋아요 표시한 음악</string>
     <string name="all_list">전체보기</string>
+    <string name="activity_music_register">Music Art</string>
+    <string name="activity_album_register">Album Art</string>
 </resources>

@@ -38,9 +38,11 @@
         <entry key="app/src/main/res/drawable/ic_player_stop.xml" value="0.1075" />
         <entry key="app/src/main/res/drawable/ic_plus.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.1875" />
+        <entry key="app/src/main/res/layout/activity_album_register.xml" value="0.2890625" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.258514404296875" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.5873618080977994" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.504601226993865" />
+        <entry key="app/src/main/res/layout/activity_musci_register.xml" value="0.2890625" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_album.xml" value="0.2524271844660194" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.2671875" />

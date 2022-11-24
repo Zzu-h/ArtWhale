@@ -1,5 +1,6 @@
 package com.capstone.artwhale.presentation.home.album
 
+import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.artwhale.domain.model.Album
@@ -21,6 +22,9 @@ class AlbumViewModel @Inject constructor(
     private val getAllAlbumUseCase: GetAllAlbumUseCase,
     private val getAlbumRankingUseCase: GetAlbumRankingUseCase
 ) : ViewModel() {
+
+    private val _clickListener = MutableStateFlow<Int?>(null)
+    val clickListener: StateFlow<Int?> = _clickListener
 
     private val _albumRanking = MutableStateFlow<List<Album>>(emptyList())
     private var _allAlbum = emptyList<Album>()
@@ -57,5 +61,9 @@ class AlbumViewModel @Inject constructor(
             }.onFailure { _state.emit(Error(it.message)) }
             searchFlow.collect()
         }
+    }
+
+    fun onClickButton(view: View?) {
+        viewModelScope.launch { _clickListener.emit(view?.id) }
     }
 }

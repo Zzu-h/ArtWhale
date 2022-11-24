@@ -1,13 +1,7 @@
 package com.capstone.artwhale.di
 
-import com.capstone.artwhale.data.repository.AlbumRepositoryImpl
-import com.capstone.artwhale.data.repository.AuthRepositoryImpl
-import com.capstone.artwhale.data.repository.MusicRepositoryImpl
-import com.capstone.artwhale.data.repository.NoticeRepositoryImpl
-import com.capstone.artwhale.domain.repository.AlbumRepository
-import com.capstone.artwhale.domain.repository.AuthRepository
-import com.capstone.artwhale.domain.repository.MusicRepository
-import com.capstone.artwhale.domain.repository.NoticeRepository
+import com.capstone.artwhale.data.repository.*
+import com.capstone.artwhale.domain.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -41,4 +35,10 @@ abstract class RepositoryModule {
     abstract fun provideAlbumRepository(
         albumRepository: AlbumRepositoryImpl
     ): AlbumRepository
+
+    @Singleton
+    @Binds
+    abstract fun provideMoodRepository(
+        moodRepository: MoodRepositoryImpl
+    ): MoodRepository
 }

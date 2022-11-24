@@ -2,10 +2,7 @@ package com.capstone.artwhale.di
 
 import com.capstone.artwhale.BuildConfig
 import com.capstone.artwhale.BuildConfig.BASE_URL
-import com.capstone.artwhale.data.service.AlbumService
-import com.capstone.artwhale.data.service.AuthService
-import com.capstone.artwhale.data.service.MusicService
-import com.capstone.artwhale.data.service.NoticeService
+import com.capstone.artwhale.data.service.*
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -80,5 +77,11 @@ object NetworkModule {
     @Provides
     fun provideAlbumService(retrofit: Retrofit): AlbumService {
         return retrofit.create(AlbumService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideMoodService(retrofit: Retrofit): MoodService {
+        return retrofit.create(MoodService::class.java)
     }
 }

@@ -13,8 +13,8 @@
         tools:layout="@layout/fragment_music">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/albumFragment" />
+            android:id="@+id/action_to_SearchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/albumFragment"

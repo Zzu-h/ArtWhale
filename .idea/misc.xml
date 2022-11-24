@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.22135416666666666" />
+        <entry key="../../../.gradle/caches/transforms-3/5a98fff26bc2354bec39a8eb44ac20a5/transformed/circleindicator-2.1.6/res/drawable/white_radius.xml" value="0.293" />
         <entry key="../../../.gradle/caches/transforms-3/93b89c6e488660ce77e39a6c51b0754b/transformed/play-services-base-18.0.1/res/drawable/common_google_signin_btn_icon_dark.xml" value="0.216" />
+        <entry key="../../../Library/Android/sdk/platforms/android-32/data/res/layout/simple_spinner_dropdown_item.xml" value="0.18125" />
         <entry key="app/src/main/res/drawable-v24/bg_login_imgae.xml" value="0.225" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.203" />
         <entry key="app/src/main/res/drawable-v24/ic_logo_combine.xml" value="0.225" />
@@ -12,6 +14,8 @@
         <entry key="app/src/main/res/drawable/bg_bottom_left_round.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/bg_bottom_navigation_item.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/bg_bottom_right_round.xml" value="0.2625" />
+        <entry key="app/src/main/res/drawable/bg_btn_selector.xml" value="0.293" />
+        <entry key="app/src/main/res/drawable/bg_login_image.xml" value="0.293" />
         <entry key="app/src/main/res/drawable/bg_login_imgae.xml" value="0.1275" />
         <entry key="app/src/main/res/drawable/dot_selected.xml" value="0.1535" />
         <entry key="app/src/main/res/drawable/dot_selected_white.xml" value="0.2625" />
@@ -19,6 +23,8 @@
         <entry key="app/src/main/res/drawable/ic_album.xml" value="0.1875" />
         <entry key="app/src/main/res/drawable/ic_camera.xml" value="0.254" />
         <entry key="app/src/main/res/drawable/ic_down_arrow.xml" value="0.279" />
+        <entry key="app/src/main/res/drawable/ic_fast_forward.xml" value="0.254" />
+        <entry key="app/src/main/res/drawable/ic_fast_rewind.xml" value="0.254" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1875" />
         <entry key="app/src/main/res/drawable/ic_left_arrow.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/ic_like.xml" value="0.1875" />
@@ -38,23 +44,29 @@
         <entry key="app/src/main/res/drawable/ic_player_stop.xml" value="0.1075" />
         <entry key="app/src/main/res/drawable/ic_plus.xml" value="0.2625" />
         <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.1875" />
+        <entry key="app/src/main/res/layout/activity_album_register.xml" value="0.4218181818181818" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.258514404296875" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.5873618080977994" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.504601226993865" />
+        <entry key="app/src/main/res/layout/activity_musci_register.xml" value="0.2890625" />
+        <entry key="app/src/main/res/layout/activity_music_register.xml" value="0.2507934570312501" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_ai_album_select.xml" value="0.21666666666666667" />
         <entry key="app/src/main/res/layout/fragment_album.xml" value="0.2524271844660194" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.2671875" />
         <entry key="app/src/main/res/layout/fragment_like.xml" value="0.318448883666275" />
         <entry key="app/src/main/res/layout/fragment_like_album.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/fragment_like_music.xml" value="0.2913518269856771" />
         <entry key="app/src/main/res/layout/fragment_music.xml" value="0.2022932022932023" />
-        <entry key="app/src/main/res/layout/fragment_music_player.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_music_player.xml" value="0.4672653198242188" />
+        <entry key="app/src/main/res/layout/fragment_music_upload.xml" value="0.36252543131510423" />
         <entry key="app/src/main/res/layout/fragment_my_art.xml" value="0.16666666666666666" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.17916666666666667" />
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.2671875" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.19270833333333334" />
         <entry key="app/src/main/res/layout/fragment_user_info.xml" value="0.30121951219512194" />
         <entry key="app/src/main/res/layout/fragment_user_info_editor.xml" value="0.28014842300556586" />
+        <entry key="app/src/main/res/layout/item_ai_image.xml" value="0.2890625" />
         <entry key="app/src/main/res/layout/item_album.xml" value="0.2345679012345679" />
         <entry key="app/src/main/res/layout/item_chart_music.xml" value="0.4107485604606526" />
         <entry key="app/src/main/res/layout/item_new_music.xml" value="0.3609375" />

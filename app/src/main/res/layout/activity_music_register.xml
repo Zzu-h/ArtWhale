@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.capstone.artwhale.presentation.register.music.MusicRegisterViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_ivory"
+        android:fitsSystemWindows="true"
+        tools:context=".presentation.register.music.MusicRegisterActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/abl_sub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fitsSystemWindows="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.capstone.artwhale.presentation.common.CustomToolBar
+                android:id="@+id/ctb_sub"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:setAdditionalIcon="@drawable/ic_mores"
+                app:setDefaultIcon="@drawable/ic_left_arrow"
+                app:toolBarType="sub"
+                app:toolbarTitle="@string/activity_music_register" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/btn_upload_music"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/primary"
+            android:src="@drawable/ic_plus"
+            android:tint="@color/white"
+            app:contentPadding="45dp"
+            app:layout_constraintTop_toBottomOf="@id/abl_sub"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:layout_marginHorizontal="25dp"
+            android:visibility="@{viewModel.musicUri == null ? View.GONE : View.VISIBLE}"
+            app:cardBackgroundColor="@color/accent"
+            app:cardCornerRadius="13dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/btn_upload_music"
+            app:layout_constraintEnd_toEndOf="@id/btn_upload_music"
+            app:layout_constraintStart_toStartOf="@id/btn_upload_music"
+            app:layout_constraintTop_toTopOf="@id/btn_upload_music">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_album_thumbnail"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/primary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AI"
+                    android:textAppearance="@style/title.small.white"
+                    android:visibility="@{viewModel.album != null ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_album_thumbnail"
+                    app:layout_constraintEnd_toEndOf="@id/iv_album_thumbnail"
+                    app:layout_constraintStart_toStartOf="@id/iv_album_thumbnail"
+                    app:layout_constraintTop_toTopOf="@id/iv_album_thumbnail" />
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/ic_fast_rewind"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_play"
+                    app:layout_constraintEnd_toStartOf="@id/btn_play"
+                    app:layout_constraintStart_toEndOf="@id/iv_album_thumbnail"
+                    app:layout_constraintTop_toTopOf="@id/btn_play" />
+
+                <ImageView
+                    android:id="@+id/btn_play"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_player_play_selector"
+                    app:layout_constraintBottom_toTopOf="@id/sb_music_progress"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_album_thumbnail"
+                    app:layout_constraintTop_toTopOf="@+id/iv_album_thumbnail"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_fast_forward"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_play"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btn_play"
+                    app:layout_constraintTop_toTopOf="@id/btn_play" />
+
+                <SeekBar
+                    android:id="@+id/sb_music_progress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layerType="software"
+                    android:progress="50"
+                    android:progressTint="@color/primary"
+                    android:thumbTint="@color/primary"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_album_thumbnail"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_album_thumbnail"
+                    app:layout_constraintTop_toBottomOf="@id/btn_play"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/tv_play_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="0:00"
+                    android:textAppearance="@style/text.verySmall"
+                    app:layout_constraintStart_toStartOf="@id/sb_music_progress"
+                    app:layout_constraintTop_toBottomOf="@id/sb_music_progress" />
+
+                <TextView
+                    android:id="@+id/tv_end_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:text="3:00"
+                    android:textAppearance="@style/text.verySmall"
+                    app:layout_constraintEnd_toEndOf="@id/sb_music_progress"
+                    app:layout_constraintTop_toBottomOf="@id/sb_music_progress" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fcv_content"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_upload_music"
+            app:navGraph="@navigation/nav_music_register_graph" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

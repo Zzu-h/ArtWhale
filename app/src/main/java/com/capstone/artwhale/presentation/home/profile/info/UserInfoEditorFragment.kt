@@ -6,7 +6,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentUserInfoEditorBinding
-import com.capstone.artwhale.presentation.home.BaseFragment
+import com.capstone.artwhale.presentation.common.BaseFragment
 import com.capstone.artwhale.presentation.home.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn

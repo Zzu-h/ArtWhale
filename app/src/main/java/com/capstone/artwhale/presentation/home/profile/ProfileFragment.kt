@@ -13,7 +13,7 @@ import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentProfileBinding
 import com.capstone.artwhale.domain.model.Album
 import com.capstone.artwhale.domain.model.Music
-import com.capstone.artwhale.presentation.home.BaseFragment
+import com.capstone.artwhale.presentation.common.BaseFragment
 import com.capstone.artwhale.presentation.home.UserViewModel
 import com.capstone.artwhale.presentation.home.album.adapter.AlbumRVAdapter
 import com.capstone.artwhale.presentation.home.music.adapter.MusicChartRVAdapter

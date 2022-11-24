@@ -1,13 +1,16 @@
 package com.capstone.artwhale.presentation.home.music
 
+import android.content.Intent
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentMusicBinding
-import com.capstone.artwhale.presentation.home.BaseFragment
+import com.capstone.artwhale.presentation.common.BaseFragment
 import com.capstone.artwhale.presentation.home.music.adapter.MusicChartRVAdapter
 import com.capstone.artwhale.presentation.home.music.adapter.NewMusicRVAdapter
 import com.capstone.artwhale.presentation.home.music.adapter.NoticeRVAdapter
+import com.capstone.artwhale.presentation.register.music.MusicRegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.launchIn
@@ -28,6 +31,18 @@ class MusicFragment : BaseFragment<FragmentMusicBinding>(FragmentMusicBinding::i
     override fun initAfterBinding() {
         initRecyclerView()
         initObserver()
+        initToolBar()
+    }
+
+    private fun initToolBar() {
+        with(binding.ctbMain) {
+            setOnClickDefaultIcon {
+                startActivity(Intent(requireContext(), MusicRegisterActivity::class.java))
+            }
+            setOnClickAdditionalIcon {
+                graphNavigate(R.id.action_to_SearchFragment)
+            }
+        }
     }
 
     private fun initRecyclerView() {

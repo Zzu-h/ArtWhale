@@ -12,6 +12,8 @@ import com.capstone.artwhale.domain.usecase.auth.GetMyInfoUseCase
 import com.capstone.artwhale.domain.usecase.auth.LoginUseCase
 import com.capstone.artwhale.domain.usecase.auth.impl.GetMyInfoUseCaseImpl
 import com.capstone.artwhale.domain.usecase.auth.impl.LoginUseCaseImpl
+import com.capstone.artwhale.domain.usecase.mood.GetMoodListUseCase
+import com.capstone.artwhale.domain.usecase.mood.impl.GetMoodListUseCaseImpl
 import com.capstone.artwhale.domain.usecase.music.GetLikeMusicListUseCase
 import com.capstone.artwhale.domain.usecase.music.GetMusicChartUseCase
 import com.capstone.artwhale.domain.usecase.music.GetMyMusicListUseCase
@@ -97,4 +99,10 @@ abstract class UseCaseModule {
     abstract fun provideGetMyInfoUseCase(
         getMyInfoUseCase: GetMyInfoUseCaseImpl
     ): GetMyInfoUseCase
+
+    @Singleton
+    @Binds
+    abstract fun provideGetMoodListUseCase(
+        getMoodListUseCase: GetMoodListUseCaseImpl
+    ): GetMoodListUseCase
 }

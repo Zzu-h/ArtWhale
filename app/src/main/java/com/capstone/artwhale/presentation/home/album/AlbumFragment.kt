@@ -60,6 +60,7 @@ class AlbumFragment : BaseFragment<FragmentAlbumBinding>(FragmentAlbumBinding::i
     private fun initRecyclerView() {
         albumRankingThumbnailRVAdapter = AlbumRankingThumbnailRVAdapter()
         albumRVAdapter = AlbumRVAdapter()
+            .apply { setCallBack { registerMusicWithAlbum(it) } }
 
         with(binding) {
             rvAlbumThumbnail.layoutParams.width = resources.displayMetrics.widthPixels

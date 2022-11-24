@@ -1,5 +1,6 @@
 package com.capstone.artwhale.presentation.common
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.capstone.artwhale.R
+import com.capstone.artwhale.domain.model.Album
 import com.capstone.artwhale.domain.model.Music
 import com.capstone.artwhale.presentation.home.play.MusicPlayerFragment
+import com.capstone.artwhale.presentation.register.music.MusicRegisterActivity
 
 abstract class BaseFragment<VB : ViewBinding>(
     private val inflate: Inflate<VB>
@@ -51,6 +54,12 @@ abstract class BaseFragment<VB : ViewBinding>(
         bundle.putSerializable("music", music)
         player.arguments = bundle
         player.show(childFragmentManager, getString(R.string.fragment_music_player))
+    }
+
+    protected fun registerMusicWithAlbum(album: Album) {
+        val intent = Intent(requireContext(), MusicRegisterActivity::class.java)
+        intent.putExtra("album", album)
+        startActivity(intent)
     }
 
     protected fun graphNavigate(actionId: Int) {

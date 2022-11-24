@@ -19,64 +19,35 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <FrameLayout
+            <androidx.cardview.widget.CardView
                 android:id="@+id/layout_clip_bottom_left"
-                style="@style/CardViewLeftBottomRadius"
-                android:layout_width="match_parent"
-                android:layout_height="280dp"
+                android:layout_width="800dp"
+                android:layout_height="3000dp"
                 android:layout_centerInParent="true"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/bg_bottom_left_round"
                 android:clipChildren="true"
                 android:clipToOutline="true"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="140dp"
+                app:cardElevation="8dp"
+                app:layout_constraintBottom_toTopOf="@id/iv_ranking_background"
+                app:layout_constraintStart_toStartOf="parent">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_album_thumbnail"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="420dp"
+                    android:layout_height="280dp"
+                    android:layout_gravity="bottom|start"
                     android:background="@drawable/bg_bottom_left_round"
                     android:clipChildren="true"
                     android:clipToOutline="true"
                     android:clipToPadding="true"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:itemCount="1" />
-            </FrameLayout>
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/iv_default"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_gravity="start"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="15dp"
-                android:background="@color/white"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="@{(view) -> viewModel.onClickButton(view)}"
-                android:src="@drawable/ic_plus"
-                android:visibility="visible"
-                app:contentPadding="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize100Percent" />
-
-            <me.relex.circleindicator.CircleIndicator2
-                android:id="@+id/ci2_notice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                app:ci_animator="@animator/alpha"
-                app:ci_drawable="@drawable/dot_selected_white"
-                app:ci_drawable_unselected="@drawable/dot_unselected"
-                app:ci_height="8dp"
-                app:ci_margin="4dp"
-                app:ci_orientation="horizontal"
-                app:ci_width="8dp"
-                app:layout_constraintBottom_toBottomOf="@id/layout_clip_bottom_left"
-                app:layout_constraintEnd_toEndOf="parent" />
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_rv_image" />
+            </androidx.cardview.widget.CardView>
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_ranking_background"
@@ -84,10 +55,10 @@
                 android:layout_height="54dp"
                 android:layout_gravity="start"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="300dp"
                 android:background="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layout_clip_bottom_left"
+                app:layout_constraintTop_toTopOf="parent"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize100Percent" />
 
             <TextSwitcher
@@ -144,6 +115,41 @@
                     android:layout_height="wrap_content"
                     tools:text="testMood" />
             </TextSwitcher>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_default"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_gravity="start"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/white"
+                android:clickable="true"
+                android:elevation="8dp"
+                android:focusable="true"
+                android:onClick="@{(view) -> viewModel.onClickButton(view)}"
+                android:src="@drawable/ic_plus"
+                android:visibility="visible"
+                app:contentPadding="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize100Percent" />
+
+            <me.relex.circleindicator.CircleIndicator2
+                android:id="@+id/ci2_notice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:elevation="8dp"
+                app:ci_animator="@animator/alpha"
+                app:ci_drawable="@drawable/dot_selected_white"
+                app:ci_drawable_unselected="@drawable/dot_unselected"
+                app:ci_height="8dp"
+                app:ci_margin="4dp"
+                app:ci_orientation="horizontal"
+                app:ci_width="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/layout_clip_bottom_left"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/tv_album_art"

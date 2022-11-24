@@ -62,6 +62,7 @@ class AlbumFragment : BaseFragment<FragmentAlbumBinding>(FragmentAlbumBinding::i
         albumRVAdapter = AlbumRVAdapter()
 
         with(binding) {
+            rvAlbumThumbnail.layoutParams.width = resources.displayMetrics.widthPixels
             rvAlbumThumbnail.adapter = albumRankingThumbnailRVAdapter
             rvAlbumArt.adapter = albumRVAdapter
 

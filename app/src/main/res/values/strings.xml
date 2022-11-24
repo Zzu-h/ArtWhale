@@ -65,4 +65,5 @@
     <string name="activity_album_register">Album Art</string>
     <string name="input_title">제목을 입력하세요</string>
     <string name="register">Register</string>
+    <string name="input_lyrics">가사를 입력하세요</string>
 </resources>

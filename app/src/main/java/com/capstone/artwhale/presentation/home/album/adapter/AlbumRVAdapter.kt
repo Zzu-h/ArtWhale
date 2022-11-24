@@ -11,8 +11,14 @@ import com.capstone.artwhale.presentation.home.album.viewholder.AlbumViewHolder
 class AlbumRVAdapter :
     ListAdapter<Album, AlbumViewHolder>(diffUtil) {
 
+    private var callback: (album: Album) -> Unit = {}
+
+    fun setCallBack(callback: (album: Album) -> Unit) {
+        this.callback = callback
+    }
+
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), callback)
     }
 
     override fun onCreateViewHolder(

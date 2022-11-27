@@ -57,32 +57,33 @@ class MusicPlayer @Inject constructor(
     fun playMusic() {
         val player = mediaPlayer ?: return
         _playerState.postValue(Playing)
+        runTimer()
         player.start()
     }
 
     fun pauseMusic() {
         val player = mediaPlayer ?: return
         _playerState.postValue(Pause)
+        stopTimer()
         player.pause()
     }
 
     fun stopMusic() {
-        val player = mediaPlayer ?: return
         _playerState.postValue(Stop)
-        player.stop()
+        stopTimer()
+        mediaPlayer?.stop()
+        _mills = 0L
+        _minute = 0
+        _second.postValue(0)
     }
 
     fun updateMusic(music: Music): Boolean {
         val prevState = playerState.value!!
-        _playerState.postValue(Stop)
+        stopMusic()
         _music.postValue(music)
-        _endTime = music.time ?: 0
-        _mills = 0L
-        _minute = 0
-        _second.postValue(0)
 
         /*player update*/
-        if (!initializeMediaPlayer()) return false
+        if (!initializeMediaPlayer(music)) return false
 
         when (prevState) {
             Pause -> pauseMusic()
@@ -119,8 +120,7 @@ class MusicPlayer @Inject constructor(
         timer.cancel()
     }
 
-    private fun initializeMediaPlayer(): Boolean {
-        val music = this.music.value ?: return false
+    private fun initializeMediaPlayer(music: Music): Boolean {
         mediaPlayer = MediaPlayer().apply {
             setAudioAttributes(
                 AudioAttributes.Builder()

@@ -18,15 +18,16 @@ class MusicPlayer @Inject constructor(
 ) {
 
     /*player state*/
-    private val _playerState = MutableLiveData<PlayerState>(Pause)
+    private val _playerState = MutableLiveData<PlayerState>(Preparing)
     val playerState: LiveData<PlayerState> = _playerState
 
     /*time*/
     private var _minute = 0
-    private var _mills = 0L
     private val _second = MutableLiveData(0)
+    private val _mills = MutableLiveData(0L)
     val minute get() = _minute
     val second: LiveData<Int> = _second
+    val mills: LiveData<Long> = _mills
 
     private var _endTime = 0L
     val endTime get() = _endTime
@@ -39,15 +40,17 @@ class MusicPlayer @Inject constructor(
     private var mediaPlayer: MediaPlayer? = null
 
     /*timer*/
-    private val timer = Timer()
+    private var timer: Timer? = null
     private val timerTask = object : TimerTask() {
         override fun run() {
             var second = second.value!!
-            while (_mills <= endTime) {
-                _mills++
-                if (_mills % 1000 == 0L) {
+            var millisecond = mills.value!!
+            while (millisecond <= endTime) {
+                millisecond++
+                _mills.value = millisecond
+                if (millisecond % 1000 == 0L) {
                     second++
-                    _second.postValue(second)
+                    _second.value = second
                 }
             }
             pauseMusic()
@@ -71,10 +74,10 @@ class MusicPlayer @Inject constructor(
     fun stopMusic() {
         _playerState.postValue(Stop)
         stopTimer()
-        mediaPlayer?.stop()
-        _mills = 0L
+        mediaPlayer?.apply { if (isPlaying) stop() }
         _minute = 0
         _second.postValue(0)
+        _mills.postValue(0L)
     }
 
     fun updateMusic(music: Music): Boolean {
@@ -83,15 +86,10 @@ class MusicPlayer @Inject constructor(
         _music.postValue(music)
 
         /*player update*/
-        if (!initializeMediaPlayer(music)) return false
-
-        when (prevState) {
-            Pause -> pauseMusic()
-            Stop -> stopMusic()
-            else -> playMusic()
+        return !initializeMediaPlayer(music) {
+            _endTime = it.duration.toLong()
+            playMusic()
         }
-
-        return true
     }
 
     fun moveTime(second: Int) {
@@ -107,21 +105,30 @@ class MusicPlayer @Inject constructor(
         } else {
             this._second.postValue(gap)
         }
-        _mills += (second * 1000)
-        _mills = min(max(_mills, endTime), 0)
-        player.seekTo(_mills.toInt())
+        val millisecond = mills.value!! + (second * 1000)
+        _mills.postValue(min(max(millisecond, endTime), 0L))
+        player.seekTo(millisecond.toInt())
     }
 
     private fun runTimer() {
-        timer.schedule(timerTask, 0, 1)
+        timer = Timer()
+        timer?.schedule(timerTask, 0, 1)
     }
 
     private fun stopTimer() {
-        timer.cancel()
+        timer?.cancel()
+        timer = null
     }
 
-    private fun initializeMediaPlayer(music: Music): Boolean {
+    private fun initializeMediaPlayer(
+        music: Music,
+        onPrepared: MediaPlayer.OnPreparedListener
+    ): Boolean {
+        mediaPlayer?.release()
+        mediaPlayer = null
+
         mediaPlayer = MediaPlayer().apply {
+            _playerState.postValue(Preparing)
             setAudioAttributes(
                 AudioAttributes.Builder()
                     .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
@@ -129,16 +136,15 @@ class MusicPlayer @Inject constructor(
                     .build()
             )
             setDataSource(music.musicUrl)
-            prepare() // might take long! (for buffering, etc)
+            prepare()
+            setOnPreparedListener(onPrepared)
         }
-        val player = mediaPlayer ?: return false
-        _endTime = player.duration.toLong()
-        return true
+        return mediaPlayer != null
     }
 
     fun destroy() {
         mediaPlayer?.release()
         mediaPlayer = null
-        timer.cancel()
+        timer?.purge()
     }
 }

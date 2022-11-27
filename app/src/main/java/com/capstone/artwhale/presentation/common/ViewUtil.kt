@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.SeekBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -50,4 +51,14 @@ fun TextView.setSongTime(time: Long?) {
 
         "$m:${String.format("%02d", s % 60)}"
     }
+}
+
+@BindingAdapter("songTime")
+fun SeekBar.setSongTime(time: Long?) {
+    time?.let { this.progress = it.toInt() }
+}
+
+@BindingAdapter("endTime")
+fun SeekBar.setMaxTime(endTime: Long) {
+    this.max = endTime.toInt()
 }

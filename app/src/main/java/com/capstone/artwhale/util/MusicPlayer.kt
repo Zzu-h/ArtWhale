@@ -7,7 +7,7 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.capstone.artwhale.domain.model.Music
-import java.util.*
+import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.math.max
 import kotlin.math.min
@@ -22,15 +22,12 @@ class MusicPlayer @Inject constructor(
     val playerState: LiveData<PlayerState> = _playerState
 
     /*time*/
-    private var _minute = 0
-    private val _second = MutableLiveData(0)
     private val _mills = MutableLiveData(0L)
-    val minute get() = _minute
-    val second: LiveData<Int> = _second
     val mills: LiveData<Long> = _mills
 
-    private var _endTime = 0L
-    val endTime get() = _endTime
+    private var mEndTime = 0L
+    private val _endTime = MutableLiveData(0L)
+    val endTime: LiveData<Long> = _endTime
 
     /*music Info*/
     private val _music = MutableLiveData<Music>()
@@ -40,22 +37,7 @@ class MusicPlayer @Inject constructor(
     private var mediaPlayer: MediaPlayer? = null
 
     /*timer*/
-    private var timer: Timer? = null
-    private val timerTask = object : TimerTask() {
-        override fun run() {
-            var second = second.value!!
-            var millisecond = mills.value!!
-            while (millisecond <= endTime) {
-                millisecond++
-                _mills.value = millisecond
-                if (millisecond % 1000 == 0L) {
-                    second++
-                    _second.value = second
-                }
-            }
-            pauseMusic()
-        }
-    }
+    private var _timer: Job? = null
 
     fun playMusic() {
         val player = mediaPlayer ?: return
@@ -75,49 +57,45 @@ class MusicPlayer @Inject constructor(
         _playerState.postValue(Stop)
         stopTimer()
         mediaPlayer?.apply { if (isPlaying) stop() }
-        _minute = 0
-        _second.postValue(0)
         _mills.postValue(0L)
     }
 
     fun updateMusic(music: Music): Boolean {
-        val prevState = playerState.value!!
         stopMusic()
         _music.postValue(music)
 
         /*player update*/
         return !initializeMediaPlayer(music) {
-            _endTime = it.duration.toLong()
+            _endTime.value = music.time
+            mEndTime = music.time ?: 3000L
             playMusic()
         }
     }
 
-    fun moveTime(second: Int) {
+    fun moveTime(millieSecond: Long) {
         val player = mediaPlayer ?: return
-        val prevSecond = this.second.value!!
-        val gap = prevSecond + second
-        if (gap < 0) {
-            _minute = min(0, minute - 1)
-            this._second.postValue(60 - gap)
-        } else if (gap >= 60) {
-            _minute++
-            this._second.postValue(gap - 60)
-        } else {
-            this._second.postValue(gap)
-        }
-        val millisecond = mills.value!! + (second * 1000)
-        _mills.postValue(min(max(millisecond, endTime), 0L))
+        val millisecond = mills.value!! + millieSecond
+        _mills.postValue(min(max(millisecond, mEndTime), 0L))
         player.seekTo(millisecond.toInt())
     }
 
     private fun runTimer() {
-        timer = Timer()
-        timer?.schedule(timerTask, 0, 1)
+        stopTimer()
+        _timer = CoroutineScope(Dispatchers.Default).launch {
+            var millisecond = mills.value!!
+            val endT = mEndTime
+            while (millisecond <= endT) {
+                delay(50)
+                millisecond += 50
+                _mills.postValue(millisecond)
+            }
+            pauseMusic()
+        }
     }
 
     private fun stopTimer() {
-        timer?.cancel()
-        timer = null
+        _timer?.apply { if (isActive) cancel() }
+        _timer = null
     }
 
     private fun initializeMediaPlayer(
@@ -145,6 +123,6 @@ class MusicPlayer @Inject constructor(
     fun destroy() {
         mediaPlayer?.release()
         mediaPlayer = null
-        timer?.purge()
+        stopTimer()
     }
 }

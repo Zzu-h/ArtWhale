@@ -6,8 +6,10 @@
     <data>
 
         <variable
-            name="music"
-            type="com.capstone.artwhale.domain.model.Music" />
+            name="viewModel"
+            type="com.capstone.artwhale.presentation.home.play.MusicPlayerViewModel" />
+
+        <import type="com.capstone.artwhale.util.Playing" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +41,7 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_album_thumbnail"
-            image="@{music.albumImgUrl}"
+            image="@{viewModel.music.albumImgUrl}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginHorizontal="40dp"
@@ -88,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="@{music.title}"
+            android:text="@{viewModel.music.title}"
             android:textAppearance="@style/title.small"
             app:layout_constraintStart_toStartOf="@id/iv_album_thumbnail"
             app:layout_constraintTop_toBottomOf="@id/tv_play_time" />
@@ -98,14 +100,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:text="@{music.singer}"
+            android:text="@{viewModel.music.singer}"
             android:textAppearance="@style/text.large"
             app:layout_constraintStart_toStartOf="@id/tv_title"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
         <ImageView
             android:id="@+id/iv_like"
-            state="@{music.isLike}"
+            state="@{viewModel.music.isLike}"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:clickable="true"
@@ -117,10 +119,14 @@
 
         <ImageButton
             android:id="@+id/btn_play"
+            playerState="@{viewModel.musicPlayer.playerState}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> viewModel.onClickPlay()}"
             android:src="@drawable/ic_player_play_selector"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

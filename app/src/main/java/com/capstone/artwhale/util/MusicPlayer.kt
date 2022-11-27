@@ -1,6 +1,7 @@
 package com.capstone.artwhale.util
 
 import android.content.Context
+import android.media.AudioAttributes
 import android.media.MediaPlayer
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
@@ -54,29 +55,46 @@ class MusicPlayer @Inject constructor(
     }
 
     fun playMusic() {
+        val player = mediaPlayer ?: return
         _playerState.postValue(Playing)
-        /*play*/
+        player.start()
     }
 
     fun pauseMusic() {
+        val player = mediaPlayer ?: return
         _playerState.postValue(Pause)
-        /*stop*/
+        player.pause()
     }
 
-    fun updateMusic(music: Music) {
+    fun stopMusic() {
+        val player = mediaPlayer ?: return
+        _playerState.postValue(Stop)
+        player.stop()
+    }
+
+    fun updateMusic(music: Music): Boolean {
         val prevState = playerState.value!!
-        _playerState.postValue(Pause)
+        _playerState.postValue(Stop)
         _music.postValue(music)
+        _endTime = music.time ?: 0
         _mills = 0L
         _minute = 0
         _second.postValue(0)
 
         /*player update*/
-        _endTime = music.time ?: 0
-        _playerState.postValue(prevState)
+        if (!initializeMediaPlayer()) return false
+
+        when (prevState) {
+            Pause -> pauseMusic()
+            Stop -> stopMusic()
+            else -> playMusic()
+        }
+
+        return true
     }
 
     fun moveTime(second: Int) {
+        val player = mediaPlayer ?: return
         val prevSecond = this.second.value!!
         val gap = prevSecond + second
         if (gap < 0) {
@@ -90,6 +108,7 @@ class MusicPlayer @Inject constructor(
         }
         _mills += (second * 1000)
         _mills = min(max(_mills, endTime), 0)
+        player.seekTo(_mills.toInt())
     }
 
     private fun runTimer() {
@@ -97,6 +116,29 @@ class MusicPlayer @Inject constructor(
     }
 
     private fun stopTimer() {
+        timer.cancel()
+    }
+
+    private fun initializeMediaPlayer(): Boolean {
+        val music = this.music.value ?: return false
+        mediaPlayer = MediaPlayer().apply {
+            setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .build()
+            )
+            setDataSource(music.musicUrl)
+            prepare() // might take long! (for buffering, etc)
+        }
+        val player = mediaPlayer ?: return false
+        _endTime = player.duration.toLong()
+        return true
+    }
+
+    fun destroy() {
+        mediaPlayer?.release()
+        mediaPlayer = null
         timer.cancel()
     }
 }

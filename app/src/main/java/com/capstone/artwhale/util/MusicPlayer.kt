@@ -3,6 +3,7 @@ package com.capstone.artwhale.util
 import android.content.Context
 import android.media.AudioAttributes
 import android.media.MediaPlayer
+import android.os.Build
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -22,6 +23,7 @@ class MusicPlayer @Inject constructor(
     val playerState: LiveData<PlayerState> = _playerState
 
     /*time*/
+    private var mMills = 0L
     private val _mills = MutableLiveData(0L)
     val mills: LiveData<Long> = _mills
 
@@ -58,6 +60,7 @@ class MusicPlayer @Inject constructor(
         stopTimer()
         mediaPlayer?.apply { if (isPlaying) stop() }
         _mills.postValue(0L)
+        mMills = 0L
     }
 
     fun updateMusic(music: Music): Boolean {
@@ -74,20 +77,24 @@ class MusicPlayer @Inject constructor(
 
     fun moveTime(millieSecond: Long) {
         val player = mediaPlayer ?: return
-        val millisecond = mills.value!! + millieSecond
-        _mills.postValue(min(max(millisecond, mEndTime), 0L))
-        player.seekTo(millisecond.toInt())
+        val ms = mMills + millieSecond
+        val time = max(min(ms, mEndTime), 0L)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            player.seekTo((time / mEndTime) * 100, MediaPlayer.SEEK_CLOSEST)
+        else player.seekTo(((time / mEndTime) * 100).toInt())
+
+        mMills = player.currentPosition.toLong()
+        _mills.postValue(mMills)
     }
 
     private fun runTimer() {
         stopTimer()
         _timer = CoroutineScope(Dispatchers.Default).launch {
-            var millisecond = mills.value!!
-            val endT = mEndTime
-            while (millisecond <= endT) {
+            while (mMills <= mEndTime) {
                 delay(50)
-                millisecond += 50
-                _mills.postValue(millisecond)
+                mMills += 50
+                _mills.postValue(mMills)
             }
             pauseMusic()
         }

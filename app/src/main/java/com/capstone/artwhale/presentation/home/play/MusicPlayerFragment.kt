@@ -48,6 +48,7 @@ class MusicPlayerFragment : BottomSheetDialogFragment() {
     private fun initButton() {
         with(binding) {
             ctbSub.setOnClickDefaultIcon { dismiss() }
+            viewModel?.apply { sbMusicProgress.setOnSeekBarChangeListener(sbListener) }
         }
     }
 

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.fragment.app.viewModels
 import com.capstone.artwhale.databinding.FragmentMusicPlayerBinding
 import com.capstone.artwhale.domain.model.Music
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -20,6 +21,7 @@ class MusicPlayerFragment : BottomSheetDialogFragment() {
     private val binding get() = _binding!!
 
     private val music: Music by lazy { requireArguments().getSerializable("music") as Music }
+    private val viewModel by viewModels<MusicPlayerViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,13 +35,20 @@ class MusicPlayerFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.music = music
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+        initMusic()
         initButton()
+    }
+
+    private fun initMusic() {
+        viewModel.updateMusic(music)
     }
 
     private fun initButton() {
         with(binding) {
             ctbSub.setOnClickDefaultIcon { dismiss() }
+            viewModel?.apply { sbMusicProgress.setOnSeekBarChangeListener(sbListener) }
         }
     }
 

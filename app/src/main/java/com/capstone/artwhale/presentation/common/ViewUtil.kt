@@ -2,11 +2,15 @@ package com.capstone.artwhale.presentation.common
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.SeekBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.capstone.artwhale.R
+import com.capstone.artwhale.util.PlayerState
+import com.capstone.artwhale.util.Playing
 
 typealias Inflate<T> = (LayoutInflater, ViewGroup?, Boolean) -> T
 
@@ -22,7 +26,15 @@ fun ImageView.setImage(url: String?) {
 
 @BindingAdapter("state")
 fun ImageView.setState(state: Boolean) {
-    this.isEnabled = state
+    this.isSelected = state
+}
+
+@BindingAdapter("playerState")
+fun ImageButton.setPlayerState(state: PlayerState) {
+    this.isSelected = when (state) {
+        is Playing -> false
+        else -> true
+    }
 }
 
 @BindingAdapter("nullableText")
@@ -39,4 +51,14 @@ fun TextView.setSongTime(time: Long?) {
 
         "$m:${String.format("%02d", s % 60)}"
     }
+}
+
+@BindingAdapter("songTime")
+fun SeekBar.setSongTime(time: Long?) {
+    time?.let { this.progress = it.toInt() }
+}
+
+@BindingAdapter("endTime")
+fun SeekBar.setMaxTime(endTime: Long) {
+    this.max = endTime.toInt()
 }

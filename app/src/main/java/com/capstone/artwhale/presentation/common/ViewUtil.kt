@@ -26,7 +26,7 @@ fun ImageView.setImage(url: String?) {
 
 @BindingAdapter("state")
 fun ImageView.setState(state: Boolean) {
-    this.isEnabled = state
+    this.isSelected = state
 }
 
 @BindingAdapter("playerState")

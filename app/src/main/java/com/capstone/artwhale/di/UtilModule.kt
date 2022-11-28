@@ -2,6 +2,7 @@ package com.capstone.artwhale.di
 
 import android.content.Context
 import com.capstone.artwhale.util.MusicPlayer
+import com.capstone.artwhale.util.SharedPreferencesManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,5 +18,11 @@ object UtilModule {
     @Provides
     fun provideMusicPlayer(@ApplicationContext context: Context): MusicPlayer {
         return MusicPlayer(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideSharedPreferencesManager(@ApplicationContext context: Context): SharedPreferencesManager {
+        return SharedPreferencesManager(context)
     }
 }

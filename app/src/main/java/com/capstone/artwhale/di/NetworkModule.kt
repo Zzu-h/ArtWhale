@@ -3,17 +3,15 @@ package com.capstone.artwhale.di
 import com.capstone.artwhale.BuildConfig
 import com.capstone.artwhale.BuildConfig.BASE_URL
 import com.capstone.artwhale.data.service.*
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -33,7 +31,6 @@ object NetworkModule {
         }
     }
 
-    @OptIn(ExperimentalSerializationApi::class)
     @Singleton
     @Provides
     fun provideRetrofit(
@@ -48,7 +45,7 @@ object NetworkModule {
 
 
         return Retrofit.Builder()
-            .addConverterFactory(Json.asConverterFactory(contentType))
+            .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .baseUrl(BASE_URL)
             .build()

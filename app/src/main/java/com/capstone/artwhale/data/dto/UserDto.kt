@@ -1,11 +1,9 @@
 package com.capstone.artwhale.data.dto
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.google.gson.annotations.SerializedName
 
-@Serializable
 data class UserDto(
-    @SerialName("email")
+    @SerializedName("email")
     val email: String
 )
 

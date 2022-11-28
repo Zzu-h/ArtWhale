@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
                 Loading -> {}
                 Success -> startMainActivity()
                 is Error -> {
-                    Log.d("Tester", "initObserver: ${it.msg}")
+                    Log.e("Tester", "initObserver: ${it.msg}")
                 }
             }
         }.launchIn(this.lifecycleScope)
@@ -134,8 +134,7 @@ class LoginActivity : AppCompatActivity() {
             val account = completedTask.getResult(ApiException::class.java)
             account?.apply {
                 val email = this.email.toString()
-                //loginViewModel.login(email)
-                startMainActivity()
+                loginViewModel.login(email)
             }
         } catch (e: ApiException) {
             Log.e("Google account", "signInResult:failed Code = " + e.statusCode)

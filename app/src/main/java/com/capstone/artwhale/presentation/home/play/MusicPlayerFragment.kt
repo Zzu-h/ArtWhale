@@ -35,14 +35,14 @@ class MusicPlayerFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewModel = viewModel.apply { this.music = this@MusicPlayerFragment.music }
+        binding.viewModel = viewModel
         binding.lifecycleOwner = this
-        initPlayer()
+        initMusic()
         initButton()
     }
 
-    private fun initPlayer() {
-        viewModel.updateMusic()
+    private fun initMusic() {
+        viewModel.updateMusic(music)
     }
 
     private fun initButton() {

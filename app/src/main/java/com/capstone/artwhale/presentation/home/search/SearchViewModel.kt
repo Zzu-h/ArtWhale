@@ -14,6 +14,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,6 +32,11 @@ class SearchViewModel @Inject constructor(
     private val _state = MutableStateFlow<NetworkState>(InitialState)
 
     val searchKeyword = MutableStateFlow("")
+    val recentSearch = flow {
+        getRecentSearchUseCase().onSuccess { flow ->
+            flow.collect { emit(it) }
+        }.onFailure { _state.emit(Error(it.message)) }
+    }
 
     val showAlbum: StateFlow<List<Album>> = _showAlbum
     val showMusic: StateFlow<List<Music>> = _showMusic

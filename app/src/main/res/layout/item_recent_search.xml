@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="String" />
+            type="com.capstone.artwhale.domain.model.RecentSearch" />
 
         <variable
             name="listener"
@@ -34,7 +34,7 @@
             android:clickable="true"
             android:focusable="true"
             android:onClick="@{() -> listener.onClickItem(item)}"
-            android:text="@{item}"
+            android:text="@{item.keyword}"
             android:textAppearance="@style/text.small"
             android:textColor="@color/gray"
             tools:text="Test" />

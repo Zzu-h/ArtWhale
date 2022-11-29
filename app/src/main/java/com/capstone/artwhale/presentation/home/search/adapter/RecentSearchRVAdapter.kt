@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.capstone.artwhale.databinding.ItemRecentSearchBinding
+import com.capstone.artwhale.domain.model.RecentSearch
 import com.capstone.artwhale.presentation.home.search.viewholder.RecentSearchViewHolder
 
 class RecentSearchRVAdapter :
-    ListAdapter<String, RecentSearchViewHolder>(diffUtil) {
+    ListAdapter<RecentSearch, RecentSearchViewHolder>(diffUtil) {
 
     lateinit var listener: ClickListener
 
@@ -26,19 +27,19 @@ class RecentSearchRVAdapter :
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<String>() {
-            override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
+        val diffUtil = object : DiffUtil.ItemCallback<RecentSearch>() {
+            override fun areItemsTheSame(oldItem: RecentSearch, newItem: RecentSearch): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
-                return oldItem == newItem
+            override fun areContentsTheSame(oldItem: RecentSearch, newItem: RecentSearch): Boolean {
+                return oldItem.keyword == newItem.keyword
             }
         }
     }
 
     interface ClickListener {
-        fun onClickItem(item: String)
-        fun onClickDelete(item: String)
+        fun onClickItem(item: RecentSearch)
+        fun onClickDelete(item: RecentSearch)
     }
 }

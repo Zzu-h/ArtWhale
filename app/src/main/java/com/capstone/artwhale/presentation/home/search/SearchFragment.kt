@@ -3,6 +3,7 @@ package com.capstone.artwhale.presentation.home.search
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.capstone.artwhale.databinding.FragmentSearchBinding
+import com.capstone.artwhale.domain.model.RecentSearch
 import com.capstone.artwhale.presentation.common.BaseFragment
 import com.capstone.artwhale.presentation.home.album.adapter.AlbumRVAdapter
 import com.capstone.artwhale.presentation.home.music.adapter.MusicChartRVAdapter
@@ -34,6 +35,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 .launchIn(this@SearchFragment.lifecycleScope)
             showMusic.onEach { musicChartRVAdapter.submitList(it) }
                 .launchIn(this@SearchFragment.lifecycleScope)
+            recentSearch.onEach { recentSearchRVAdapter.submitList(it) }
+                .launchIn(this@SearchFragment.lifecycleScope)
         }
     }
 
@@ -42,8 +45,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         musicChartRVAdapter = MusicChartRVAdapter().apply { setCallBack { playMusic(it) } }
         recentSearchRVAdapter = RecentSearchRVAdapter().apply {
             listener = object : RecentSearchRVAdapter.ClickListener {
-                override fun onClickItem(item: String) {}
-                override fun onClickDelete(item: String) {}
+                override fun onClickItem(item: RecentSearch) {}
+                override fun onClickDelete(item: RecentSearch) {}
             }
         }
         with(binding) {

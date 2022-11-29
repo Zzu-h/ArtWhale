@@ -8,6 +8,8 @@
         <variable
             name="viewModel"
             type="com.capstone.artwhale.presentation.home.search.SearchViewModel" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,6 +58,7 @@
             android:background="@color/white"
             android:clickable="true"
             android:focusable="true"
+            android:onClick="@{() -> viewModel.onClickSearch()}"
             android:src="@drawable/ic_magnifier"
             app:contentPadding="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/et_search"
@@ -100,13 +103,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="20dp"
-                    android:text="@string/music_art" />
+                    android:text="@string/music_art"
+                    android:visibility="@{viewModel.showMusic.isEmpty() ? View.GONE : View.VISIBLE}" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_music_art"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:visibility="@{viewModel.showMusic.isEmpty() ? View.GONE : View.VISIBLE}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:spanCount="3"
                     tools:itemCount="5"
@@ -119,7 +124,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="20dp"
-                    android:text="@string/album_art" />
+                    android:text="@string/album_art"
+                    android:visibility="@{viewModel.showAlbum.isEmpty() ? View.GONE : View.VISIBLE}" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_album_art"
@@ -127,6 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:padding="20dp"
+                    android:visibility="@{viewModel.showAlbum.isEmpty() ? View.GONE : View.VISIBLE}"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="3"
                     tools:itemCount="5"

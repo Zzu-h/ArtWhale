@@ -8,5 +8,6 @@ data class Music(
     val singer: String,
     val time: Long? = null,
     var isLike: Boolean = false,
+    val mood: String = "Happy",
     val musicUrl: String = "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3"
 ) : Serializable

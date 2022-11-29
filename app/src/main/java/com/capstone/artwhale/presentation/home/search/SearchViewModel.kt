@@ -43,5 +43,30 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    fun onClickSearch() {}
+    fun onClickSearch() {
+        viewModelScope.launch {
+            val query = searchKeyword.value
+            if (query.isBlank()) {
+                _showAlbum.emit(emptyList())
+                _showMusic.emit(emptyList())
+                return@launch
+            }
+            val albumTempList = mutableListOf<Album>()
+            val musicTempList = mutableListOf<Music>()
+            _allAlbum.forEach {
+                if (
+                    it.title.contains(query, ignoreCase = true) ||
+                    it.mood.contains(query, ignoreCase = true)
+                ) albumTempList.add(it)
+            }
+            _allMusic.forEach {
+                if (
+                    it.title.contains(query, ignoreCase = true) ||
+                    it.mood.contains(query, ignoreCase = true)
+                ) musicTempList.add(it)
+            }
+            _showAlbum.emit(albumTempList)
+            _showMusic.emit(musicTempList)
+        }
+    }
 }

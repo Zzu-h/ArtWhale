@@ -18,6 +18,8 @@ import com.capstone.artwhale.domain.usecase.music.impl.GetMyMusicListUseCaseImpl
 import com.capstone.artwhale.domain.usecase.music.impl.GetNewMusicUseCaseImpl
 import com.capstone.artwhale.domain.usecase.notice.GetNoticeUseCase
 import com.capstone.artwhale.domain.usecase.notice.impl.GetNoticeUseCaseImpl
+import com.capstone.artwhale.domain.usecase.recent.GetRecentSearchUseCase
+import com.capstone.artwhale.domain.usecase.recent.impl.GetRecentSearchUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -105,4 +107,10 @@ abstract class UseCaseModule {
     abstract fun provideGetAiAlbumImageListUseCase(
         getAiAlbumImageListUseCase: GetAiAlbumImageListUseCaseImpl
     ): GetAiAlbumImageListUseCase
+
+    @Singleton
+    @Binds
+    abstract fun provideGetRecentSearchUseCase(
+        getRecentSearchUseCase: GetRecentSearchUseCaseImpl
+    ): GetRecentSearchUseCase
 }

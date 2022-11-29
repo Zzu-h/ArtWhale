@@ -10,8 +10,8 @@ import com.capstone.artwhale.data.datasource.music.MusicDataSource
 import com.capstone.artwhale.data.datasource.music.MusicDataSourceImpl
 import com.capstone.artwhale.data.datasource.notice.NoticeDataSource
 import com.capstone.artwhale.data.datasource.notice.NoticeDataSourceImpl
-import com.capstone.artwhale.data.repository.MoodRepositoryImpl
-import com.capstone.artwhale.domain.repository.MoodRepository
+import com.capstone.artwhale.data.datasource.recent.RecentSearchDataSource
+import com.capstone.artwhale.data.datasource.recent.RecentSearchDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -51,4 +51,10 @@ abstract class DataSourceModule {
     abstract fun provideMoodDataSource(
         moodDataSource: MoodDataSourceImpl
     ): MoodDataSource
+
+    @Singleton
+    @Binds
+    abstract fun provideRecentSearchDataSource(
+        recentSearchDataSource: RecentSearchDataSourceImpl
+    ): RecentSearchDataSource
 }

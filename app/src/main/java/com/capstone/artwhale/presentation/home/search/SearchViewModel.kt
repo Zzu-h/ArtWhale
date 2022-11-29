@@ -6,6 +6,7 @@ import com.capstone.artwhale.domain.model.Album
 import com.capstone.artwhale.domain.model.Music
 import com.capstone.artwhale.domain.usecase.album.GetAllAlbumUseCase
 import com.capstone.artwhale.domain.usecase.music.GetMusicChartUseCase
+import com.capstone.artwhale.domain.usecase.recent.GetRecentSearchUseCase
 import com.capstone.artwhale.presentation.common.Error
 import com.capstone.artwhale.presentation.common.InitialState
 import com.capstone.artwhale.presentation.common.NetworkState
@@ -19,7 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val getAllAlbumUseCase: GetAllAlbumUseCase,
-    private val getMusicChartUseCase: GetMusicChartUseCase
+    private val getMusicChartUseCase: GetMusicChartUseCase,
+    private val getRecentSearchUseCase: GetRecentSearchUseCase,
 ) : ViewModel() {
 
     private var _allAlbum = emptyList<Album>()

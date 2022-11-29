@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.capstone.artwhale.presentation.home.search.SearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,6 +38,7 @@
             android:inputType="textMultiLine|textNoSuggestions"
             android:maxLines="1"
             android:padding="3dp"
+            android:text="@={viewModel.searchKeyword}"
             android:textAppearance="@style/text.small"
             android:textColor="@color/gray"
             android:textColorHint="@color/gray"

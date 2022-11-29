@@ -9,13 +9,9 @@
             name="item"
             type="String" />
 
-        <import type="kotlin.jvm.functions.Function1" />
-
-        <import type="kotlin.Unit" />
-
         <variable
-            name="action"
-            type="Function1&lt;String, Unit>" />
+            name="listener"
+            type="com.capstone.artwhale.presentation.home.search.adapter.RecentSearchRVAdapter.ClickListener" />
     </data>
 
     <LinearLayout
@@ -37,7 +33,7 @@
             android:layout_weight="1"
             android:clickable="true"
             android:focusable="true"
-            android:onClick="@{() -> action.invoke(item)}"
+            android:onClick="@{() -> listener.onClickItem(item)}"
             android:text="@{item}"
             android:textAppearance="@style/text.small"
             android:textColor="@color/gray"
@@ -46,6 +42,9 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> listener.onClickDelete(item)}"
             android:padding="12dp"
             android:src="@drawable/ic_cross"
             app:tint="@color/gray" />

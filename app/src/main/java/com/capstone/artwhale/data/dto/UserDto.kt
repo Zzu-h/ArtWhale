@@ -1,6 +1,7 @@
 package com.capstone.artwhale.data.dto
 
 
+import com.capstone.artwhale.BuildConfig.BASE_URL
 import com.capstone.artwhale.domain.model.UserInfo
 import com.google.gson.annotations.SerializedName
 
@@ -10,7 +11,7 @@ data class UserDto(
     @SerializedName("email")
     val email: String,
     @SerializedName("fileId")
-    val fileId: Any,
+    val fileId: FileDto?,
     @SerializedName("id")
     val id: Int,
     @SerializedName("nickname")
@@ -23,6 +24,6 @@ data class UserDto(
     fun toUserInfo(): UserInfo = UserInfo(
         email = email,
         name = nickname,
-        profileImgUrl = profileImgUrl
+        profileImgUrl = if (fileId == null) null else BASE_URL + fileId.path
     )
 }

@@ -9,9 +9,9 @@ import com.capstone.artwhale.domain.model.Music
 import com.capstone.artwhale.domain.model.UserInfo
 import com.capstone.artwhale.domain.usecase.album.GetLikeAlbumListUseCase
 import com.capstone.artwhale.domain.usecase.album.GetMyAlbumListUseCase
-import com.capstone.artwhale.domain.usecase.auth.GetTokenInfoUseCase
 import com.capstone.artwhale.domain.usecase.music.GetLikeMusicListUseCase
 import com.capstone.artwhale.domain.usecase.music.GetMyMusicListUseCase
+import com.capstone.artwhale.domain.usecase.user.GetMyInfoUseCase
 import com.capstone.artwhale.presentation.common.Error
 import com.capstone.artwhale.presentation.common.InitialState
 import com.capstone.artwhale.presentation.common.NetworkState
@@ -28,7 +28,7 @@ class UserViewModel @Inject constructor(
     private val getMyAlbumListUseCase: GetMyAlbumListUseCase,
     private val getLikeMusicListUseCase: GetLikeMusicListUseCase,
     private val getLikeAlbumListUseCase: GetLikeAlbumListUseCase,
-    private val getMyInfoUseCase: GetTokenInfoUseCase,
+    private val getMyInfoUseCase: GetMyInfoUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<NetworkState>(InitialState)
@@ -68,8 +68,8 @@ class UserViewModel @Inject constructor(
                     .onFailure { _state.emit(Error(it.message)) }
             }
             launch {
-                /*getMyInfoUseCase().onSuccess { _myInfo.emit(it) }
-                    .onFailure { _state.emit(Error(it.message)) }*/
+                getMyInfoUseCase().onSuccess { _myInfo.emit(it) }
+                    .onFailure { _state.emit(Error(it.message)) }
             }
         }
     }

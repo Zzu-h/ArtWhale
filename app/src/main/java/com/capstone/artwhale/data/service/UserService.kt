@@ -1,10 +1,10 @@
 package com.capstone.artwhale.data.service
 
 import com.capstone.artwhale.data.dto.UserDto
-import retrofit2.http.POST
+import retrofit2.http.GET
 
 interface UserService {
 
-    @POST("/api/user/info")
+    @GET("/api/user/info")
     suspend fun getMyInfo(): UserDto
 }

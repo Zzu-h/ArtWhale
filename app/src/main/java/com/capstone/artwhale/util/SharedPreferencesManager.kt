@@ -18,6 +18,6 @@ class SharedPreferencesManager @Inject constructor(private val context: Context)
 
     companion object {
         const val X_ACCESS_TOKEN: String = "Authorization"
-        const val TAG: String = "BATTLE-APP"
+        const val TAG: String = "ART-WHALE-APP"
     }
 }

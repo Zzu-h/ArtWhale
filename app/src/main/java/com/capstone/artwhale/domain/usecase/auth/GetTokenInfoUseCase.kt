@@ -1,8 +1,8 @@
 package com.capstone.artwhale.domain.usecase.auth
 
-import com.capstone.artwhale.domain.model.UserInfo
+import com.capstone.artwhale.domain.model.TokenInfo
 
 interface GetTokenInfoUseCase {
 
-    suspend operator fun invoke(): Result<UserInfo>
+    suspend operator fun invoke(): Result<TokenInfo>
 }

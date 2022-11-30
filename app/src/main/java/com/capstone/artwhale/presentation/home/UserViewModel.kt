@@ -68,8 +68,8 @@ class UserViewModel @Inject constructor(
                     .onFailure { _state.emit(Error(it.message)) }
             }
             launch {
-                getMyInfoUseCase().onSuccess { _myInfo.emit(it) }
-                    .onFailure { _state.emit(Error(it.message)) }
+                /*getMyInfoUseCase().onSuccess { _myInfo.emit(it) }
+                    .onFailure { _state.emit(Error(it.message)) }*/
             }
         }
     }

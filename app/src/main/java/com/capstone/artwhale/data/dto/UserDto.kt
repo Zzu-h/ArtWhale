@@ -1,10 +1,28 @@
 package com.capstone.artwhale.data.dto
 
+
+import com.capstone.artwhale.domain.model.UserInfo
 import com.google.gson.annotations.SerializedName
 
 data class UserDto(
+    @SerializedName("createdAt")
+    val createdAt: String,
     @SerializedName("email")
-    val email: String
-)
-
-fun String.toUserDto(): UserDto = UserDto(this)
+    val email: String,
+    @SerializedName("fileId")
+    val fileId: Any,
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("nickname")
+    val nickname: String,
+    @SerializedName("image_url")
+    val profileImgUrl: String? = null,
+    @SerializedName("updatedAt")
+    val updatedAt: String
+) {
+    fun toUserInfo(): UserInfo = UserInfo(
+        email = email,
+        name = nickname,
+        profileImgUrl = profileImgUrl
+    )
+}

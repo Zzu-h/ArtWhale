@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentLikeMusicBinding
+import com.capstone.artwhale.domain.model.Music
 import com.capstone.artwhale.presentation.home.UserViewModel
 import com.capstone.artwhale.presentation.home.music.adapter.MusicChartRVAdapter
+import com.capstone.artwhale.presentation.home.play.MusicPlayerFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -46,9 +49,17 @@ class MusicListFragment : Fragment() {
         }.launchIn(this.lifecycleScope)
     }
 
+    private fun playMusic(music: Music) {
+        val player = MusicPlayerFragment()
+        val bundle = Bundle()
+        bundle.putSerializable("music", music)
+        player.arguments = bundle
+        player.show(childFragmentManager, getString(R.string.fragment_music_player))
+    }
+
     private fun initRecyclerView() {
         with(binding) {
-            rvAdapter = MusicChartRVAdapter()
+            rvAdapter = MusicChartRVAdapter().apply { setCallBack { playMusic(it) } }
             rvLikeMusic.adapter = rvAdapter
         }
     }

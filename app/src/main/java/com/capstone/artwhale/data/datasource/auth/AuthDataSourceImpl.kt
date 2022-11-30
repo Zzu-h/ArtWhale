@@ -10,4 +10,5 @@ class AuthDataSourceImpl @Inject constructor(
 ) : AuthDataSource {
 
     override suspend fun login(userDto: UserDto): AuthDto = authService.login(userDto)
+    override suspend fun getTokenInfo(): AuthDto = authService.getTokenInfo()
 }

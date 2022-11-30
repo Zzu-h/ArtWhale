@@ -2,9 +2,9 @@ package com.capstone.artwhale.di
 
 import com.capstone.artwhale.domain.usecase.album.*
 import com.capstone.artwhale.domain.usecase.album.impl.*
-import com.capstone.artwhale.domain.usecase.auth.GetMyInfoUseCase
+import com.capstone.artwhale.domain.usecase.auth.GetTokenInfoUseCase
 import com.capstone.artwhale.domain.usecase.auth.LoginUseCase
-import com.capstone.artwhale.domain.usecase.auth.impl.GetMyInfoUseCaseImpl
+import com.capstone.artwhale.domain.usecase.auth.impl.GetTokenInfoUseCaseImpl
 import com.capstone.artwhale.domain.usecase.auth.impl.LoginUseCaseImpl
 import com.capstone.artwhale.domain.usecase.mood.GetMoodListUseCase
 import com.capstone.artwhale.domain.usecase.mood.impl.GetMoodListUseCaseImpl
@@ -97,8 +97,8 @@ abstract class UseCaseModule {
     @Singleton
     @Binds
     abstract fun provideGetMyInfoUseCase(
-        getMyInfoUseCase: GetMyInfoUseCaseImpl
-    ): GetMyInfoUseCase
+        getMyInfoUseCase: GetTokenInfoUseCaseImpl
+    ): GetTokenInfoUseCase
 
     @Singleton
     @Binds

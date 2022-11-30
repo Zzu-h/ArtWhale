@@ -19,7 +19,9 @@ import com.capstone.artwhale.domain.usecase.music.impl.GetNewMusicUseCaseImpl
 import com.capstone.artwhale.domain.usecase.notice.GetNoticeUseCase
 import com.capstone.artwhale.domain.usecase.notice.impl.GetNoticeUseCaseImpl
 import com.capstone.artwhale.domain.usecase.recent.GetRecentSearchUseCase
+import com.capstone.artwhale.domain.usecase.recent.InsertRecentSearchUseCase
 import com.capstone.artwhale.domain.usecase.recent.impl.GetRecentSearchUseCaseImpl
+import com.capstone.artwhale.domain.usecase.recent.impl.InsertRecentSearchUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -113,4 +115,10 @@ abstract class UseCaseModule {
     abstract fun provideGetRecentSearchUseCase(
         getRecentSearchUseCase: GetRecentSearchUseCaseImpl
     ): GetRecentSearchUseCase
+
+    @Singleton
+    @Binds
+    abstract fun provideInsertRecentSearchUseCase(
+        insertRecentSearchUseCase: InsertRecentSearchUseCaseImpl
+    ): InsertRecentSearchUseCase
 }

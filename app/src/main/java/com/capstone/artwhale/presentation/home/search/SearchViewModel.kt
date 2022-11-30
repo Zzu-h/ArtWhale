@@ -7,6 +7,7 @@ import com.capstone.artwhale.domain.model.Music
 import com.capstone.artwhale.domain.usecase.album.GetAllAlbumUseCase
 import com.capstone.artwhale.domain.usecase.music.GetMusicChartUseCase
 import com.capstone.artwhale.domain.usecase.recent.GetRecentSearchUseCase
+import com.capstone.artwhale.domain.usecase.recent.InsertRecentSearchUseCase
 import com.capstone.artwhale.presentation.common.Error
 import com.capstone.artwhale.presentation.common.InitialState
 import com.capstone.artwhale.presentation.common.NetworkState
@@ -23,6 +24,7 @@ class SearchViewModel @Inject constructor(
     private val getAllAlbumUseCase: GetAllAlbumUseCase,
     private val getMusicChartUseCase: GetMusicChartUseCase,
     private val getRecentSearchUseCase: GetRecentSearchUseCase,
+    private val insertRecentSearchUseCase: InsertRecentSearchUseCase,
 ) : ViewModel() {
 
     private var _allAlbum = emptyList<Album>()
@@ -34,7 +36,7 @@ class SearchViewModel @Inject constructor(
     val searchKeyword = MutableStateFlow("")
     val recentSearch = flow {
         getRecentSearchUseCase().onSuccess { flow ->
-            flow.collect { emit(it) }
+            flow.collect { emit(it.reversed()) }
         }.onFailure { _state.emit(Error(it.message)) }
     }
 
@@ -59,6 +61,7 @@ class SearchViewModel @Inject constructor(
                 _showMusic.emit(emptyList())
                 return@launch
             }
+            launch(Dispatchers.IO) { insertRecentSearchUseCase(query) }
             val albumTempList = mutableListOf<Album>()
             val musicTempList = mutableListOf<Music>()
             _allAlbum.forEach {

@@ -11,3 +11,5 @@ data class RecentSearchDto(
 ) {
     fun toRecentSearch(): RecentSearch = RecentSearch(keyword)
 }
+
+fun RecentSearch.toRecentSearchDto() = RecentSearchDto(keyword)

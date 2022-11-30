@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 interface RecentSearchDataSource {
 
     suspend fun getRecentSearch(): Flow<List<RecentSearchDto>>
+    suspend fun insertRecentSearch(keyword: RecentSearchDto)
 }

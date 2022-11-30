@@ -32,6 +32,7 @@ class SearchViewModel @Inject constructor(
     private val _showAlbum = MutableStateFlow<List<Album>>(emptyList())
     private val _showMusic = MutableStateFlow<List<Music>>(emptyList())
     private val _state = MutableStateFlow<NetworkState>(InitialState)
+    private val _focusState = MutableStateFlow(false)
 
     val searchKeyword = MutableStateFlow("")
     val recentSearch = flow {
@@ -43,6 +44,7 @@ class SearchViewModel @Inject constructor(
     val showAlbum: StateFlow<List<Album>> = _showAlbum
     val showMusic: StateFlow<List<Music>> = _showMusic
     val state: StateFlow<NetworkState> = _state
+    val focusState: StateFlow<Boolean> = _focusState
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -78,6 +80,14 @@ class SearchViewModel @Inject constructor(
             }
             _showAlbum.emit(albumTempList)
             _showMusic.emit(musicTempList)
+            onFocusStateChange(false)
+
+        }
+    }
+
+    fun onFocusStateChange(state: Boolean) {
+        viewModelScope.launch {
+            _focusState.emit(state)
         }
     }
 }

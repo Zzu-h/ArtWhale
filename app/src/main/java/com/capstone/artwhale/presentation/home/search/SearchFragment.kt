@@ -1,5 +1,8 @@
 package com.capstone.artwhale.presentation.home.search
 
+import android.view.View
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.capstone.artwhale.databinding.FragmentSearchBinding
@@ -26,6 +29,21 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         binding.lifecycleOwner = this
         initRecyclerView()
         initObserver()
+        initEditText()
+    }
+
+    private fun initEditText() {
+        with(binding) {
+            etSearch.onFocusChangeListener = View.OnFocusChangeListener { view, b ->
+                if (b) {
+                    rvRecentSearchKeyword.isVisible = true
+                    viewModel?.onFocusStateChange(true)
+                } else {
+                    rvRecentSearchKeyword.isGone = true
+                    viewModel?.onClickSearch()
+                }
+            }
+        }
     }
 
     private fun initObserver() {
@@ -37,6 +55,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 .launchIn(this@SearchFragment.lifecycleScope)
             recentSearch.onEach { recentSearchRVAdapter.submitList(it) }
                 .launchIn(this@SearchFragment.lifecycleScope)
+            focusState.onEach {
+                if (!it) {
+                    binding.etSearch.clearFocus()
+                    binding.rvRecentSearchKeyword.requestFocus()
+                }
+            }.launchIn(this@SearchFragment.lifecycleScope)
         }
     }
 

@@ -12,10 +12,13 @@ import com.capstone.artwhale.domain.usecase.album.GetMyAlbumListUseCase
 import com.capstone.artwhale.domain.usecase.music.GetLikeMusicListUseCase
 import com.capstone.artwhale.domain.usecase.music.GetMyMusicListUseCase
 import com.capstone.artwhale.domain.usecase.user.GetMyInfoUseCase
+import com.capstone.artwhale.domain.usecase.user.UpdateNickNameUseCase
+import com.capstone.artwhale.domain.usecase.user.UpdateProfileImageUseCase
 import com.capstone.artwhale.presentation.common.Error
 import com.capstone.artwhale.presentation.common.InitialState
 import com.capstone.artwhale.presentation.common.NetworkState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -29,6 +32,8 @@ class UserViewModel @Inject constructor(
     private val getLikeMusicListUseCase: GetLikeMusicListUseCase,
     private val getLikeAlbumListUseCase: GetLikeAlbumListUseCase,
     private val getMyInfoUseCase: GetMyInfoUseCase,
+    private val updateProfileImageUseCase: UpdateProfileImageUseCase,
+    private val updateNickNameUseCase: UpdateNickNameUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<NetworkState>(InitialState)
@@ -42,6 +47,7 @@ class UserViewModel @Inject constructor(
     private val _likeAlbum = MutableStateFlow<List<Album>>(emptyList())
     private val _myMusic = MutableStateFlow<List<Music>>(emptyList())
     private val _likeMusic = MutableStateFlow<List<Music>>(emptyList())
+    private var imageChangeFlag = false
 
     val myInfo: StateFlow<UserInfo> = _myInfo
     val myAlbum: StateFlow<List<Album>> = _myAlbum
@@ -78,6 +84,7 @@ class UserViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             val data = myInfo.value
             _myInfo.emit(UserInfo(data.email, data.name, profileImgUrl = uri.toString()))
+            imageChangeFlag = true
         }
     }
 
@@ -86,7 +93,12 @@ class UserViewModel @Inject constructor(
     }
 
     fun updateProfileInfo() {
-        viewModelScope.launch(Dispatchers.IO) {
+        CoroutineScope(Dispatchers.IO).launch {
+            if (imageChangeFlag) launch {
+                updateProfileImageUseCase(myInfo.value.profileImgUrl!!)
+                imageChangeFlag = false
+            }
+            launch { updateNickNameUseCase(myInfo.value.name) }
         }
     }
 }

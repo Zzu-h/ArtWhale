@@ -18,8 +18,10 @@ import com.capstone.artwhale.domain.usecase.music.impl.GetMyMusicListUseCaseImpl
 import com.capstone.artwhale.domain.usecase.music.impl.GetNewMusicUseCaseImpl
 import com.capstone.artwhale.domain.usecase.notice.GetNoticeUseCase
 import com.capstone.artwhale.domain.usecase.notice.impl.GetNoticeUseCaseImpl
+import com.capstone.artwhale.domain.usecase.recent.DeleteRecentSearchUseCase
 import com.capstone.artwhale.domain.usecase.recent.GetRecentSearchUseCase
 import com.capstone.artwhale.domain.usecase.recent.InsertRecentSearchUseCase
+import com.capstone.artwhale.domain.usecase.recent.impl.DeleteRecentSearchUseCaseImpl
 import com.capstone.artwhale.domain.usecase.recent.impl.GetRecentSearchUseCaseImpl
 import com.capstone.artwhale.domain.usecase.recent.impl.InsertRecentSearchUseCaseImpl
 import dagger.Binds
@@ -121,4 +123,10 @@ abstract class UseCaseModule {
     abstract fun provideInsertRecentSearchUseCase(
         insertRecentSearchUseCase: InsertRecentSearchUseCaseImpl
     ): InsertRecentSearchUseCase
+
+    @Singleton
+    @Binds
+    abstract fun provideDeleteRecentSearchUseCase(
+        deleteRecentSearchUseCase: DeleteRecentSearchUseCaseImpl
+    ): DeleteRecentSearchUseCase
 }

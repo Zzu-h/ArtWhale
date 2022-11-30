@@ -7,4 +7,5 @@ interface RecentSearchRepository {
 
     suspend fun getRecentSearch(): Flow<List<RecentSearch>>
     suspend fun insertRecentSearch(keyword: RecentSearch)
+    suspend fun deleteRecentSearch(keyword: RecentSearch)
 }

@@ -4,8 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.artwhale.domain.model.Album
 import com.capstone.artwhale.domain.model.Music
+import com.capstone.artwhale.domain.model.RecentSearch
 import com.capstone.artwhale.domain.usecase.album.GetAllAlbumUseCase
 import com.capstone.artwhale.domain.usecase.music.GetMusicChartUseCase
+import com.capstone.artwhale.domain.usecase.recent.DeleteRecentSearchUseCase
 import com.capstone.artwhale.domain.usecase.recent.GetRecentSearchUseCase
 import com.capstone.artwhale.domain.usecase.recent.InsertRecentSearchUseCase
 import com.capstone.artwhale.presentation.common.Error
@@ -25,6 +27,7 @@ class SearchViewModel @Inject constructor(
     private val getMusicChartUseCase: GetMusicChartUseCase,
     private val getRecentSearchUseCase: GetRecentSearchUseCase,
     private val insertRecentSearchUseCase: InsertRecentSearchUseCase,
+    private val deleteRecentSearchUseCase: DeleteRecentSearchUseCase,
 ) : ViewModel() {
 
     private var _allAlbum = emptyList<Album>()
@@ -89,5 +92,13 @@ class SearchViewModel @Inject constructor(
         viewModelScope.launch {
             _focusState.emit(state)
         }
+    }
+
+    fun setSearchKeyword(keyword: String) {
+        viewModelScope.launch { searchKeyword.emit(keyword) }
+    }
+
+    fun deleteSearchKeyword(item: RecentSearch) {
+        viewModelScope.launch(Dispatchers.IO) { deleteRecentSearchUseCase(item) }
     }
 }

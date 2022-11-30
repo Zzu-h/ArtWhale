@@ -7,4 +7,5 @@ interface RecentSearchDataSource {
 
     suspend fun getRecentSearch(): Flow<List<RecentSearchDto>>
     suspend fun insertRecentSearch(keyword: RecentSearchDto)
+    suspend fun deleteRecentSearch(keyword: RecentSearchDto)
 }

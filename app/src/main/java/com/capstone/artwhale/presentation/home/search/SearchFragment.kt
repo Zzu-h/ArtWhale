@@ -69,8 +69,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
         musicChartRVAdapter = MusicChartRVAdapter().apply { setCallBack { playMusic(it) } }
         recentSearchRVAdapter = RecentSearchRVAdapter().apply {
             listener = object : RecentSearchRVAdapter.ClickListener {
-                override fun onClickItem(item: RecentSearch) {}
-                override fun onClickDelete(item: RecentSearch) {}
+                override fun onClickItem(item: RecentSearch) {
+                    viewModel.setSearchKeyword(item.keyword)
+                }
+
+                override fun onClickDelete(item: RecentSearch) {
+                    viewModel.deleteSearchKeyword(item)
+                }
             }
         }
         with(binding) {

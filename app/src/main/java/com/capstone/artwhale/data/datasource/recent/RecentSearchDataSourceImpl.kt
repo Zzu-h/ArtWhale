@@ -15,4 +15,8 @@ class RecentSearchDataSourceImpl @Inject constructor(
     override suspend fun insertRecentSearch(keyword: RecentSearchDto) {
         recentSearchDao.insertRecentSearch(keyword)
     }
+
+    override suspend fun deleteRecentSearch(keyword: RecentSearchDto) {
+        recentSearchDao.deleteRecentSearch(keyword)
+    }
 }

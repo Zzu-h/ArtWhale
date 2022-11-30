@@ -8,6 +8,8 @@
         <variable
             name="viewModel"
             type="com.capstone.artwhale.presentation.home.UserViewModel" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,6 +37,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="40dp"
                     android:text="@string/like_album"
+                    android:visibility="@{viewModel.likeAlbum.isEmpty() ? View.GONE : View.VISIBLE}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,6 +51,7 @@
                     android:focusable="true"
                     android:onClick="@{(view) -> viewModel.onClickButton(view)}"
                     android:text="@string/all_list"
+                    android:visibility="@{viewModel.likeAlbum.isEmpty() ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_new_list"
                     app:layout_constraintEnd_toEndOf="parent" />
 
@@ -58,6 +62,7 @@
                     android:layout_marginTop="13dp"
                     android:orientation="vertical"
                     android:padding="5dp"
+                    android:visibility="@{viewModel.likeAlbum.isEmpty() ? View.GONE : View.VISIBLE}"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -74,6 +79,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="22dp"
                     android:text="@string/like_music"
+                    android:visibility="@{viewModel.likeMusic.isEmpty() ? View.GONE : View.VISIBLE}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/rv_new_list" />
 
@@ -87,6 +93,7 @@
                     android:focusable="true"
                     android:onClick="@{(view) -> viewModel.onClickButton(view)}"
                     android:text="@string/all_list"
+                    android:visibility="@{viewModel.likeMusic.isEmpty() ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_chart"
                     app:layout_constraintEnd_toEndOf="parent" />
 
@@ -96,6 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="13dp"
                     android:orientation="vertical"
+                    android:visibility="@{viewModel.likeMusic.isEmpty() ? View.GONE : View.VISIBLE}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -104,6 +112,17 @@
                     tools:listitem="@layout/item_chart_music" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/notice_empty"
+            android:textAppearance="@style/description.veryLarge"
+            android:visibility="@{viewModel.likeMusic.isEmpty() &amp; viewModel.likeAlbum.isEmpty()? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fcv_profile" />
 
         <ImageView
             android:id="@+id/iv_blur"

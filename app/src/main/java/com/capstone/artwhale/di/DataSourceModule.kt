@@ -12,6 +12,8 @@ import com.capstone.artwhale.data.datasource.notice.NoticeDataSource
 import com.capstone.artwhale.data.datasource.notice.NoticeDataSourceImpl
 import com.capstone.artwhale.data.datasource.recent.RecentSearchDataSource
 import com.capstone.artwhale.data.datasource.recent.RecentSearchDataSourceImpl
+import com.capstone.artwhale.data.datasource.user.UserDataSource
+import com.capstone.artwhale.data.datasource.user.UserDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -57,4 +59,10 @@ abstract class DataSourceModule {
     abstract fun provideRecentSearchDataSource(
         recentSearchDataSource: RecentSearchDataSourceImpl
     ): RecentSearchDataSource
+
+    @Singleton
+    @Binds
+    abstract fun provideUserDataSource(
+        userDataSource: UserDataSourceImpl
+    ): UserDataSource
 }

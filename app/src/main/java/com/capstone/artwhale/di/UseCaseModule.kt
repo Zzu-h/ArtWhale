@@ -24,6 +24,8 @@ import com.capstone.artwhale.domain.usecase.recent.InsertRecentSearchUseCase
 import com.capstone.artwhale.domain.usecase.recent.impl.DeleteRecentSearchUseCaseImpl
 import com.capstone.artwhale.domain.usecase.recent.impl.GetRecentSearchUseCaseImpl
 import com.capstone.artwhale.domain.usecase.recent.impl.InsertRecentSearchUseCaseImpl
+import com.capstone.artwhale.domain.usecase.user.GetMyInfoUseCase
+import com.capstone.artwhale.domain.usecase.user.impl.GetMyInfoUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -96,8 +98,8 @@ abstract class UseCaseModule {
 
     @Singleton
     @Binds
-    abstract fun provideGetMyInfoUseCase(
-        getMyInfoUseCase: GetTokenInfoUseCaseImpl
+    abstract fun provideGetTokenInfoUseCase(
+        getTokenInfoUseCase: GetTokenInfoUseCaseImpl
     ): GetTokenInfoUseCase
 
     @Singleton
@@ -129,4 +131,10 @@ abstract class UseCaseModule {
     abstract fun provideDeleteRecentSearchUseCase(
         deleteRecentSearchUseCase: DeleteRecentSearchUseCaseImpl
     ): DeleteRecentSearchUseCase
+
+    @Singleton
+    @Binds
+    abstract fun provideGetMyInfoUseCase(
+        getMyInfoUseCase: GetMyInfoUseCaseImpl
+    ): GetMyInfoUseCase
 }

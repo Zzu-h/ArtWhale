@@ -47,4 +47,10 @@ abstract class RepositoryModule {
     abstract fun provideRecentSearchRepository(
         recentSearchRepository: RecentSearchRepositoryImpl
     ): RecentSearchRepository
+
+    @Singleton
+    @Binds
+    abstract fun provideUserRepository(
+        userRepository: UserRepositoryImpl
+    ): UserRepository
 }

@@ -1,8 +1,7 @@
 package com.capstone.artwhale.data.repository
 
-import android.util.Log
 import com.capstone.artwhale.data.datasource.auth.AuthDataSource
-import com.capstone.artwhale.data.dto.toUserDto
+import com.capstone.artwhale.data.dto.toLoginDto
 import com.capstone.artwhale.domain.model.UserInfo
 import com.capstone.artwhale.domain.repository.AuthRepository
 import com.capstone.artwhale.util.SharedPreferencesManager
@@ -15,10 +14,9 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun login(email: String): Result<UserInfo> =
         runCatching {
-            val data = authDataSource.login(email.toUserDto())
+            val data = authDataSource.login(email.toLoginDto())
             sharedPreferencesManager.saveJwt(data.accessToken)
-            Log.d("Tester", "login: ${sharedPreferencesManager.getJwt()}")
-            data.toUserInfo()
+            data.user.toUserInfo()
         }
 
     override suspend fun getTokenInfo(): Result<UserInfo> =

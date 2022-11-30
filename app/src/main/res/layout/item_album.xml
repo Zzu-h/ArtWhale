@@ -18,6 +18,10 @@
         <variable
             name="action"
             type="Function1&lt;Album, Unit>" />
+
+        <variable
+            name="like"
+            type="Function1&lt;Album, Unit>" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,6 +53,7 @@
             android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
+            android:onClick="@{() -> like.invoke(item)}"
             android:src="@drawable/ic_like_selector"
             app:layout_constraintEnd_toEndOf="@id/iv_album_thumbnail"
             app:layout_constraintTop_toTopOf="@id/iv_album_thumbnail" />

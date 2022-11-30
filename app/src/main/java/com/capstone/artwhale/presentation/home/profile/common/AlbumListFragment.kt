@@ -57,7 +57,11 @@ class AlbumListFragment : Fragment() {
 
     private fun initRecyclerView() {
         with(binding) {
-            rvAdapter = AlbumRVAdapter().apply { setCallBack { registerMusicWithAlbum(it) } }
+            rvAdapter = AlbumRVAdapter().apply {
+                setCallBack(
+                    { registerMusicWithAlbum(it) },
+                    { viewModel.updateAlbumLikeState(it) })
+            }
             rvLikeAlbum.adapter = rvAdapter
         }
     }

@@ -1,6 +1,7 @@
 package com.capstone.artwhale.data.repository
 
 import com.capstone.artwhale.data.datasource.music.MusicDataSource
+import com.capstone.artwhale.data.dto.toUpdateLikeDto
 import com.capstone.artwhale.domain.model.Music
 import com.capstone.artwhale.domain.repository.MusicRepository
 import javax.inject.Inject
@@ -94,4 +95,7 @@ class MusicRepositoryImpl @Inject constructor(
 
     override suspend fun getLikeMusicList(): List<Music> =
         musicDataSource.getLikeMusicList()
+
+    override suspend fun updateLikeMusic(id: Int) =
+        musicDataSource.updateLikeMusic(id.toUpdateLikeDto())
 }

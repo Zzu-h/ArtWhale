@@ -8,4 +8,5 @@ interface MusicRepository {
     suspend fun getNewMusics(): List<Music>
     suspend fun getMyMusicList(): List<Music>
     suspend fun getLikeMusicList(): List<Music>
+    suspend fun updateLikeMusic(id: Int)
 }

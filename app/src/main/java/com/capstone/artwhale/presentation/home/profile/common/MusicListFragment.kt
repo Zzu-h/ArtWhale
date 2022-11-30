@@ -59,7 +59,11 @@ class MusicListFragment : Fragment() {
 
     private fun initRecyclerView() {
         with(binding) {
-            rvAdapter = MusicChartRVAdapter().apply { setCallBack { playMusic(it) } }
+            rvAdapter = MusicChartRVAdapter().apply {
+                setCallBack(
+                    { playMusic(it) },
+                    { viewModel.updateMusicLikeState(it) })
+            }
             rvLikeMusic.adapter = rvAdapter
         }
     }

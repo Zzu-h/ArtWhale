@@ -1,12 +1,14 @@
 package com.capstone.artwhale.presentation.home.music
 
 import android.content.Intent
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentMusicBinding
 import com.capstone.artwhale.presentation.common.BaseFragment
+import com.capstone.artwhale.presentation.home.UserViewModel
 import com.capstone.artwhale.presentation.home.music.adapter.MusicChartRVAdapter
 import com.capstone.artwhale.presentation.home.music.adapter.NewMusicRVAdapter
 import com.capstone.artwhale.presentation.home.music.adapter.NoticeRVAdapter
@@ -20,6 +22,7 @@ import kotlinx.coroutines.flow.onEach
 class MusicFragment : BaseFragment<FragmentMusicBinding>(FragmentMusicBinding::inflate) {
 
     private val viewModel by viewModels<MusicViewModel>()
+    private val userViewModel by activityViewModels<UserViewModel>()
 
     private lateinit var noticeRVAdapter: NoticeRVAdapter
     private lateinit var musicChartRVAdapter: MusicChartRVAdapter
@@ -48,7 +51,11 @@ class MusicFragment : BaseFragment<FragmentMusicBinding>(FragmentMusicBinding::i
     private fun initRecyclerView() {
         noticeRVAdapter = NoticeRVAdapter()
         musicChartRVAdapter = MusicChartRVAdapter()
-            .apply { setCallBack { playMusic(it) } }
+            .apply {
+                setCallBack(
+                    { playMusic(it) },
+                    { userViewModel.updateMusicLikeState(it) })
+            }
         newMusicRVAdapter = NewMusicRVAdapter()
             .apply { setCallBack { playMusic(it) } }
 

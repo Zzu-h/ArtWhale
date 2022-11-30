@@ -1,6 +1,7 @@
 package com.capstone.artwhale.data.repository
 
 import com.capstone.artwhale.data.datasource.album.AlbumDataSource
+import com.capstone.artwhale.data.dto.toUpdateLikeDto
 import com.capstone.artwhale.domain.model.Album
 import com.capstone.artwhale.domain.repository.AlbumRepository
 import javax.inject.Inject
@@ -96,4 +97,7 @@ class AlbumRepositoryImpl @Inject constructor(
             "https://lh3.googleusercontent.com/Eve_VljkGvgC-jwS30uaa5A4suBNQZD04mQGwmzTsPdHrAfHPntv4tKk2-aN5ltLX4uU8E7Esce7PTM=w544-h544-l90-rj",
         )
     }
+
+    override suspend fun updateLikeAlbum(id: Int) =
+        albumDataSource.updateLikeAlbum(id.toUpdateLikeDto())
 }

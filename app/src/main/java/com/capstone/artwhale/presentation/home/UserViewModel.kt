@@ -9,8 +9,10 @@ import com.capstone.artwhale.domain.model.Music
 import com.capstone.artwhale.domain.model.UserInfo
 import com.capstone.artwhale.domain.usecase.album.GetLikeAlbumListUseCase
 import com.capstone.artwhale.domain.usecase.album.GetMyAlbumListUseCase
+import com.capstone.artwhale.domain.usecase.album.UpdateLikeAlbumUseCase
 import com.capstone.artwhale.domain.usecase.music.GetLikeMusicListUseCase
 import com.capstone.artwhale.domain.usecase.music.GetMyMusicListUseCase
+import com.capstone.artwhale.domain.usecase.music.UpdateLikeMusicUseCase
 import com.capstone.artwhale.domain.usecase.user.GetMyInfoUseCase
 import com.capstone.artwhale.domain.usecase.user.UpdateNickNameUseCase
 import com.capstone.artwhale.domain.usecase.user.UpdateProfileImageUseCase
@@ -34,6 +36,8 @@ class UserViewModel @Inject constructor(
     private val getMyInfoUseCase: GetMyInfoUseCase,
     private val updateProfileImageUseCase: UpdateProfileImageUseCase,
     private val updateNickNameUseCase: UpdateNickNameUseCase,
+    private val updateLikeMusicUseCase: UpdateLikeMusicUseCase,
+    private val updateLikeAlbumUseCase: UpdateLikeAlbumUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<NetworkState>(InitialState)
@@ -100,5 +104,13 @@ class UserViewModel @Inject constructor(
             }
             launch { updateNickNameUseCase(myInfo.value.name) }
         }
+    }
+
+    fun updateAlbumLikeState(album: Album) {
+        viewModelScope.launch(Dispatchers.IO) { updateLikeAlbumUseCase(album.id) }
+    }
+
+    fun updateMusicLikeState(music: Music) {
+        viewModelScope.launch(Dispatchers.IO) { updateLikeMusicUseCase(music.id) }
     }
 }

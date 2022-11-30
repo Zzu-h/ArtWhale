@@ -40,8 +40,16 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
     }
 
     private fun initRecyclerView() {
-        chartRVAdapter = MusicChartRVAdapter().apply { setCallBack { playMusic(it) } }
-        albumRVAdapter = AlbumRVAdapter().apply { setCallBack { registerMusicWithAlbum(it) } }
+        chartRVAdapter = MusicChartRVAdapter().apply {
+            setCallBack(
+                { playMusic(it) },
+                { viewModel.updateMusicLikeState(it) })
+        }
+        albumRVAdapter = AlbumRVAdapter().apply {
+            setCallBack(
+                { registerMusicWithAlbum(it) },
+                { viewModel.updateAlbumLikeState(it) })
+        }
         binding.rvChart.adapter = chartRVAdapter
         binding.rvNewList.adapter = albumRVAdapter
     }

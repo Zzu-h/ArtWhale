@@ -84,4 +84,9 @@ class UserViewModel @Inject constructor(
     fun onClickButton(view: View?) {
         viewModelScope.launch { _clickListener.emit(view?.id) }
     }
+
+    fun updateProfileInfo() {
+        viewModelScope.launch(Dispatchers.IO) {
+        }
+    }
 }

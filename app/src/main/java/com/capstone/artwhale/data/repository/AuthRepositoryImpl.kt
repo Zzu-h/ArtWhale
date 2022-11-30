@@ -2,6 +2,7 @@ package com.capstone.artwhale.data.repository
 
 import com.capstone.artwhale.data.datasource.auth.AuthDataSource
 import com.capstone.artwhale.data.dto.toLoginDto
+import com.capstone.artwhale.domain.model.TokenInfo
 import com.capstone.artwhale.domain.model.UserInfo
 import com.capstone.artwhale.domain.repository.AuthRepository
 import com.capstone.artwhale.util.SharedPreferencesManager
@@ -19,12 +20,6 @@ class AuthRepositoryImpl @Inject constructor(
             data.user.toUserInfo()
         }
 
-    override suspend fun getTokenInfo(): Result<UserInfo> =
-        runCatching {
-            UserInfo(
-                "billie@gmail.com",
-                "Billie Eilish",
-                "https://avatars.githubusercontent.com/u/27036798?v=4"
-            )
-        }
+    override suspend fun getTokenInfo(): Result<TokenInfo> =
+        runCatching { authDataSource.getTokenInfo().toTokenInfo() }
 }

@@ -9,7 +9,7 @@ import com.capstone.artwhale.domain.model.Music
 import com.capstone.artwhale.domain.model.UserInfo
 import com.capstone.artwhale.domain.usecase.album.GetLikeAlbumListUseCase
 import com.capstone.artwhale.domain.usecase.album.GetMyAlbumListUseCase
-import com.capstone.artwhale.domain.usecase.auth.GetMyInfoUseCase
+import com.capstone.artwhale.domain.usecase.auth.GetTokenInfoUseCase
 import com.capstone.artwhale.domain.usecase.music.GetLikeMusicListUseCase
 import com.capstone.artwhale.domain.usecase.music.GetMyMusicListUseCase
 import com.capstone.artwhale.presentation.common.Error
@@ -28,7 +28,7 @@ class UserViewModel @Inject constructor(
     private val getMyAlbumListUseCase: GetMyAlbumListUseCase,
     private val getLikeMusicListUseCase: GetLikeMusicListUseCase,
     private val getLikeAlbumListUseCase: GetLikeAlbumListUseCase,
-    private val getMyInfoUseCase: GetMyInfoUseCase,
+    private val getMyInfoUseCase: GetTokenInfoUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<NetworkState>(InitialState)

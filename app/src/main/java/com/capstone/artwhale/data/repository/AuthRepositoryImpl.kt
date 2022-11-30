@@ -21,7 +21,7 @@ class AuthRepositoryImpl @Inject constructor(
             data.toUserInfo()
         }
 
-    override suspend fun getMyInfo(): Result<UserInfo> =
+    override suspend fun getTokenInfo(): Result<UserInfo> =
         runCatching {
             UserInfo(
                 "billie@gmail.com",

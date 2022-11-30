@@ -2,7 +2,9 @@ package com.capstone.artwhale.di
 
 import com.capstone.artwhale.BuildConfig
 import com.capstone.artwhale.BuildConfig.BASE_URL
+import com.capstone.artwhale.config.AuthorizationTokenInterceptor
 import com.capstone.artwhale.data.service.*
+import com.capstone.artwhale.util.SharedPreferencesManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,16 +35,22 @@ object NetworkModule {
 
     @Singleton
     @Provides
+    fun provideAuthorizationTokenInterceptor(sharedPreferencesManager: SharedPreferencesManager): AuthorizationTokenInterceptor =
+        AuthorizationTokenInterceptor(sharedPreferencesManager)
+
+    @Singleton
+    @Provides
     fun provideRetrofit(
         httpLoggingInterceptor: HttpLoggingInterceptor,
+        authorizationTokenInterceptor: AuthorizationTokenInterceptor,
     ): Retrofit {
         val client = OkHttpClient.Builder()
             .readTimeout(30000, TimeUnit.MILLISECONDS)
             .connectTimeout(30000, TimeUnit.MILLISECONDS)
             .addInterceptor(httpLoggingInterceptor)
+            .addNetworkInterceptor(authorizationTokenInterceptor)
             .build()
         val contentType = "application/json".toMediaType()
-
 
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())

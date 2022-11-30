@@ -15,6 +15,7 @@
         android:roundIcon="@drawable/img_logo_whale"
         android:supportsRtl="true"
         android:theme="@style/Theme.ArtWhale"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name=".presentation.login.LoginActivity"

@@ -6,4 +6,5 @@ import com.capstone.artwhale.data.dto.UserDto
 interface AuthDataSource {
 
     suspend fun login(userDto: UserDto): AuthDto
+    suspend fun getTokenInfo(): AuthDto
 }

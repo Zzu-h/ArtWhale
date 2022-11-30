@@ -26,6 +26,8 @@ buildscript {
         google_service_version = '4.3.14'
         indicator_version = '2.1.6'
         blur_version = '4.0.1'
+
+        room_version = "2.4.3"
     }
 }
 plugins {

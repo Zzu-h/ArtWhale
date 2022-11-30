@@ -89,4 +89,9 @@ dependencies {
 
     //blur view
     implementation "jp.wasabeef:blurry:$blur_version"
+
+    //RoomDB
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 }

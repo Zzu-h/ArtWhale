@@ -41,4 +41,10 @@ abstract class RepositoryModule {
     abstract fun provideMoodRepository(
         moodRepository: MoodRepositoryImpl
     ): MoodRepository
+
+    @Singleton
+    @Binds
+    abstract fun provideRecentSearchRepository(
+        recentSearchRepository: RecentSearchRepositoryImpl
+    ): RecentSearchRepository
 }

@@ -22,7 +22,7 @@ class MusicRepositoryImpl @Inject constructor(
         musicDataSource.getMyMusicList().map { it.toMusic() }
 
     override suspend fun getLikeMusicList(): List<Music> =
-        musicDataSource.getLikeMusicList().map { it.toMusic() }
+        musicDataSource.getLikeMusicList().map { it.toMusic().copy(isLike = true) }
 
     override suspend fun updateLikeMusic(id: Int) =
         musicDataSource.updateLikeMusic(id.toUpdateLikeDto())

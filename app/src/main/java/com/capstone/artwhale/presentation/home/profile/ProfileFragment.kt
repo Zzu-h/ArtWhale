@@ -133,6 +133,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
         super.onResume()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             requireActivity().window.statusBarColor = resources.getColor(R.color.white, null)
+        viewModel.loadLikeList()
     }
 
     override fun onPause() {

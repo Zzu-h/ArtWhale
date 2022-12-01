@@ -22,7 +22,7 @@ class AlbumRepositoryImpl @Inject constructor(
         albumDataSource.getMyAlbumList().map { it.toAlbum() }
 
     override suspend fun getLikeAlbumList(): List<Album> =
-        albumDataSource.getLikeAlbumList().map { it.toAlbum() }
+        albumDataSource.getLikeAlbumList().map { it.toAlbum().copy(isLike = true) }
 
     override suspend fun getAiAlbumImageList(): List<String> {
         return listOf(

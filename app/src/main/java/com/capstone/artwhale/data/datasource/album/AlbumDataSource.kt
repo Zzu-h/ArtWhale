@@ -1,11 +1,12 @@
 package com.capstone.artwhale.data.datasource.album
 
+import com.capstone.artwhale.data.dto.AlbumDto
 import com.capstone.artwhale.data.dto.UpdateLikeDto
-import com.capstone.artwhale.domain.model.Album
 
 interface AlbumDataSource {
 
-    suspend fun getMyAlbumList(): List<Album>
-    suspend fun getLikeAlbumList(): List<Album>
+    suspend fun getAllAlbumList(): List<AlbumDto>
+    suspend fun getMyAlbumList(): List<AlbumDto>
+    suspend fun getLikeAlbumList(): List<AlbumDto>
     suspend fun updateLikeAlbum(updateLikeDto: UpdateLikeDto)
 }

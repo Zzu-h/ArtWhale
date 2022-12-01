@@ -9,11 +9,6 @@ class MoodRepositoryImpl @Inject constructor(
     private val moodDataSource: MoodDataSource
 ) : MoodRepository {
 
-    override suspend fun getMoodList(): List<Mood> {
-        return listOf(
-            Mood(0, "Happy"),
-            Mood(1, "Sad"),
-            Mood(2, "Bad"),
-        )
-    }
+    override suspend fun getMoodList(): List<Mood> =
+        moodDataSource.getAllMoodList().map { it.toMood() }
 }

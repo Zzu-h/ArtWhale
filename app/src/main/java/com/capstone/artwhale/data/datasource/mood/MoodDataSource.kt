@@ -1,3 +1,8 @@
 package com.capstone.artwhale.data.datasource.mood
 
-interface MoodDataSource {}
+import com.capstone.artwhale.data.dto.MoodDto
+
+interface MoodDataSource {
+
+    suspend fun getAllMoodList(): List<MoodDto>
+}

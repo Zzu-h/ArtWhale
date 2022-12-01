@@ -6,5 +6,5 @@ import retrofit2.http.GET
 interface MoodService {
 
     @GET("/api/mood")
-    fun getAllMoodList(): List<MoodDto>
+    suspend fun getAllMoodList(): List<MoodDto>
 }

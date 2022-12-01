@@ -4,9 +4,12 @@ import com.capstone.artwhale.data.datasource.album.AlbumDataSource
 import com.capstone.artwhale.data.dto.toUpdateLikeDto
 import com.capstone.artwhale.domain.model.Album
 import com.capstone.artwhale.domain.repository.AlbumRepository
+import com.capstone.artwhale.util.LocalPathUtil
+import java.io.File
 import javax.inject.Inject
 
 class AlbumRepositoryImpl @Inject constructor(
+    private val localPathUtil: LocalPathUtil,
     private val albumDataSource: AlbumDataSource
 ) : AlbumRepository {
 
@@ -40,4 +43,9 @@ class AlbumRepositoryImpl @Inject constructor(
 
     override suspend fun updateLikeAlbum(id: Int) =
         albumDataSource.updateLikeAlbum(id.toUpdateLikeDto())
+
+    override suspend fun registerAlbum(uri: String, title: String, mood: String) {
+        localPathUtil.getRealPathFromUriString(uri)
+            ?.let { albumDataSource.registerAlbum("image", File(it), title, mood) }
+    }
 }

@@ -159,4 +159,10 @@ abstract class UseCaseModule {
     abstract fun provideUpdateLikeMusicUseCase(
         updateLikeMusicUseCase: UpdateLikeMusicUseCaseImpl
     ): UpdateLikeMusicUseCase
+
+    @Singleton
+    @Binds
+    abstract fun provideRegisterAlbumUseCase(
+        registerAlbumUseCase: RegisterAlbumUseCaseImpl
+    ): RegisterAlbumUseCase
 }

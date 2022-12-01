@@ -89,4 +89,10 @@ object NetworkModule {
     fun provideMoodService(retrofit: Retrofit): MoodService {
         return retrofit.create(MoodService::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideUserService(retrofit: Retrofit): UserService {
+        return retrofit.create(UserService::class.java)
+    }
 }

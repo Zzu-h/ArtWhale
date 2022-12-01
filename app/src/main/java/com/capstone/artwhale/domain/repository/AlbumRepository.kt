@@ -9,4 +9,5 @@ interface AlbumRepository {
     suspend fun getMyAlbumList(): List<Album>
     suspend fun getLikeAlbumList(): List<Album>
     suspend fun getAiAlbumImageList(): List<String>
+    suspend fun updateLikeAlbum(id: Int)
 }

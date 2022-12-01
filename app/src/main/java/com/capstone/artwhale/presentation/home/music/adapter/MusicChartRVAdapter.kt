@@ -12,13 +12,15 @@ class MusicChartRVAdapter :
     ListAdapter<Music, MusicChartViewHolder>(diffUtil) {
 
     private var callback: (music: Music) -> Unit = {}
+    private var likeCallback: (album: Music) -> Unit = {}
 
-    fun setCallBack(callback: (music: Music) -> Unit) {
+    fun setCallBack(callback: (music: Music) -> Unit, likeCallback: (music: Music) -> Unit) {
         this.callback = callback
+        this.likeCallback = likeCallback
     }
 
     override fun onBindViewHolder(holder: MusicChartViewHolder, position: Int) {
-        holder.bind(getItem(position), callback = callback)
+        holder.bind(getItem(position), callback = callback, likeCallback)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicChartViewHolder {

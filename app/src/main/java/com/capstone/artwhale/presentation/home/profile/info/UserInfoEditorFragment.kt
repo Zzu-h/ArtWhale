@@ -40,7 +40,10 @@ class UserInfoEditorFragment :
 
     private fun initButton() {
         with(binding) {
-            btnSave.setOnClickListener { graphNavigate(R.id.action_profile_save) }
+            btnSave.setOnClickListener {
+                graphNavigate(R.id.action_profile_save)
+                viewModel?.updateProfileInfo()
+            }
             ivProfileImg.setOnClickListener { getContent.launch("image/*") }
             btnEditImage.setOnClickListener { getContent.launch("image/*") }
         }

@@ -8,14 +8,8 @@ import com.capstone.artwhale.domain.usecase.auth.impl.GetTokenInfoUseCaseImpl
 import com.capstone.artwhale.domain.usecase.auth.impl.LoginUseCaseImpl
 import com.capstone.artwhale.domain.usecase.mood.GetMoodListUseCase
 import com.capstone.artwhale.domain.usecase.mood.impl.GetMoodListUseCaseImpl
-import com.capstone.artwhale.domain.usecase.music.GetLikeMusicListUseCase
-import com.capstone.artwhale.domain.usecase.music.GetMusicChartUseCase
-import com.capstone.artwhale.domain.usecase.music.GetMyMusicListUseCase
-import com.capstone.artwhale.domain.usecase.music.GetNewMusicUseCase
-import com.capstone.artwhale.domain.usecase.music.impl.GetLikeMusicListUseCaseImpl
-import com.capstone.artwhale.domain.usecase.music.impl.GetMusicChartUseCaseImpl
-import com.capstone.artwhale.domain.usecase.music.impl.GetMyMusicListUseCaseImpl
-import com.capstone.artwhale.domain.usecase.music.impl.GetNewMusicUseCaseImpl
+import com.capstone.artwhale.domain.usecase.music.*
+import com.capstone.artwhale.domain.usecase.music.impl.*
 import com.capstone.artwhale.domain.usecase.notice.GetNoticeUseCase
 import com.capstone.artwhale.domain.usecase.notice.impl.GetNoticeUseCaseImpl
 import com.capstone.artwhale.domain.usecase.recent.DeleteRecentSearchUseCase
@@ -24,6 +18,12 @@ import com.capstone.artwhale.domain.usecase.recent.InsertRecentSearchUseCase
 import com.capstone.artwhale.domain.usecase.recent.impl.DeleteRecentSearchUseCaseImpl
 import com.capstone.artwhale.domain.usecase.recent.impl.GetRecentSearchUseCaseImpl
 import com.capstone.artwhale.domain.usecase.recent.impl.InsertRecentSearchUseCaseImpl
+import com.capstone.artwhale.domain.usecase.user.GetMyInfoUseCase
+import com.capstone.artwhale.domain.usecase.user.UpdateNickNameUseCase
+import com.capstone.artwhale.domain.usecase.user.UpdateProfileImageUseCase
+import com.capstone.artwhale.domain.usecase.user.impl.GetMyInfoUseCaseImpl
+import com.capstone.artwhale.domain.usecase.user.impl.UpdateNickNameUseCaseImpl
+import com.capstone.artwhale.domain.usecase.user.impl.UpdateProfileImageUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -96,8 +96,8 @@ abstract class UseCaseModule {
 
     @Singleton
     @Binds
-    abstract fun provideGetMyInfoUseCase(
-        getMyInfoUseCase: GetTokenInfoUseCaseImpl
+    abstract fun provideGetTokenInfoUseCase(
+        getTokenInfoUseCase: GetTokenInfoUseCaseImpl
     ): GetTokenInfoUseCase
 
     @Singleton
@@ -129,4 +129,34 @@ abstract class UseCaseModule {
     abstract fun provideDeleteRecentSearchUseCase(
         deleteRecentSearchUseCase: DeleteRecentSearchUseCaseImpl
     ): DeleteRecentSearchUseCase
+
+    @Singleton
+    @Binds
+    abstract fun provideGetMyInfoUseCase(
+        getMyInfoUseCase: GetMyInfoUseCaseImpl
+    ): GetMyInfoUseCase
+
+    @Singleton
+    @Binds
+    abstract fun provideUpdateNickNameUseCase(
+        updateNickNameUseCase: UpdateNickNameUseCaseImpl
+    ): UpdateNickNameUseCase
+
+    @Singleton
+    @Binds
+    abstract fun provideUpdateProfileImageUseCase(
+        updateProfileImageUseCase: UpdateProfileImageUseCaseImpl
+    ): UpdateProfileImageUseCase
+
+    @Singleton
+    @Binds
+    abstract fun provideUpdateLikeAlbumUseCase(
+        updateLikeAlbumUseCase: UpdateLikeAlbumUseCaseImpl
+    ): UpdateLikeAlbumUseCase
+
+    @Singleton
+    @Binds
+    abstract fun provideUpdateLikeMusicUseCase(
+        updateLikeMusicUseCase: UpdateLikeMusicUseCaseImpl
+    ): UpdateLikeMusicUseCase
 }

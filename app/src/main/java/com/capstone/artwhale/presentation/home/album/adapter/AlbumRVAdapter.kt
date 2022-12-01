@@ -12,13 +12,15 @@ class AlbumRVAdapter :
     ListAdapter<Album, AlbumViewHolder>(diffUtil) {
 
     private var callback: (album: Album) -> Unit = {}
+    private var likeCallback: (album: Album) -> Unit = {}
 
-    fun setCallBack(callback: (album: Album) -> Unit) {
+    fun setCallBack(callback: (album: Album) -> Unit, likeCallback: (music: Album) -> Unit) {
         this.callback = callback
+        this.likeCallback = likeCallback
     }
 
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
-        holder.bind(getItem(position), callback)
+        holder.bind(getItem(position), callback, likeCallback)
     }
 
     override fun onCreateViewHolder(

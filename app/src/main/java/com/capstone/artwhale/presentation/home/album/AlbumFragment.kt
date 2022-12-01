@@ -2,6 +2,7 @@ package com.capstone.artwhale.presentation.home.album
 
 import android.content.Intent
 import android.os.Build
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -9,6 +10,7 @@ import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentAlbumBinding
 import com.capstone.artwhale.domain.model.Album
 import com.capstone.artwhale.presentation.common.BaseFragment
+import com.capstone.artwhale.presentation.home.UserViewModel
 import com.capstone.artwhale.presentation.home.album.adapter.AlbumRVAdapter
 import com.capstone.artwhale.presentation.home.album.adapter.AlbumRankingThumbnailRVAdapter
 import com.capstone.artwhale.presentation.register.album.AlbumRegisterActivity
@@ -21,6 +23,7 @@ import kotlinx.coroutines.flow.onEach
 class AlbumFragment : BaseFragment<FragmentAlbumBinding>(FragmentAlbumBinding::inflate) {
 
     private val viewModel by viewModels<AlbumViewModel>()
+    private val userViewModel by activityViewModels<UserViewModel>()
 
     private lateinit var albumRankingThumbnailRVAdapter: AlbumRankingThumbnailRVAdapter
     private lateinit var albumRVAdapter: AlbumRVAdapter
@@ -60,7 +63,11 @@ class AlbumFragment : BaseFragment<FragmentAlbumBinding>(FragmentAlbumBinding::i
     private fun initRecyclerView() {
         albumRankingThumbnailRVAdapter = AlbumRankingThumbnailRVAdapter()
         albumRVAdapter = AlbumRVAdapter()
-            .apply { setCallBack { registerMusicWithAlbum(it) } }
+            .apply {
+                setCallBack(
+                    { registerMusicWithAlbum(it) },
+                    { userViewModel.updateAlbumLikeState(it) })
+            }
 
         with(binding) {
             rvAlbumThumbnail.layoutParams.width = resources.displayMetrics.widthPixels

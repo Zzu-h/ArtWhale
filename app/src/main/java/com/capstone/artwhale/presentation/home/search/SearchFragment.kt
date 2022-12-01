@@ -3,11 +3,13 @@ package com.capstone.artwhale.presentation.home.search
 import android.view.View
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.capstone.artwhale.databinding.FragmentSearchBinding
 import com.capstone.artwhale.domain.model.RecentSearch
 import com.capstone.artwhale.presentation.common.BaseFragment
+import com.capstone.artwhale.presentation.home.UserViewModel
 import com.capstone.artwhale.presentation.home.album.adapter.AlbumRVAdapter
 import com.capstone.artwhale.presentation.home.music.adapter.MusicChartRVAdapter
 import com.capstone.artwhale.presentation.home.search.adapter.RecentSearchRVAdapter
@@ -19,6 +21,7 @@ import kotlinx.coroutines.flow.onEach
 class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
 
     private val viewModel by viewModels<SearchViewModel>()
+    private val userViewModel by activityViewModels<UserViewModel>()
 
     private lateinit var albumRVAdapter: AlbumRVAdapter
     private lateinit var musicChartRVAdapter: MusicChartRVAdapter
@@ -65,8 +68,16 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun initRecyclerView() {
-        albumRVAdapter = AlbumRVAdapter().apply { setCallBack { registerMusicWithAlbum(it) } }
-        musicChartRVAdapter = MusicChartRVAdapter().apply { setCallBack { playMusic(it) } }
+        musicChartRVAdapter = MusicChartRVAdapter().apply {
+            setCallBack(
+                { playMusic(it) },
+                { userViewModel.updateMusicLikeState(it) })
+        }
+        albumRVAdapter = AlbumRVAdapter().apply {
+            setCallBack(
+                { registerMusicWithAlbum(it) },
+                { userViewModel.updateAlbumLikeState(it) })
+        }
         recentSearchRVAdapter = RecentSearchRVAdapter().apply {
             listener = object : RecentSearchRVAdapter.ClickListener {
                 override fun onClickItem(item: RecentSearch) {

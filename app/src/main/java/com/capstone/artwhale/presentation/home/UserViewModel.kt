@@ -9,13 +9,18 @@ import com.capstone.artwhale.domain.model.Music
 import com.capstone.artwhale.domain.model.UserInfo
 import com.capstone.artwhale.domain.usecase.album.GetLikeAlbumListUseCase
 import com.capstone.artwhale.domain.usecase.album.GetMyAlbumListUseCase
-import com.capstone.artwhale.domain.usecase.auth.GetTokenInfoUseCase
+import com.capstone.artwhale.domain.usecase.album.UpdateLikeAlbumUseCase
 import com.capstone.artwhale.domain.usecase.music.GetLikeMusicListUseCase
 import com.capstone.artwhale.domain.usecase.music.GetMyMusicListUseCase
+import com.capstone.artwhale.domain.usecase.music.UpdateLikeMusicUseCase
+import com.capstone.artwhale.domain.usecase.user.GetMyInfoUseCase
+import com.capstone.artwhale.domain.usecase.user.UpdateNickNameUseCase
+import com.capstone.artwhale.domain.usecase.user.UpdateProfileImageUseCase
 import com.capstone.artwhale.presentation.common.Error
 import com.capstone.artwhale.presentation.common.InitialState
 import com.capstone.artwhale.presentation.common.NetworkState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -28,7 +33,11 @@ class UserViewModel @Inject constructor(
     private val getMyAlbumListUseCase: GetMyAlbumListUseCase,
     private val getLikeMusicListUseCase: GetLikeMusicListUseCase,
     private val getLikeAlbumListUseCase: GetLikeAlbumListUseCase,
-    private val getMyInfoUseCase: GetTokenInfoUseCase,
+    private val getMyInfoUseCase: GetMyInfoUseCase,
+    private val updateProfileImageUseCase: UpdateProfileImageUseCase,
+    private val updateNickNameUseCase: UpdateNickNameUseCase,
+    private val updateLikeMusicUseCase: UpdateLikeMusicUseCase,
+    private val updateLikeAlbumUseCase: UpdateLikeAlbumUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<NetworkState>(InitialState)
@@ -42,6 +51,7 @@ class UserViewModel @Inject constructor(
     private val _likeAlbum = MutableStateFlow<List<Album>>(emptyList())
     private val _myMusic = MutableStateFlow<List<Music>>(emptyList())
     private val _likeMusic = MutableStateFlow<List<Music>>(emptyList())
+    private var imageChangeFlag = false
 
     val myInfo: StateFlow<UserInfo> = _myInfo
     val myAlbum: StateFlow<List<Album>> = _myAlbum
@@ -68,8 +78,8 @@ class UserViewModel @Inject constructor(
                     .onFailure { _state.emit(Error(it.message)) }
             }
             launch {
-                /*getMyInfoUseCase().onSuccess { _myInfo.emit(it) }
-                    .onFailure { _state.emit(Error(it.message)) }*/
+                getMyInfoUseCase().onSuccess { _myInfo.emit(it) }
+                    .onFailure { _state.emit(Error(it.message)) }
             }
         }
     }
@@ -78,10 +88,29 @@ class UserViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             val data = myInfo.value
             _myInfo.emit(UserInfo(data.email, data.name, profileImgUrl = uri.toString()))
+            imageChangeFlag = true
         }
     }
 
     fun onClickButton(view: View?) {
         viewModelScope.launch { _clickListener.emit(view?.id) }
+    }
+
+    fun updateProfileInfo() {
+        CoroutineScope(Dispatchers.IO).launch {
+            if (imageChangeFlag) launch {
+                updateProfileImageUseCase(myInfo.value.profileImgUrl!!)
+                imageChangeFlag = false
+            }
+            launch { updateNickNameUseCase(myInfo.value.name) }
+        }
+    }
+
+    fun updateAlbumLikeState(album: Album) {
+        viewModelScope.launch(Dispatchers.IO) { updateLikeAlbumUseCase(album.id) }
+    }
+
+    fun updateMusicLikeState(music: Music) {
+        viewModelScope.launch(Dispatchers.IO) { updateLikeMusicUseCase(music.id) }
     }
 }

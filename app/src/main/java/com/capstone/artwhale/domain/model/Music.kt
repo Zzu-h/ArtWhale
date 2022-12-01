@@ -3,6 +3,7 @@ package com.capstone.artwhale.domain.model
 import java.io.Serializable
 
 data class Music(
+    val id: Int = 0,
     val albumImgUrl: String,
     val title: String,
     val singer: String,

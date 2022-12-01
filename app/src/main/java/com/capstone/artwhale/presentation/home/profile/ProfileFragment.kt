@@ -88,10 +88,22 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
                         clickListener.collect {
                             if (it == null) return@collect
                             when (it) {
-                                R.id.tv_all_music -> graphNavigate(R.id.action_to_likeFragment)
-                                R.id.tv_all_album -> graphNavigate(R.id.action_to_likeFragment)
-                                R.id.ll_songs -> graphNavigate(R.id.action_to_myArtFragment)
-                                R.id.ll_albums -> graphNavigate(R.id.action_to_myArtFragment)
+                                R.id.tv_all_music -> {
+                                    viewModel.rvMode = false
+                                    graphNavigate(R.id.action_to_likeFragment)
+                                }
+                                R.id.tv_all_album -> {
+                                    viewModel.rvMode = false
+                                    graphNavigate(R.id.action_to_likeFragment)
+                                }
+                                R.id.ll_songs -> {
+                                    viewModel.rvMode = true
+                                    graphNavigate(R.id.action_to_myArtFragment)
+                                }
+                                R.id.ll_albums -> {
+                                    viewModel.rvMode = true
+                                    graphNavigate(R.id.action_to_myArtFragment)
+                                }
                             }
                         }
                     }

@@ -33,7 +33,6 @@ class AlbumListFragment : Fragment() {
 
         _binding = FragmentLikeAlbumBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,9 +43,16 @@ class AlbumListFragment : Fragment() {
     }
 
     private fun initObserver() {
-        viewModel.likeAlbum.onEach {
-            rvAdapter.submitList(it)
-        }.launchIn(this.lifecycleScope)
+        with(viewModel) {
+            if (rvMode)
+                myAlbum.onEach {
+                    rvAdapter.submitList(it)
+                }.launchIn(this@AlbumListFragment.lifecycleScope)
+            else
+                likeAlbum.onEach {
+                    rvAdapter.submitList(it)
+                }.launchIn(this@AlbumListFragment.lifecycleScope)
+        }
     }
 
     private fun registerMusicWithAlbum(album: Album) {

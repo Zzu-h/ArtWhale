@@ -58,6 +58,7 @@ class UserViewModel @Inject constructor(
     val likeAlbum: StateFlow<List<Album>> = _likeAlbum
     val myMusic: StateFlow<List<Music>> = _myMusic
     val likeMusic: StateFlow<List<Music>> = _likeMusic
+    var rvMode: Boolean = false
 
     init {
         viewModelScope.launch(Dispatchers.IO) {

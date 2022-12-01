@@ -19,12 +19,15 @@ class UserDataSourceImpl @Inject constructor(
         userService.updateNickName(nickName)
 
     override suspend fun updateProfileImage(key: String, image: File) {
-        userService.updateProfileImage(
-            MultipartBody.Part.createFormData(
-                key,
-                image.name,
-                image.asRequestBody("image/*".toMediaTypeOrNull())
+        if (image.extension == "jpg" || image.extension == "jpeg" || image.extension == "png") {
+            val type = "image/" + image.extension
+            userService.updateProfileImage(
+                MultipartBody.Part.createFormData(
+                    key,
+                    image.name,
+                    image.asRequestBody(type.toMediaTypeOrNull())
+                )
             )
-        )
+        }
     }
 }

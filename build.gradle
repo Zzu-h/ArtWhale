@@ -28,6 +28,7 @@ buildscript {
         blur_version = '4.0.1'
 
         room_version = "2.4.3"
+        common_version = "2.4"
     }
 }
 plugins {

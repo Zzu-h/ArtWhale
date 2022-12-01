@@ -1,14 +1,15 @@
 package com.capstone.artwhale.data.repository
 
-import android.net.Uri
 import com.capstone.artwhale.data.datasource.user.UserDataSource
 import com.capstone.artwhale.data.dto.toUpdateNicknameDto
 import com.capstone.artwhale.domain.model.UserInfo
 import com.capstone.artwhale.domain.repository.UserRepository
+import com.capstone.artwhale.util.LocalPathUtil
 import java.io.File
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
+    private val localPathUtil: LocalPathUtil,
     private val userDataSource: UserDataSource
 ) : UserRepository {
 
@@ -18,6 +19,7 @@ class UserRepositoryImpl @Inject constructor(
         userDataSource.updateNickName(nickName.toUpdateNicknameDto())
 
     override suspend fun updateProfileImage(uri: String) {
-        Uri.parse(uri).path?.let { userDataSource.updateProfileImage("image", File(it)) }
+        localPathUtil.getRealPathFromUriString(uri)
+            ?.let { userDataSource.updateProfileImage("image", File(it)) }
     }
 }

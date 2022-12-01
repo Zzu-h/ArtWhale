@@ -1,6 +1,7 @@
 package com.capstone.artwhale.di
 
 import android.content.Context
+import com.capstone.artwhale.util.LocalPathUtil
 import com.capstone.artwhale.util.MusicPlayer
 import com.capstone.artwhale.util.SharedPreferencesManager
 import dagger.Module
@@ -24,5 +25,11 @@ object UtilModule {
     @Provides
     fun provideSharedPreferencesManager(@ApplicationContext context: Context): SharedPreferencesManager {
         return SharedPreferencesManager(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideLocalPathUtil(@ApplicationContext context: Context): LocalPathUtil {
+        return LocalPathUtil(context)
     }
 }

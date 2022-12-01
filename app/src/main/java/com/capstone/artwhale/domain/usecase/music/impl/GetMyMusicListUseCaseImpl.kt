@@ -10,5 +10,5 @@ class GetMyMusicListUseCaseImpl @Inject constructor(
 ) : GetMyMusicListUseCase {
 
     override suspend operator fun invoke(): Result<List<Music>> =
-        runCatching { repository.getNewMusics() }
+        runCatching { repository.getMyMusicList() }
 }

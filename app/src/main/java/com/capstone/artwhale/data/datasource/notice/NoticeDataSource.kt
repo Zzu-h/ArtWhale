@@ -1,3 +1,8 @@
 package com.capstone.artwhale.data.datasource.notice
 
-interface NoticeDataSource {}
+import com.capstone.artwhale.data.dto.NoticeDto
+
+interface NoticeDataSource {
+
+    suspend fun getNoticeList(): List<NoticeDto>
+}

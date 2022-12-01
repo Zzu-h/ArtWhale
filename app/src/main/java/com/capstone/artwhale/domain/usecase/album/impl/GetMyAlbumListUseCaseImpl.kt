@@ -10,5 +10,5 @@ class GetMyAlbumListUseCaseImpl @Inject constructor(
 ) : GetMyAlbumListUseCase {
 
     override suspend fun invoke(): Result<List<Album>> =
-        runCatching { albumRepository.getAllAlbum() }
+        runCatching { albumRepository.getMyAlbumList() }
 }

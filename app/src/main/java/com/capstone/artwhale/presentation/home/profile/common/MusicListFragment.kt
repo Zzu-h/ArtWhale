@@ -44,9 +44,16 @@ class MusicListFragment : Fragment() {
     }
 
     private fun initObserver() {
-        viewModel.likeMusic.onEach {
-            rvAdapter.submitList(it)
-        }.launchIn(this.lifecycleScope)
+        with(viewModel) {
+            if (rvMode)
+                myMusic.onEach {
+                    rvAdapter.submitList(it)
+                }.launchIn(this@MusicListFragment.lifecycleScope)
+            else
+                likeMusic.onEach {
+                    rvAdapter.submitList(it)
+                }.launchIn(this@MusicListFragment.lifecycleScope)
+        }
     }
 
     private fun playMusic(music: Music) {

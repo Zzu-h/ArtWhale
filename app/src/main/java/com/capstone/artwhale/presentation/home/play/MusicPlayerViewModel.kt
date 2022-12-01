@@ -5,6 +5,7 @@ import android.widget.SeekBar
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capstone.artwhale.domain.model.Music
+import com.capstone.artwhale.domain.usecase.music.UpdateLikeMusicUseCase
 import com.capstone.artwhale.util.MusicPlayer
 import com.capstone.artwhale.util.PlayerState
 import com.capstone.artwhale.util.Playing
@@ -18,6 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MusicPlayerViewModel @Inject constructor(
+    private val updateLikeMusicUseCase: UpdateLikeMusicUseCase,
     val musicPlayer: MusicPlayer
 ) : ViewModel() {
 
@@ -79,6 +81,7 @@ class MusicPlayerViewModel @Inject constructor(
             val music = music.value ?: return@launch
             val isLike = music.isLike
             _music.value = music.copy(isLike = !isLike)
+            updateLikeMusicUseCase(music.id)
         }
     }
 }

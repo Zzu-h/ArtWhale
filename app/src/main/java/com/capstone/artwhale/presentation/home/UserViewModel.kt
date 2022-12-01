@@ -58,23 +58,22 @@ class UserViewModel @Inject constructor(
     val likeAlbum: StateFlow<List<Album>> = _likeAlbum
     val myMusic: StateFlow<List<Music>> = _myMusic
     val likeMusic: StateFlow<List<Music>> = _likeMusic
+    var rvMode: Boolean = false
+
+    private val _likeAlbumEmptyFlag = MutableStateFlow(false)
+    private val _likeMusicEmptyFlag = MutableStateFlow(false)
+    val likeAlbumEmptyFlag: StateFlow<Boolean> = _likeAlbumEmptyFlag
+    val likeMusicEmptyFlag: StateFlow<Boolean> = _likeMusicEmptyFlag
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
+            loadLikeList()
             launch {
                 getMyMusicListUseCase().onSuccess { _myMusic.emit(it) }
                     .onFailure { _state.emit(Error(it.message)) }
             }
             launch {
                 getMyAlbumListUseCase().onSuccess { _myAlbum.emit(it) }
-                    .onFailure { _state.emit(Error(it.message)) }
-            }
-            launch {
-                getLikeMusicListUseCase().onSuccess { _likeMusic.emit(it) }
-                    .onFailure { _state.emit(Error(it.message)) }
-            }
-            launch {
-                getLikeAlbumListUseCase().onSuccess { _likeAlbum.emit(it) }
                     .onFailure { _state.emit(Error(it.message)) }
             }
             launch {
@@ -112,5 +111,22 @@ class UserViewModel @Inject constructor(
 
     fun updateMusicLikeState(music: Music) {
         viewModelScope.launch(Dispatchers.IO) { updateLikeMusicUseCase(music.id) }
+    }
+
+    fun loadLikeList() {
+        viewModelScope.launch(Dispatchers.IO) {
+            launch {
+                getLikeMusicListUseCase().onSuccess {
+                    _likeMusicEmptyFlag.emit(it.isEmpty())
+                    _likeMusic.emit(it)
+                }.onFailure { _state.emit(Error(it.message)) }
+            }
+            launch {
+                getLikeAlbumListUseCase().onSuccess {
+                    _likeAlbumEmptyFlag.emit(it.isEmpty())
+                    _likeAlbum.emit(it)
+                }.onFailure { _state.emit(Error(it.message)) }
+            }
+        }
     }
 }

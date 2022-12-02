@@ -2,9 +2,9 @@ package com.capstone.artwhale.data.service
 
 import com.capstone.artwhale.data.dto.MusicDto
 import com.capstone.artwhale.data.dto.UpdateLikeDto
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PATCH
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.http.*
 
 interface MusicService {
 
@@ -19,4 +19,11 @@ interface MusicService {
 
     @PATCH("/api/music/like")
     suspend fun updateLikeMusic(@Body updateLikeDto: UpdateLikeDto)
+
+    @Multipart
+    @POST("/api/music")
+    suspend fun registerMusic(
+        @Part image: MultipartBody.Part,
+        @PartMap params: Map<String, @JvmSuppressWildcards RequestBody>
+    )
 }

@@ -165,4 +165,10 @@ abstract class UseCaseModule {
     abstract fun provideRegisterAlbumUseCase(
         registerAlbumUseCase: RegisterAlbumUseCaseImpl
     ): RegisterAlbumUseCase
+
+    @Singleton
+    @Binds
+    abstract fun provideRegisterMusicUseCase(
+        registerMusicUseCase: RegisterMusicUseCaseImpl
+    ): RegisterMusicUseCase
 }

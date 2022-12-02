@@ -1,12 +1,16 @@
 package com.capstone.artwhale.data.repository
 
+import android.net.Uri
 import com.capstone.artwhale.data.datasource.music.MusicDataSource
 import com.capstone.artwhale.data.dto.toUpdateLikeDto
 import com.capstone.artwhale.domain.model.Music
 import com.capstone.artwhale.domain.repository.MusicRepository
+import com.capstone.artwhale.util.LocalPathUtil
+import java.io.File
 import javax.inject.Inject
 
 class MusicRepositoryImpl @Inject constructor(
+    private val localPathUtil: LocalPathUtil,
     private val musicDataSource: MusicDataSource
 ) : MusicRepository {
 
@@ -26,4 +30,24 @@ class MusicRepositoryImpl @Inject constructor(
 
     override suspend fun updateLikeMusic(id: Int) =
         musicDataSource.updateLikeMusic(id.toUpdateLikeDto())
+
+    override suspend fun registerMusic(
+        uri: Uri,
+        title: String,
+        mood: String,
+        lyrics: String,
+        albumArtId: Int
+    ) {
+        localPathUtil.getRealPathFromUri(uri)
+            ?.let {
+                musicDataSource.registerMusic(
+                    "music",
+                    File(it),
+                    title,
+                    mood,
+                    lyrics,
+                    albumArtId
+                )
+            }
+    }
 }

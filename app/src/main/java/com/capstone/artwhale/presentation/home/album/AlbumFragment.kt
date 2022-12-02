@@ -112,6 +112,7 @@ class AlbumFragment : BaseFragment<FragmentAlbumBinding>(FragmentAlbumBinding::i
         super.onResume()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             requireActivity().window.statusBarColor = resources.getColor(R.color.white, null)
+        viewModel.loadAlbumList()
     }
 
     override fun onPause() {

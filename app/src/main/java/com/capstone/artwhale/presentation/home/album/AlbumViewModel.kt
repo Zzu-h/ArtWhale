@@ -51,7 +51,11 @@ class AlbumViewModel @Inject constructor(
     val showAlbum: StateFlow<List<Album>> = _showAlbum
     val state: StateFlow<NetworkState> = _state
 
-    init {
+    fun onClickButton(view: View?) {
+        viewModelScope.launch { _clickListener.emit(view?.id) }
+    }
+
+    fun loadAlbumList() {
         viewModelScope.launch(Dispatchers.IO) {
             getAlbumRankingUseCase().onSuccess { _albumRanking.emit(it) }
                 .onFailure { _state.emit(Error(it.message)) }
@@ -61,9 +65,5 @@ class AlbumViewModel @Inject constructor(
             }.onFailure { _state.emit(Error(it.message)) }
             searchFlow.collect()
         }
-    }
-
-    fun onClickButton(view: View?) {
-        viewModelScope.launch { _clickListener.emit(view?.id) }
     }
 }

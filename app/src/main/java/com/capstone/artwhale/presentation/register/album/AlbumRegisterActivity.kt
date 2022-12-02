@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,9 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
 import com.capstone.artwhale.databinding.ActivityAlbumRegisterBinding
 import com.capstone.artwhale.domain.model.Mood
+import com.capstone.artwhale.presentation.common.Error
+import com.capstone.artwhale.presentation.common.Loading
+import com.capstone.artwhale.presentation.common.Success
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -49,6 +53,17 @@ class AlbumRegisterActivity : AppCompatActivity() {
             initSpinner(it)
             if (it.isNotEmpty()) viewModel.selectMood(0)
         }.launchIn(this.lifecycleScope)
+        viewModel.state.onEach {
+            when (it) {
+                is Success -> {
+                    Toast.makeText(this, "등록했습니다!", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+                is Loading -> {}
+                is Error -> Toast.makeText(this, "${it.msg}", Toast.LENGTH_SHORT).show()
+                else -> {}
+            }
+        }.launchIn(this.lifecycleScope)
     }
 
     private fun initSpinner(list: List<Mood>) {
@@ -66,7 +81,7 @@ class AlbumRegisterActivity : AppCompatActivity() {
     private fun initButton() {
         with(binding) {
             ivAlbumThumbnail.setOnClickListener { getContent.launch("image/*") }
-            cvRegister.setOnClickListener {}
+            cvRegister.setOnClickListener { viewModel?.onClickRegister() }
             ctbSub.setOnClickDefaultIcon { finish() }
         }
     }

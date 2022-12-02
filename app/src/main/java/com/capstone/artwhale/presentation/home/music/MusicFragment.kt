@@ -98,6 +98,11 @@ class MusicFragment : BaseFragment<FragmentMusicBinding>(FragmentMusicBinding::i
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadMusicList()
+    }
+
     override fun onDestroyView() {
         job?.cancel()
         super.onDestroyView()

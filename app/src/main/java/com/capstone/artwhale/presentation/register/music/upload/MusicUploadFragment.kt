@@ -11,6 +11,9 @@ import com.capstone.artwhale.R
 import com.capstone.artwhale.databinding.FragmentMusicUploadBinding
 import com.capstone.artwhale.domain.model.Mood
 import com.capstone.artwhale.presentation.common.BaseFragment
+import com.capstone.artwhale.presentation.common.Error
+import com.capstone.artwhale.presentation.common.Loading
+import com.capstone.artwhale.presentation.common.Success
 import com.capstone.artwhale.presentation.register.music.MusicRegisterViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -49,7 +52,7 @@ class MusicUploadFragment :
         with(binding) {
             btnRegister.setOnClickListener {
                 if (viewModel!!.isAI.value) viewModel!!.getAiAlbumImageList()
-                else requireActivity().finish()
+                else viewModel?.onClickRegister()
             }
         }
     }
@@ -74,11 +77,26 @@ class MusicUploadFragment :
                         if (it.isNotEmpty()) graphNavigate(R.id.action_to_ai_album_select)
                     }
                 }
+                launch {
+                    viewModel.state.onEach {
+                        when (it) {
+                            is Success -> {
+                                showToast("등록했습니다!")
+                                requireActivity().finish()
+                            }
+                            is Loading -> {}
+                            is Error -> showToast("${it.msg}")
+                            else -> {}
+                        }
+                    }.launchIn(this@MusicUploadFragment.lifecycleScope)
+                }
+                launch {
+                    viewModel.isAI.onEach {
+                        val text = if (it) "Run" else "Register"
+                        binding.btnRegister.text = text
+                    }.launchIn(this@MusicUploadFragment.lifecycleScope)
+                }
             }
         }
-        viewModel.isAI.onEach {
-            val text = if (it) "Run" else "Register"
-            binding.btnRegister.text = text
-        }.launchIn(this.lifecycleScope)
     }
 }

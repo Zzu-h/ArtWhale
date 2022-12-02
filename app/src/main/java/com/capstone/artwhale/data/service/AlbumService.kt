@@ -2,9 +2,9 @@ package com.capstone.artwhale.data.service
 
 import com.capstone.artwhale.data.dto.AlbumDto
 import com.capstone.artwhale.data.dto.UpdateLikeDto
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PATCH
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.http.*
 
 interface AlbumService {
 
@@ -19,4 +19,11 @@ interface AlbumService {
 
     @PATCH("/api/album-art/like")
     suspend fun updateLikeAlbum(@Body updateLikeDto: UpdateLikeDto)
+
+    @Multipart
+    @POST("/api/album-art")
+    suspend fun registerAlbum(
+        @Part image: MultipartBody.Part,
+        @PartMap params: Map<String, @JvmSuppressWildcards RequestBody>
+    )
 }

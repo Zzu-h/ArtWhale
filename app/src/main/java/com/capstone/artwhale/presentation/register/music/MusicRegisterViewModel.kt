@@ -7,6 +7,11 @@ import com.capstone.artwhale.domain.model.Album
 import com.capstone.artwhale.domain.model.Mood
 import com.capstone.artwhale.domain.usecase.album.GetAiAlbumImageListUseCase
 import com.capstone.artwhale.domain.usecase.mood.GetMoodListUseCase
+import com.capstone.artwhale.domain.usecase.music.RegisterMusicUseCase
+import com.capstone.artwhale.presentation.common.Error
+import com.capstone.artwhale.presentation.common.InitialState
+import com.capstone.artwhale.presentation.common.NetworkState
+import com.capstone.artwhale.presentation.common.Success
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,6 +21,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MusicRegisterViewModel @Inject constructor(
+    private val registerMusicUseCase: RegisterMusicUseCase,
     private val getMoodListUseCase: GetMoodListUseCase,
     private val getAiAlbumImageListUseCase: GetAiAlbumImageListUseCase
 ) : ViewModel() {
@@ -23,8 +29,10 @@ class MusicRegisterViewModel @Inject constructor(
     /*초기 설정 변수*/
     private val _isAI = MutableStateFlow(true)
     private val _album = MutableStateFlow<Album?>(null)
+    private val _state = MutableStateFlow<NetworkState>(InitialState)
     val isAI: StateFlow<Boolean> get() = _isAI
     val album: StateFlow<Album?> get() = _album
+    val state: StateFlow<NetworkState> = _state
 
     private val _musicUri = MutableStateFlow<Uri?>(null)
     private val _moodList = MutableStateFlow<List<Mood>>(emptyList())
@@ -70,5 +78,33 @@ class MusicRegisterViewModel @Inject constructor(
                 content.value
             ).onSuccess { _aiAlbumImageList.emit(it) }
         }
+    }
+
+    fun onClickRegister() {
+        viewModelScope.launch {
+            val error = validCheck()
+            if (error != null) {
+                _state.emit(Error(error))
+                return@launch
+            }
+            registerMusicUseCase(
+                musicUri.value!!,
+                title.value,
+                selectedMood.value!!.name,
+                content.value,
+                album.value!!.id
+            )
+                .onSuccess { _state.emit(Success) }
+                .onFailure { _state.emit(Error(it.message)) }
+        }
+    }
+
+    private fun validCheck(): String? {
+        if (musicUri.value == null) return "음원을 등록해 주세요!"
+        else if (title.value.isBlank()) return "제목을 입력해 주세요!"
+        else if (selectedMood.value == null) return "감정을 선택해 주세요!"
+        else if (content.value.isBlank()) return "가사를 입력해 주세요!"
+        else if (!isAI.value && album.value == null) return "앨범이 선택되지 않았습니다!"
+        return null
     }
 }

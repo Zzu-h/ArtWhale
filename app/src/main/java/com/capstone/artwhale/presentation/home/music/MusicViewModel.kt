@@ -38,6 +38,11 @@ class MusicViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             getNoticeUseCase().onSuccess { _noticeList.emit(it) }
                 .onFailure { _state.emit(Error(it.message)) }
+        }
+    }
+
+    fun loadMusicList() {
+        viewModelScope.launch(Dispatchers.IO) {
             getMusicChartUseCase().onSuccess { _musicChart.emit(it) }
                 .onFailure { _state.emit(Error(it.message)) }
             getNewMusicUseCase().onSuccess { _newMusics.emit(it) }

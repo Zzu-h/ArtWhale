@@ -20,6 +20,7 @@ data class NoticeDto(
 ) {
     fun toNotice(): Notice = Notice(
         topText = title,
+        contentText = content,
         imageUrl = if (fileId == null) null else BuildConfig.BASE_URL + fileId.path
     )
 }

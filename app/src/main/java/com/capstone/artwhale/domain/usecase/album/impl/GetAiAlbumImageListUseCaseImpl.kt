@@ -1,5 +1,6 @@
 package com.capstone.artwhale.domain.usecase.album.impl
 
+import com.capstone.artwhale.domain.model.AiTempImage
 import com.capstone.artwhale.domain.model.Mood
 import com.capstone.artwhale.domain.repository.AlbumRepository
 import com.capstone.artwhale.domain.usecase.album.GetAiAlbumImageListUseCase
@@ -13,5 +14,5 @@ class GetAiAlbumImageListUseCaseImpl @Inject constructor(
         title: String,
         lyrics: String,
         mood: Mood?
-    ): Result<List<String>> = runCatching { albumRepository.getAiAlbumImageList() }
+    ): Result<List<AiTempImage>> = runCatching { albumRepository.getAiAlbumImageList() }
 }

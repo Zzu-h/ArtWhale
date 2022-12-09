@@ -25,12 +25,8 @@ class AIAlbumSelectFragment :
         initObserver()
     }
 
-    private fun clickImage(url: String) {
-
-    }
-
     private fun initRecyclerView() {
-        aiImageRVAdapter = AiImageRVAdapter().apply { setCallBack { clickImage(it) } }
+        aiImageRVAdapter = AiImageRVAdapter(this).apply { setCallBack { viewModel.clickImage(it) } }
         binding.rvAiImage.adapter = aiImageRVAdapter
     }
 

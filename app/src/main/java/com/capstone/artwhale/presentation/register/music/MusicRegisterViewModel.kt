@@ -3,6 +3,7 @@ package com.capstone.artwhale.presentation.register.music
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.capstone.artwhale.domain.model.AiTempImage
 import com.capstone.artwhale.domain.model.Album
 import com.capstone.artwhale.domain.model.Mood
 import com.capstone.artwhale.domain.usecase.album.GetAiAlbumImageListUseCase
@@ -37,14 +38,15 @@ class MusicRegisterViewModel @Inject constructor(
     private val _musicUri = MutableStateFlow<Uri?>(null)
     private val _moodList = MutableStateFlow<List<Mood>>(emptyList())
     private val _selectedMood = MutableStateFlow<Mood?>(null)
-    private val _aiAlbumImageList = MutableStateFlow<List<String>>(emptyList())
+    private val _aiAlbumImageList = MutableStateFlow<List<AiTempImage>>(emptyList())
+    private var _aiAlbumSelectIndex = -1
 
     val musicUri: StateFlow<Uri?> = _musicUri
     val moodList: StateFlow<List<Mood>> = _moodList
     val selectedMood: StateFlow<Mood?> = _selectedMood
     val title = MutableStateFlow("")
     val content = MutableStateFlow("")
-    val aiAlbumImageList: StateFlow<List<String>> = _aiAlbumImageList
+    val aiAlbumImageList: StateFlow<List<AiTempImage>> = _aiAlbumImageList
 
     init {
         viewModelScope.launch {
@@ -77,6 +79,21 @@ class MusicRegisterViewModel @Inject constructor(
                 title.value,
                 content.value
             ).onSuccess { _aiAlbumImageList.emit(it) }
+        }
+    }
+
+    fun clickImage(item: AiTempImage) {
+        viewModelScope.launch {
+            val selectIndex = item.index
+            if (_aiAlbumSelectIndex == selectIndex) return@launch
+
+            val list = aiAlbumImageList.value
+            if (_aiAlbumSelectIndex != -1) list[_aiAlbumSelectIndex].isSelected.value = false
+            list[selectIndex].isSelected.value = true
+            _aiAlbumImageList.emit(list)
+            _aiAlbumSelectIndex = selectIndex
+
+            _album.emit(Album(-1, list[selectIndex].url, "", selectedMood.value!!.name))
         }
     }
 

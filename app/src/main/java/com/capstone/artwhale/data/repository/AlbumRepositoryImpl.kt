@@ -40,9 +40,7 @@ class AlbumRepositoryImpl @Inject constructor(
             "https://lh3.googleusercontent.com/FZgtqH0qtrPtk0Vn-fQqOfPUEanelSuDfPUaiR3Z7Jb_VNKYgvLQQBtExAyqUNV78UhO20SHYG3nBzAc=w544-h544-l90-rj",
             "https://lh3.googleusercontent.com/Eve_VljkGvgC-jwS30uaa5A4suBNQZD04mQGwmzTsPdHrAfHPntv4tKk2-aN5ltLX4uU8E7Esce7PTM=w544-h544-l90-rj",
         )
-        val ret = list.mapIndexed { index, item -> AiTempImage(index, item) }
-        ret.first().isSelected.postValue(true)
-        return ret
+        return list.mapIndexed { index, item -> AiTempImage(index, item) }
     }
 
     override suspend fun updateLikeAlbum(id: Int) =

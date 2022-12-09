@@ -39,7 +39,7 @@ class MusicRegisterViewModel @Inject constructor(
     private val _moodList = MutableStateFlow<List<Mood>>(emptyList())
     private val _selectedMood = MutableStateFlow<Mood?>(null)
     private val _aiAlbumImageList = MutableStateFlow<List<AiTempImage>>(emptyList())
-    private var _aiAlbumSelectIndex = 0
+    private var _aiAlbumSelectIndex = -1
 
     val musicUri: StateFlow<Uri?> = _musicUri
     val moodList: StateFlow<List<Mood>> = _moodList
@@ -88,10 +88,12 @@ class MusicRegisterViewModel @Inject constructor(
             if (_aiAlbumSelectIndex == selectIndex) return@launch
 
             val list = aiAlbumImageList.value
-            list[_aiAlbumSelectIndex].isSelected.value = false
+            if (_aiAlbumSelectIndex != -1) list[_aiAlbumSelectIndex].isSelected.value = false
             list[selectIndex].isSelected.value = true
             _aiAlbumImageList.emit(list)
             _aiAlbumSelectIndex = selectIndex
+
+            _album.emit(Album(-1, list[selectIndex].url, "", selectedMood.value!!.name))
         }
     }
 

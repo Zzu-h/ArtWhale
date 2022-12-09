@@ -5,8 +5,18 @@
     <data>
 
         <variable
-            name="url"
-            type="String" />
+            name="aiTempImage"
+            type="AiTempImage" />
+
+        <import type="kotlin.jvm.functions.Function1" />
+
+        <import type="kotlin.Unit" />
+
+        <import type="com.capstone.artwhale.domain.model.AiTempImage" />
+
+        <variable
+            name="action"
+            type="Function1&lt;AiTempImage, Unit>" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,11 +24,14 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.imageview.ShapeableImageView
-            image="@{url}"
+            image="@{aiTempImage.url}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/black"
-            android:padding="15dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> action.invoke(aiTempImage)}"
+            android:padding="@{aiTempImage.isSelected ? @dimen/zero_dp : @dimen/fifteen_dp}"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"

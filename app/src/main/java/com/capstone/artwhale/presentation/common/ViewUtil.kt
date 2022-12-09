@@ -29,6 +29,18 @@ fun ImageView.setState(state: Boolean) {
     this.isSelected = state
 }
 
+@BindingAdapter("layoutMargin")
+fun ImageView.setLayoutMargin(dimen: Float) {
+    val layoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
+    with(layoutParams) {
+        bottomMargin = dimen.toInt()
+        topMargin = dimen.toInt()
+        leftMargin = dimen.toInt()
+        rightMargin = dimen.toInt()
+    }
+    this.layoutParams = layoutParams
+}
+
 @BindingAdapter("playerState")
 fun ImageButton.setPlayerState(state: PlayerState) {
     this.isSelected = when (state) {

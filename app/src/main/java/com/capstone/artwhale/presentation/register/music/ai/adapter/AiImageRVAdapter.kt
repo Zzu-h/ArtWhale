@@ -2,16 +2,19 @@ package com.capstone.artwhale.presentation.register.music.ai.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.capstone.artwhale.databinding.ItemAiImageBinding
+import com.capstone.artwhale.domain.model.AiTempImage
 import com.capstone.artwhale.presentation.register.music.ai.viewholder.AiImageViewHolder
 
-class AiImageRVAdapter : ListAdapter<String, AiImageViewHolder>(diffUtil) {
+class AiImageRVAdapter(private val lifecycleOwner: LifecycleOwner) :
+    ListAdapter<AiTempImage, AiImageViewHolder>(diffUtil) {
 
-    private var callback: (url: String) -> Unit = {}
+    private var callback: (url: AiTempImage) -> Unit = {}
 
-    fun setCallBack(callback: (url: String) -> Unit) {
+    fun setCallBack(callback: (url: AiTempImage) -> Unit) {
         this.callback = callback
     }
 
@@ -22,17 +25,18 @@ class AiImageRVAdapter : ListAdapter<String, AiImageViewHolder>(diffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AiImageViewHolder {
         return AiImageViewHolder(
             ItemAiImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                .apply { lifecycleOwner = this@AiImageRVAdapter.lifecycleOwner }
         )
     }
 
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<String>() {
-            override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
+        val diffUtil = object : DiffUtil.ItemCallback<AiTempImage>() {
+            override fun areItemsTheSame(oldItem: AiTempImage, newItem: AiTempImage): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
-                return oldItem == newItem
+            override fun areContentsTheSame(oldItem: AiTempImage, newItem: AiTempImage): Boolean {
+                return oldItem.index == newItem.index
             }
         }
     }

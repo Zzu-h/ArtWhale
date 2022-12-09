@@ -17,7 +17,7 @@
 
 #### 테스트 앱 링크
 
-![링크](https://appdistribution.firebase.google.com/pub/i/65b526963dd35240)
+[링크](https://appdistribution.firebase.google.com/pub/i/65b526963dd35240)
 
 #### app
 - Use millions of Albums and Music,for free. No credit card required

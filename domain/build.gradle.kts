@@ -35,9 +35,4 @@ dependencies {
     //Hilt
     implementation(Dependencies.Hilt.hiltAndroid)
     kapt(Dependencies.Hilt.hiltAndroidCompiler)
-
-    //RoomDB
-    implementation(Dependencies.Room.roomDB)
-    implementation(Dependencies.Room.roomKtx)
-    kapt(Dependencies.Room.roomCompiler)
 }

@@ -62,14 +62,6 @@ dependencies {
     implementation(Dependencies.Hilt.hiltNavFragment)
     kapt(Dependencies.Hilt.hiltAndroidCompiler)
 
-    //Retrofit2 Dependency
-    implementation(Dependencies.Network.retrofit)
-    implementation(Dependencies.Network.retrofitGson)
-
-    //okhttp3 Dependency
-    implementation(Dependencies.Network.okhttp)
-    implementation(Dependencies.Network.okhttpLogging)
-
     //Glide Dependency
     implementation(Dependencies.Glide.glide)
     kapt(Dependencies.Glide.glideCompiler)
@@ -83,14 +75,6 @@ dependencies {
 
     //blur view
     implementation(Dependencies.View.blur)
-
-    //RoomDB
-    implementation(Dependencies.Room.roomDB)
-    implementation(Dependencies.Room.roomKtx)
-    kapt(Dependencies.Room.roomCompiler)
-
-    //File Util
-    implementation(Dependencies.Common.common)
 
     //google Dependency
     implementation(Dependencies.Google.gmsService)

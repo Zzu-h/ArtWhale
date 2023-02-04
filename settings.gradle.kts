@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "ArtWhale"
-include(":app")
+include(":presentation")
 include(":domain")
 include(":data")
 include(":common")

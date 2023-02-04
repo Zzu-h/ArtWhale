@@ -11,6 +11,14 @@
 
 `#사람 #배우이름 #소설 #첫소절 와 같이, 여러 텍스트(태그)를 읽고 그에 맞는 이미지를 그려줌`
 
+#### 데모영상
+
+[![ArtWhale Thumbnail](https://img.youtube.com/vi/OXIRyDrxv74/0.jpg)](https://youtu.be/OXIRyDrxv74)
+
+#### 테스트 앱 링크
+
+[링크](https://appdistribution.firebase.google.com/pub/i/65b526963dd35240)
+
 #### app
 - Use millions of Albums and Music,for free. No credit card required
 

@@ -1,0 +1,6 @@
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center|top"
+    android:src="@drawable/img_login_background"
+    android:tileMode="clamp"
+    android:viewportWidth="108"
+    android:viewportHeight="108" />

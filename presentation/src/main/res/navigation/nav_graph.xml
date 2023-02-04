@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/musicFragment">
+
+    <fragment
+        android:id="@+id/musicFragment"
+        android:name="com.capstone.artwhale.presentation.home.music.MusicFragment"
+        android:label="@string/fragment_music"
+        android:launchMode="singleTask"
+        tools:layout="@layout/fragment_music">
+
+        <action
+            android:id="@+id/action_to_SearchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/albumFragment"
+        android:name="com.capstone.artwhale.presentation.home.album.AlbumFragment"
+        android:label="@string/fragment_album"
+        tools:layout="@layout/fragment_album">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/musicFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.capstone.artwhale.presentation.home.search.SearchFragment"
+        android:label="@string/fragment_like"
+        tools:layout="@layout/fragment_search">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/musicFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.capstone.artwhale.presentation.home.profile.ProfileFragment"
+        android:label="@string/fragment_profile"
+        android:launchMode="singleTop"
+        tools:layout="@layout/fragment_profile">
+
+        <action
+            android:id="@+id/action_to_musicFragment"
+            app:destination="@id/musicFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/musicFragment" />
+        <action
+            android:id="@+id/action_to_likeFragment"
+            app:destination="@id/likeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_to_myArtFragment"
+            app:destination="@id/myArtFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:launchSingleTop="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/likeFragment"
+        android:name="com.capstone.artwhale.presentation.home.profile.like.LikeFragment"
+        android:label="@string/fragment_like"
+        tools:layout="@layout/fragment_like">
+
+        <action
+            android:id="@+id/action_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/myArtFragment"
+        android:name="com.capstone.artwhale.presentation.home.profile.my.MyArtFragment"
+        android:label="@string/fragment_my_art"
+        tools:layout="@layout/fragment_my_art">
+
+        <action
+            android:id="@+id/action_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <include app:graph="@navigation/nav_profile_graph" />
+</navigation>

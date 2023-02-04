@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CustomToolBar">
+        <attr name="toolbarTitle" format="string" />
+
+        <attr name="onClickDefaultIcon" format="string" />
+        <attr name="onClickAdditionalIcon" format="string" />
+
+        <attr name="setDefaultIcon" format="reference" />
+        <attr name="setAdditionalIcon" format="reference" />
+
+        <attr name="toolBarType">
+            <flag name="main" value="0x00" />
+            <flag name="sub" value="0x01" />
+        </attr>
+    </declare-styleable>
+</resources>

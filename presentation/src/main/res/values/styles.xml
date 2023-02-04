@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="percent_14">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/accent</item>
+    </style>
+
+    <!--title-->
+    <style name="title">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="title.large" parent="title">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="title.large.white" parent="title.large">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="title.medium" parent="title">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="title.medium.white" parent="title.medium">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="title.small" parent="title">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="title.small.white" parent="title.small">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!--Button-->
+    <style name="button">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="button.bold" parent="button">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="button.social_login" parent="button">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--Text-->
+    <style name="text">
+        <item name="android:textColor">@color/black</item>
+        <!--글꼴적용-->
+    </style>
+
+    <style name="text.veryLarge" parent="text">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="text.veryLarge.bold" parent="text.veryLarge">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.large" parent="text">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="text.large.bold" parent="text.large">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.medium" parent="text">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="text.medium.bold" parent="text.medium">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.small" parent="text">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="text.small.bold" parent="text.small">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.verySmall" parent="text">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="text.verySmall.bold" parent="text.verySmall">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--Description-->
+    <style name="description" parent="text">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="description.veryLarge" parent="description">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="description.large" parent="description">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="description.large.bold" parent="description.large">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="description.medium" parent="description">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="description.small" parent="description">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <!--ShapeableImage-->
+    <style name="ShapeAppearanceOverlay.App.CornerSize100Percent" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize20Percent" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20%</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10%</item>
+    </style>
+
+    <!--Bottom Navigation View / Icon Background = null-->
+    <style name="Widget.Material3.BottomNavigationView.ActiveIndicator" parent="" />
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator" />
+
+    <!--CardView-->
+    <style name="ShapeAppearanceOverlay.MaterialCardView.Cut.BottomLeft" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">130dp</item>
+    </style>
+
+    <style name="CardViewLeftBottomRadius" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.MaterialCardView.Cut.BottomLeft
+        </item>
+    </style>
+</resources>

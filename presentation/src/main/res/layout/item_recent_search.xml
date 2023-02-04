@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.capstone.artwhale.domain.model.RecentSearch" />
+
+        <variable
+            name="listener"
+            type="com.capstone.artwhale.presentation.home.search.adapter.RecentSearchRVAdapter.ClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:padding="2dp"
+            android:src="@drawable/ic_doughnut" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> listener.onClickItem(item)}"
+            android:text="@{item.keyword}"
+            android:textAppearance="@style/text.small"
+            android:textColor="@color/gray"
+            tools:text="Test" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> listener.onClickDelete(item)}"
+            android:padding="12dp"
+            android:src="@drawable/ic_cross"
+            app:tint="@color/gray" />
+    </LinearLayout>
+</layout>

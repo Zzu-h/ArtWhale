@@ -4,7 +4,6 @@ import com.capstone.artwhale.config.AuthorizationTokenInterceptor
 import com.capstone.artwhale.data.BuildConfig
 import com.capstone.artwhale.data.BuildConfig.BASE_URL
 import com.capstone.artwhale.data.service.*
-import com.capstone.artwhale.util.SharedPreferencesManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,7 +34,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideAuthorizationTokenInterceptor(sharedPreferencesManager: SharedPreferencesManager): AuthorizationTokenInterceptor =
+    fun provideAuthorizationTokenInterceptor(sharedPreferencesManager: com.capstone.artwhale.common.SharedPreferencesManager): AuthorizationTokenInterceptor =
         AuthorizationTokenInterceptor(sharedPreferencesManager)
 
     @Singleton

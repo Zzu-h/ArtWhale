@@ -2,6 +2,7 @@ package com.capstone.artwhale.presentation.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.capstone.artwhale.common.SharedPreferencesManager
 import com.capstone.artwhale.domain.usecase.auth.GetTokenInfoUseCase
 import com.capstone.artwhale.domain.usecase.auth.LoginUseCase
 import com.capstone.artwhale.presentation.common.*

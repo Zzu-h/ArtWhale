@@ -1,4 +1,4 @@
-package com.capstone.artwhale.util
+package com.capstone.artwhale.common
 
 import android.annotation.SuppressLint
 import android.content.ContentResolver

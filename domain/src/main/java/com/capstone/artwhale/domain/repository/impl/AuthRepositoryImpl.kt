@@ -7,12 +7,12 @@ import com.capstone.artwhale.domain.mapper.toUserInfo
 import com.capstone.artwhale.domain.model.TokenInfo
 import com.capstone.artwhale.domain.model.UserInfo
 import com.capstone.artwhale.domain.repository.AuthRepository
-import com.capstone.artwhale.util.SharedPreferencesManager
+import com.capstone.artwhale.common.SharedPreferencesManager
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val authDataSource: AuthDataSource,
-    private val sharedPreferencesManager: SharedPreferencesManager
+    private val sharedPreferencesManager: com.capstone.artwhale.common.SharedPreferencesManager
 ) : AuthRepository {
 
     override suspend fun login(email: String): Result<UserInfo> =

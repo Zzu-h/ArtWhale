@@ -1,7 +1,8 @@
 package com.capstone.artwhale.di
 
 import android.content.Context
-import com.capstone.artwhale.util.SharedPreferencesManager
+import com.capstone.artwhale.common.LocalPathUtil
+import com.capstone.artwhale.common.SharedPreferencesManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,7 +12,13 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object UtilModule {
+object CommonModule {
+
+    @Singleton
+    @Provides
+    fun provideLocalPathUtil(@ApplicationContext context: Context): LocalPathUtil {
+        return LocalPathUtil(context)
+    }
 
     @Singleton
     @Provides

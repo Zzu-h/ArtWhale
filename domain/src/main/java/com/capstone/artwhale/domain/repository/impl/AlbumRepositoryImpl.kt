@@ -6,7 +6,7 @@ import com.capstone.artwhale.domain.mapper.toUpdateLikeDto
 import com.capstone.artwhale.domain.model.AiTempImage
 import com.capstone.artwhale.domain.model.Album
 import com.capstone.artwhale.domain.repository.AlbumRepository
-import com.capstone.artwhale.util.LocalPathUtil
+import com.capstone.artwhale.common.LocalPathUtil
 import java.io.File
 import javax.inject.Inject
 

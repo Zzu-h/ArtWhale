@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = Config.applicationId + ".domain"
+    namespace = Config.applicationId + ".common"
     compileSdk = Config.compileSdk
 
     defaultConfig {
@@ -29,15 +29,10 @@ android {
 
 dependencies {
 
-    implementation(project(Project.data))
-    implementation(project(Project.common))
-
     //Hilt
     implementation(Dependencies.Hilt.hiltAndroid)
     kapt(Dependencies.Hilt.hiltAndroidCompiler)
 
-    //RoomDB
-    implementation(Dependencies.Room.roomDB)
-    implementation(Dependencies.Room.roomKtx)
-    kapt(Dependencies.Room.roomCompiler)
+    //File Util
+    implementation(Dependencies.Common.common)
 }

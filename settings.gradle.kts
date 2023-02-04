@@ -16,3 +16,4 @@ rootProject.name = "ArtWhale"
 include(":app")
 include(":domain")
 include(":data")
+include(":common")

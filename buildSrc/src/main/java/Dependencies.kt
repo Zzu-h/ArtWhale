@@ -37,7 +37,8 @@ object Version {
 object Project {
     const val data = ":data"
     const val domain = ":domain"
-    const val presentation = ":app"
+    const val presentation = ":presentation"
+    const val common = ":common"
 }
 
 object PluginId {

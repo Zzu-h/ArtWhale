@@ -6,7 +6,7 @@ import com.capstone.artwhale.domain.mapper.toMusic
 import com.capstone.artwhale.domain.mapper.toUpdateLikeDto
 import com.capstone.artwhale.domain.model.Music
 import com.capstone.artwhale.domain.repository.MusicRepository
-import com.capstone.artwhale.util.LocalPathUtil
+import com.capstone.artwhale.common.LocalPathUtil
 import java.io.File
 import javax.inject.Inject
 

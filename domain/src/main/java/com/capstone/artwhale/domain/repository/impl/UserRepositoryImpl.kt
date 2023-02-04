@@ -5,7 +5,7 @@ import com.capstone.artwhale.domain.mapper.toUpdateNicknameDto
 import com.capstone.artwhale.domain.mapper.toUserInfo
 import com.capstone.artwhale.domain.model.UserInfo
 import com.capstone.artwhale.domain.repository.UserRepository
-import com.capstone.artwhale.util.LocalPathUtil
+import com.capstone.artwhale.common.LocalPathUtil
 import java.io.File
 import javax.inject.Inject
 

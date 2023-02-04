@@ -1,4 +1,4 @@
-package com.capstone.artwhale.util
+package com.capstone.artwhale.common
 
 import android.content.Context
 import javax.inject.Inject

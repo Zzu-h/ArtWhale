@@ -37,6 +37,8 @@ android {
 
 dependencies {
 
+    implementation(project(Project.common))
+
     //Test
     testImplementation(Dependencies.Test.junit)
     androidTestImplementation(Dependencies.Androidx.junit)
@@ -58,7 +60,4 @@ dependencies {
     implementation(Dependencies.Room.roomDB)
     implementation(Dependencies.Room.roomKtx)
     kapt(Dependencies.Room.roomCompiler)
-
-    //File Util
-    implementation(Dependencies.Common.common)
 }

@@ -44,6 +44,7 @@ android {
 dependencies {
 
     implementation(project(Project.domain))
+    implementation(project(Project.common))
 
     implementation(Dependencies.Androidx.core)
     implementation(Dependencies.Androidx.appcompat)

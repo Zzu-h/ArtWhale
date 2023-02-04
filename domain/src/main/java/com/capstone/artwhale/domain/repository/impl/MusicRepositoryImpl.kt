@@ -1,8 +1,9 @@
-package com.capstone.artwhale.data.repository
+package com.capstone.artwhale.domain.repository.impl
 
 import android.net.Uri
 import com.capstone.artwhale.data.datasource.music.MusicDataSource
-import com.capstone.artwhale.data.dto.toUpdateLikeDto
+import com.capstone.artwhale.domain.mapper.toMusic
+import com.capstone.artwhale.domain.mapper.toUpdateLikeDto
 import com.capstone.artwhale.domain.model.Music
 import com.capstone.artwhale.domain.repository.MusicRepository
 import com.capstone.artwhale.util.LocalPathUtil

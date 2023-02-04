@@ -6,5 +6,3 @@ data class UpdateNickNameDto(
     @SerializedName("nickname")
     val nickname: String
 )
-
-fun String.toUpdateNicknameDto() = UpdateNickNameDto(this)

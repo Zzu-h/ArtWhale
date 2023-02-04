@@ -1,6 +1,5 @@
 package com.capstone.artwhale.data.dto
 
-import com.capstone.artwhale.domain.model.UserInfo
 import com.google.gson.annotations.SerializedName
 
 data class AuthDto(

@@ -1,7 +1,8 @@
-package com.capstone.artwhale.data.repository
+package com.capstone.artwhale.domain.repository.impl
 
 import com.capstone.artwhale.data.datasource.recent.RecentSearchDataSource
-import com.capstone.artwhale.data.dto.toRecentSearchDto
+import com.capstone.artwhale.domain.mapper.toRecentSearch
+import com.capstone.artwhale.domain.mapper.toRecentSearchDto
 import com.capstone.artwhale.domain.model.RecentSearch
 import com.capstone.artwhale.domain.repository.RecentSearchRepository
 import kotlinx.coroutines.flow.Flow

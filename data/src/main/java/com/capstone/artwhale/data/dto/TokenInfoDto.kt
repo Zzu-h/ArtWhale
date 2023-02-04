@@ -1,6 +1,5 @@
 package com.capstone.artwhale.data.dto
 
-import com.capstone.artwhale.domain.model.TokenInfo
 import com.google.gson.annotations.SerializedName
 
 data class TokenInfoDto(
@@ -10,10 +9,4 @@ data class TokenInfoDto(
     val nickname: String,
     @SerializedName("expiresIn")
     val expiresIn: Long
-) {
-    fun toTokenInfo(): TokenInfo = TokenInfo(
-        email = email,
-        nickname = nickname,
-        expiresIn = expiresIn
-    )
-}
+)

@@ -6,5 +6,3 @@ data class LoginDto(
     @SerializedName("email")
     val email: String
 )
-
-fun String.toLoginDto(): LoginDto = LoginDto(this)

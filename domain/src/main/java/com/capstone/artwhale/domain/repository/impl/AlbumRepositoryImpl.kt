@@ -1,7 +1,8 @@
-package com.capstone.artwhale.data.repository
+package com.capstone.artwhale.domain.repository.impl
 
 import com.capstone.artwhale.data.datasource.album.AlbumDataSource
-import com.capstone.artwhale.data.dto.toUpdateLikeDto
+import com.capstone.artwhale.domain.mapper.toAlbum
+import com.capstone.artwhale.domain.mapper.toUpdateLikeDto
 import com.capstone.artwhale.domain.model.AiTempImage
 import com.capstone.artwhale.domain.model.Album
 import com.capstone.artwhale.domain.repository.AlbumRepository

@@ -1,7 +1,7 @@
 package com.capstone.artwhale.di
 
-import com.capstone.artwhale.data.repository.*
 import com.capstone.artwhale.domain.repository.*
+import com.capstone.artwhale.domain.repository.impl.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

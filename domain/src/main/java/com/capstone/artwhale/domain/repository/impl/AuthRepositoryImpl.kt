@@ -1,7 +1,9 @@
-package com.capstone.artwhale.data.repository
+package com.capstone.artwhale.domain.repository.impl
 
 import com.capstone.artwhale.data.datasource.auth.AuthDataSource
-import com.capstone.artwhale.data.dto.toLoginDto
+import com.capstone.artwhale.domain.mapper.toLoginDto
+import com.capstone.artwhale.domain.mapper.toTokenInfo
+import com.capstone.artwhale.domain.mapper.toUserInfo
 import com.capstone.artwhale.domain.model.TokenInfo
 import com.capstone.artwhale.domain.model.UserInfo
 import com.capstone.artwhale.domain.repository.AuthRepository

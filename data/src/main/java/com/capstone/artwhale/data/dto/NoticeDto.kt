@@ -1,7 +1,5 @@
 package com.capstone.artwhale.data.dto
 
-import com.capstone.artwhale.BuildConfig
-import com.capstone.artwhale.domain.model.Notice
 import com.google.gson.annotations.SerializedName
 
 data class NoticeDto(
@@ -17,10 +15,4 @@ data class NoticeDto(
     val title: String,
     @SerializedName("updatedAt")
     val updatedAt: String
-) {
-    fun toNotice(): Notice = Notice(
-        topText = title,
-        contentText = content,
-        imageUrl = if (fileId == null) null else BuildConfig.BASE_URL + fileId.path
-    )
-}
+)

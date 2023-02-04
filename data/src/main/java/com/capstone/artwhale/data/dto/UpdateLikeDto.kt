@@ -6,5 +6,3 @@ data class UpdateLikeDto(
     @SerializedName("id")
     val id: Int
 )
-
-fun Int.toUpdateLikeDto() = UpdateLikeDto(this)

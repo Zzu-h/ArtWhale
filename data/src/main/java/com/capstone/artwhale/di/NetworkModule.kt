@@ -1,8 +1,8 @@
 package com.capstone.artwhale.di
 
-import com.capstone.artwhale.BuildConfig
-import com.capstone.artwhale.BuildConfig.BASE_URL
 import com.capstone.artwhale.config.AuthorizationTokenInterceptor
+import com.capstone.artwhale.data.BuildConfig
+import com.capstone.artwhale.data.BuildConfig.BASE_URL
 import com.capstone.artwhale.data.service.*
 import com.capstone.artwhale.util.SharedPreferencesManager
 import dagger.Module

@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.capstone.artwhale.domain.usecase.auth.GetTokenInfoUseCase
 import com.capstone.artwhale.domain.usecase.auth.LoginUseCase
 import com.capstone.artwhale.presentation.common.*
-import com.capstone.artwhale.util.SharedPreferencesManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow

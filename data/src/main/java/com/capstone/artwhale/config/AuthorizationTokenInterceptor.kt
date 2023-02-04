@@ -1,10 +1,10 @@
 package com.capstone.artwhale.config
 
-import com.capstone.artwhale.util.SharedPreferencesManager
-import com.capstone.artwhale.util.SharedPreferencesManager.Companion.X_ACCESS_TOKEN
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
+import com.capstone.artwhale.util.SharedPreferencesManager
+import com.capstone.artwhale.util.SharedPreferencesManager.Companion.X_ACCESS_TOKEN
 import javax.inject.Inject
 
 class AuthorizationTokenInterceptor @Inject constructor(

@@ -1,5 +1,3 @@
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-
 plugins {
     id(PluginId.Android.application)
     id(PluginId.Kotlin.kotlinAndroid)
@@ -40,12 +38,6 @@ android {
     buildFeatures {
         dataBinding = true
         viewBinding = true
-    }
-
-    val baseUrl: String = gradleLocalProperties(rootDir).getProperty("BASE_URL")
-
-    defaultConfig {
-        buildConfigField("String", "BASE_URL", baseUrl)
     }
 }
 

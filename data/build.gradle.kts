@@ -38,9 +38,9 @@ android {
 dependencies {
 
     //Test
-    testImplementation (Dependencies.Test.junit)
-    androidTestImplementation (Dependencies.Androidx.junit)
-    androidTestImplementation (Dependencies.Androidx.espresso)
+    testImplementation(Dependencies.Test.junit)
+    androidTestImplementation(Dependencies.Androidx.junit)
+    androidTestImplementation(Dependencies.Androidx.espresso)
 
     //Hilt
     implementation(Dependencies.Hilt.hiltAndroid)
@@ -58,4 +58,7 @@ dependencies {
     implementation(Dependencies.Room.roomDB)
     implementation(Dependencies.Room.roomKtx)
     kapt(Dependencies.Room.roomCompiler)
+
+    //File Util
+    implementation(Dependencies.Common.common)
 }
